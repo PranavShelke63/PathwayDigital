@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingCartIcon, UserIcon, Bars3Icon as MenuIcon, MagnifyingGlassIcon as SearchIcon } from '@heroicons/react/24/outline';
 import { Transition } from '@headlessui/react';
@@ -12,6 +12,20 @@ const Navbar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const profileRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
+        setIsProfileOpen(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -65,20 +79,30 @@ const Navbar: React.FC = () => {
 
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
             {user ? (
-              <div className="relative ml-3">
+              <div className="relative ml-3" ref={profileRef}>
                 <div>
                   <button
                     onClick={() => setIsProfileOpen(!isProfileOpen)}
-                    className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                    className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary hover:ring-2 hover:ring-offset-2 hover:ring-primary"
+                    aria-expanded={isProfileOpen}
+                    aria-haspopup="true"
                   >
                     <span className="sr-only">Open user menu</span>
-                    <div className="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center">
+                    <div className="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center transition-colors hover:bg-primary/90">
                       {user.name.charAt(0).toUpperCase()}
                     </div>
                   </button>
                 </div>
-                {isProfileOpen && (
-                  <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <Transition
+                  show={isProfileOpen}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50">
                     <div className="px-4 py-2 text-sm text-contrast border-b">
                       <p className="font-medium">{user.name}</p>
                       <p className="text-gray-500">{user.email}</p>
@@ -114,7 +138,7 @@ const Navbar: React.FC = () => {
                       Sign out
                     </button>
                   </div>
-                )}
+                </Transition>
               </div>
             ) : (
               <div className="flex space-x-4">
