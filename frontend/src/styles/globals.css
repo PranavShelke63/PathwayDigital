@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500&family=Roboto:wght@500&display=swap');
+
+:root {
+  --primary-color: #003366;
+  --accent-color: #00FFFF;
+  --contrast-color: #1A1A1A;
+  --background-color: #F2F2F2;
+}
+
+@layer base {
+  html {
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  button {
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white font-medium py-2 px-4 rounded-lg transition-colors;
+  }
+  .btn-primary:hover {
+    @apply bg-opacity-90;
+  }
+
+  .btn-secondary {
+    @apply bg-accent text-contrast font-medium py-2 px-4 rounded-lg transition-colors;
+  }
+  .btn-secondary:hover {
+    @apply bg-opacity-90;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-md p-4;
+  }
+} 
