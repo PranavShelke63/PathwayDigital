@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white px-4 py-2 rounded-md hover:bg-secondary transition-colors duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-accent text-primary px-4 py-2 rounded-md hover:bg-primary hover:text-white transition-colors duration-200;
+  }
+
+  .card {
+    @apply bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200;
+  }
+
+  .input {
+    @apply rounded-md border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+
+  .error {
+    @apply text-red-500 text-sm mt-1;
+  }
+}
+
 /* Your custom styles below */
 
 body {

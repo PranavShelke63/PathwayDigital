@@ -12,13 +12,16 @@ import Shop from './components/Shop/Shop';
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import Contact from './components/Contact/Contact';
+import AdminDashboard from './components/Admin/AdminDashboard';
 import './styles/globals.css';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <AuthProvider>
       <Router>
         <div className="min-h-screen bg-background">
+          <Toaster position="top-right" />
           <Navbar />
           <Routes>
             {/* Public routes */}
@@ -44,6 +47,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Orders />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin"
+              element={
+                <ProtectedRoute>
+                  <AdminDashboard />
                 </ProtectedRoute>
               }
             />

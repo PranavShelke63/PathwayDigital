@@ -107,6 +107,15 @@ const Navbar: React.FC = () => {
                       <p className="font-medium">{user.name}</p>
                       <p className="text-gray-500">{user.email}</p>
                     </div>
+                    {user.email === 'pranavopshelke@gmail.com' && (
+                      <Link
+                        to="/admin"
+                        className="block px-4 py-2 text-sm text-contrast hover:bg-background"
+                        onClick={() => setIsProfileOpen(false)}
+                      >
+                        Admin Dashboard
+                      </Link>
+                    )}
                     <Link
                       to="/profile"
                       className="block px-4 py-2 text-sm text-contrast hover:bg-background"
@@ -238,6 +247,15 @@ const Navbar: React.FC = () => {
                   </div>
                 </div>
                 <div className="mt-3 space-y-1">
+                  {user.email === 'pranavopshelke@gmail.com' && (
+                    <Link
+                      to="/admin"
+                      className="block px-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      Admin Dashboard
+                    </Link>
+                  )}
                   <Link
                     to="/profile"
                     className="block px-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"

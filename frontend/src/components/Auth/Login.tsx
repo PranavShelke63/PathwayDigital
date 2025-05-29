@@ -39,7 +39,11 @@ const Login: React.FC = () => {
 
     try {
       await login(email, password);
-      navigate('/');
+      if (email === 'pranavopshelke@gmail.com') {
+        navigate('/admin');
+      } else {
+        navigate('/');
+      }
     } catch (err: any) {
       const errorMessage = err.response?.data?.message || 'An error occurred during login';
       setError(errorMessage);
