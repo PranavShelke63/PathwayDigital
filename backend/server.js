@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -11,6 +10,7 @@ const { logger, morganMiddleware } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler');
 const limiter = require('./middleware/rateLimiter');
 const authRoutes = require('./routes/authRoutes');
+const productRoutes = require('./routes/productRoutes'); // Add this line
 
 const app = express();
 
@@ -28,33 +28,21 @@ app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 app.use(cookieParser());
 
-// Data sanitization against NoSQL query injection
+// Data sanitization
 app.use(mongoSanitize());
-
-// Data sanitization against XSS
 app.use(xss());
-
-// Request rate limiting
-app.use('/api', limiter);
-
-// Logging
-app.use(morganMiddleware);
 
 // Compression
 app.use(compression());
 
+// Logging
+app.use(morganMiddleware);
+
 // Routes
 app.use('/api/v1/auth', authRoutes);
+app.use('/api/v1/products', productRoutes); // Add this line
 
-// 404 handler
-app.all('*', (req, res, next) => {
-  res.status(404).json({
-    status: 'error',
-    message: `Can't find ${req.originalUrl} on this server!`
-  });
-});
-
-// Global error handler
+// Error handling
 app.use(errorHandler);
 
 // MongoDB Connection
@@ -62,27 +50,15 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dU
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-.then(() => logger.info('Database connection successful!'))
+.then(() => {
+  logger.info('Database connection successful!');
+})
 .catch((err) => {
   logger.error('Database connection error:', err);
   process.exit(1);
 });
 
-// Handle unhandled rejections
-process.on('unhandledRejection', (err) => {
-  logger.error('UNHANDLED REJECTION! 💥 Shutting down...');
-  logger.error(err.name, err.message);
-  process.exit(1);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  logger.info(`Server is running on port ${PORT}`);
 });
-
-// Handle uncaught exceptions
-process.on('uncaughtException', (err) => {
-  logger.error('UNCAUGHT EXCEPTION! 💥 Shutting down...');
-  logger.error(err.name, err.message);
-  process.exit(1);
-});
-
-const port = process.env.PORT || 5000;
-app.listen(port, () => {
-  logger.info(`Server is running on port ${port}`);
-}); 

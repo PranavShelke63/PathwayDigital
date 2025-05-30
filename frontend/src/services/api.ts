@@ -15,13 +15,30 @@ const api = axios.create({
 export interface Product {
   _id: string;
   name: string;
-  price: number;
   description: string;
-  image: string;
+  price: number;
   category: string;
+  brand: string;
+  image: string;
+  images: string[];
   stock: number;
-  unit: string;
-  isOrganic: boolean;
+  specifications: {
+    processor?: string;
+    ram?: string;
+    storage?: string;
+    graphics?: string;
+    display?: string;
+    operatingSystem?: string;
+    connectivity?: string[];
+    ports?: string[];
+    battery?: string;
+    dimensions?: string;
+    weight?: string;
+  };
+  features: string[];
+  warranty: string;
+  ratings: number;
+  numReviews: number;
 }
 
 export interface CartItem {
@@ -38,10 +55,22 @@ export interface Cart {
 
 // Products API
 export const productsApi = {
-  getAll: () => api.get<{ data: Product[] }>('/products'),
-  getById: (id: string) => api.get<{ data: Product }>(`/products/${id}`),
-  getByCategory: (category: string) => api.get<{ data: Product[] }>(`/products/category/${category}`),
-  search: (query: string) => api.get<{ data: Product[] }>(`/products/search?q=${query}`)
+  getAll: () => api.get<{ status: string; data: { data: Product[] } }>('/products'),
+  getById: (id: string) => api.get<{ status: string; data: { data: Product } }>(`/products/${id}`),
+  getByCategory: (category: string) => api.get<{ status: string; data: { data: Product[] } }>(`/products/category/${category}`),
+  search: (query: string) => api.get<{ status: string; data: { data: Product[] } }>(`/products/search?q=${query}`),
+  create: (product: Omit<Product, '_id'>) => api.post<{ status: string; data: { data: Product } }>('/products', product),
+  update: (id: string, product: Partial<Product>) => api.patch<{ status: string; data: { data: Product } }>(`/products/${id}`, product),
+  delete: (id: string) => api.delete<{ status: string; data: null }>(`/products/${id}`),
+  uploadImage: (file: File) => {
+    const formData = new FormData();
+    formData.append('image', file);
+    return api.post<{ status: string; data: { url: string } }>('/products/upload-image', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  }
 };
 
 // Cart API

@@ -13,6 +13,7 @@ import Home from './components/Home/Home';
 import About from './components/About/About';
 import Contact from './components/Contact/Contact';
 import AdminDashboard from './components/Admin/AdminDashboard';
+import ProductManagement from './components/Admin/ProductManagement';
 import './styles/globals.css';
 import { Toaster } from 'react-hot-toast';
 
@@ -55,6 +56,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <AdminDashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin/products"
+              element={
+                <ProtectedRoute>
+                  <ProductManagement />
                 </ProtectedRoute>
               }
             />

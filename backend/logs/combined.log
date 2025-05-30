@@ -66,3 +66,101 @@
 {"level":"info","message":"GET /api/v1/auth/me 404 73 - 121.282 ms","timestamp":"2025-05-29T22:10:21.135Z"}
 {"level":"info","message":"GET /api/v1/auth/me 404 73 - 575.022 ms","timestamp":"2025-05-29T22:10:21.731Z"}
 {"level":"info","message":"POST /api/v1/auth/login 200 381 - 509.985 ms","timestamp":"2025-05-29T22:11:10.744Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-05-30T18:46:41.430Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-05-30T18:46:41.806Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 73 - 251.396 ms","timestamp":"2025-05-30T18:47:40.986Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 73 - 51.681 ms","timestamp":"2025-05-30T18:47:41.059Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 381 - 394.125 ms","timestamp":"2025-05-30T18:49:02.510Z"}
+{"level":"info","message":"GET /api/v1/products 404 74 - 1.343 ms","timestamp":"2025-05-30T18:49:07.294Z"}
+{"level":"info","message":"GET /api/v1/products 404 74 - 0.924 ms","timestamp":"2025-05-30T18:49:07.300Z"}
+{"level":"info","message":"GET /api/v1/products 404 74 - 0.965 ms","timestamp":"2025-05-30T18:49:15.463Z"}
+{"level":"info","message":"GET /api/v1/products 404 74 - 0.437 ms","timestamp":"2025-05-30T18:49:15.469Z"}
+{"level":"info","message":"GET /api/v1/products 404 74 - 0.813 ms","timestamp":"2025-05-30T18:52:58.944Z"}
+{"level":"info","message":"GET /api/v1/products 404 74 - 1.631 ms","timestamp":"2025-05-30T18:52:58.955Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-05-30T18:56:17.377Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-05-30T18:56:18.669Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-05-30T18:56:28.808Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-05-30T18:56:29.066Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-05-30T18:57:01.582Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-05-30T18:57:01.828Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-05-30T18:59:23.015Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-05-30T18:59:23.314Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 73 - 35.419 ms","timestamp":"2025-05-30T18:59:40.833Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 73 - 13.700 ms","timestamp":"2025-05-30T18:59:41.063Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 381 - 386.971 ms","timestamp":"2025-05-30T18:59:57.658Z"}
+{"level":"info","message":"GET /api/v1/products 404 74 - 0.964 ms","timestamp":"2025-05-30T18:59:59.551Z"}
+{"level":"info","message":"GET /api/v1/products 404 74 - 1.230 ms","timestamp":"2025-05-30T18:59:59.561Z"}
+{"level":"info","message":"GET /api/v1/products 404 74 - 7.003 ms","timestamp":"2025-05-30T19:53:12.832Z"}
+{"level":"info","message":"GET /favicon.ico 404 70 - 1.512 ms","timestamp":"2025-05-30T19:53:13.078Z"}
+{"level":"info","message":"GET /api/v1/products 404 74 - 1.212 ms","timestamp":"2025-05-30T19:54:10.652Z"}
+{"level":"info","message":"GET /api/v1/products 404 74 - 1.489 ms","timestamp":"2025-05-30T19:54:10.668Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-05-30T19:54:34.696Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-05-30T19:54:34.914Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-05-30T19:59:57.534Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-05-30T19:59:57.788Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 37.319 ms","timestamp":"2025-05-30T20:00:26.473Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 11.961 ms","timestamp":"2025-05-30T20:00:26.492Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 381 - 385.619 ms","timestamp":"2025-05-30T20:00:34.798Z"}
+{"level":"info","message":"GET /api/v1/products 200 - - 44.987 ms","timestamp":"2025-05-30T20:00:36.080Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 21.496 ms","timestamp":"2025-05-30T20:00:36.105Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 12.253 ms","timestamp":"2025-05-30T20:01:49.510Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 11.681 ms","timestamp":"2025-05-30T20:01:49.526Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 381 - 312.888 ms","timestamp":"2025-05-30T20:03:55.613Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 15.720 ms","timestamp":"2025-05-30T20:03:57.925Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 14.146 ms","timestamp":"2025-05-30T20:03:57.944Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 16.698 ms","timestamp":"2025-05-30T20:04:07.286Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 39.056 ms","timestamp":"2025-05-30T20:04:07.336Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 132.633 ms","timestamp":"2025-05-30T20:04:31.501Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 14.707 ms","timestamp":"2025-05-30T20:04:31.521Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 381 - 306.055 ms","timestamp":"2025-05-30T20:06:28.108Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 17.574 ms","timestamp":"2025-05-30T20:06:29.901Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 20.084 ms","timestamp":"2025-05-30T20:06:29.931Z"}
+{"level":"info","message":"PATCH /api/v1/products/6839ffb34713a9d218b0b659 401 63 - 8.114 ms","timestamp":"2025-05-30T20:06:42.474Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 26.946 ms","timestamp":"2025-05-30T20:06:43.245Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 14.109 ms","timestamp":"2025-05-30T20:06:43.265Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 381 - 309.520 ms","timestamp":"2025-05-30T20:06:49.944Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 21.815 ms","timestamp":"2025-05-30T20:06:51.276Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 28.605 ms","timestamp":"2025-05-30T20:06:51.311Z"}
+{"level":"info","message":"DELETE /api/v1/products/6839ffb34713a9d218b0b65c 204 - - 41.783 ms","timestamp":"2025-05-30T20:07:10.883Z"}
+{"level":"info","message":"GET /api/v1/products 200 - - 15.381 ms","timestamp":"2025-05-30T20:07:10.910Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 13.054 ms","timestamp":"2025-05-30T20:07:28.756Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 11.086 ms","timestamp":"2025-05-30T20:07:28.769Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 381 - 290.878 ms","timestamp":"2025-05-30T20:07:34.284Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 14.636 ms","timestamp":"2025-05-30T20:07:35.705Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 13.467 ms","timestamp":"2025-05-30T20:07:35.723Z"}
+{"level":"info","message":"POST /api/v1/products 400 150 - 57.410 ms","timestamp":"2025-05-30T20:08:01.141Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 17.368 ms","timestamp":"2025-05-30T20:08:09.164Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 16.192 ms","timestamp":"2025-05-30T20:08:09.185Z"}
+{"level":"info","message":"PATCH /api/v1/products/6839ffb34713a9d218b0b65a 200 796 - 72.784 ms","timestamp":"2025-05-30T20:08:19.546Z"}
+{"level":"info","message":"GET /api/v1/products 200 - - 162.524 ms","timestamp":"2025-05-30T20:08:19.721Z"}
+{"level":"info","message":"PATCH /api/v1/products/6839ffb34713a9d218b0b65b 200 698 - 33.736 ms","timestamp":"2025-05-30T20:08:27.801Z"}
+{"level":"info","message":"GET /api/v1/products 200 - - 13.446 ms","timestamp":"2025-05-30T20:08:27.825Z"}
+{"level":"info","message":"POST /api/v1/products 400 150 - 156.267 ms","timestamp":"2025-05-30T20:08:54.889Z"}
+{"level":"info","message":"POST /api/v1/products 400 150 - 4793.358 ms","timestamp":"2025-05-30T20:08:56.876Z"}
+{"level":"info","message":"POST /api/v1/products 400 150 - 9681.649 ms","timestamp":"2025-05-30T20:08:58.936Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 139.505 ms","timestamp":"2025-05-30T20:09:57.324Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 15.889 ms","timestamp":"2025-05-30T20:09:57.348Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 17.471 ms","timestamp":"2025-05-30T20:13:43.819Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 16.236 ms","timestamp":"2025-05-30T20:13:43.841Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 23.918 ms","timestamp":"2025-05-30T20:13:57.297Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 17.245 ms","timestamp":"2025-05-30T20:13:57.318Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 18.514 ms","timestamp":"2025-05-30T20:14:00.625Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 33.336 ms","timestamp":"2025-05-30T20:14:00.667Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 23.796 ms","timestamp":"2025-05-30T20:15:46.608Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 24.389 ms","timestamp":"2025-05-30T20:15:46.637Z"}
+{"level":"info","message":"GET /api/v1/products 200 39 - 109.583 ms","timestamp":"2025-05-30T20:15:46.706Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 10.976 ms","timestamp":"2025-05-30T20:15:46.720Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 8.574 ms","timestamp":"2025-05-30T20:16:17.396Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-05-30T20:17:46.101Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-05-30T20:17:46.985Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-05-30T20:18:34.382Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-05-30T20:18:34.595Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-05-30T20:19:03.358Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-05-30T20:19:03.843Z"}
+{"level":"info","message":"GET /api/v1/products 200 - - 55.959 ms","timestamp":"2025-05-30T20:19:10.843Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 18.927 ms","timestamp":"2025-05-30T20:19:10.865Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 12.465 ms","timestamp":"2025-05-30T20:20:24.479Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 27.790 ms","timestamp":"2025-05-30T20:20:34.073Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 27.936 ms","timestamp":"2025-05-30T20:20:34.109Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 24.856 ms","timestamp":"2025-05-30T20:20:36.155Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 56.864 ms","timestamp":"2025-05-30T20:20:36.227Z"}

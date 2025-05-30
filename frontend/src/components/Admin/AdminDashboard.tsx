@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth } from '../../context/AuthContext';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 
 const AdminDashboard: React.FC = () => {
   const { user } = useAuth();
@@ -41,8 +41,10 @@ const AdminDashboard: React.FC = () => {
         <div className="card">
           <h3 className="text-lg font-semibold text-contrast mb-4">Product Management</h3>
           <div className="space-y-4">
-            <button className="btn-primary w-full">Add New Product</button>
-            <button className="btn-secondary w-full">View All Products</button>
+            <Link to="/admin/products" className="btn-primary w-full block text-center">
+              Manage Products
+            </Link>
+            <button className="btn-secondary w-full">View Analytics</button>
             <button className="btn-secondary w-full">Manage Categories</button>
           </div>
         </div>
