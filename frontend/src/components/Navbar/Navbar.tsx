@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCartIcon, UserIcon, Bars3Icon as MenuIcon, MagnifyingGlassIcon as SearchIcon } from '@heroicons/react/24/outline';
+import { ShoppingCartIcon, UserIcon, Bars3Icon as MenuIcon, MagnifyingGlassIcon as SearchIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline';
 import { Transition } from '@headlessui/react';
 import { useAuth } from '../../context/AuthContext';
 import logo from '../../assets/bgLOGO.png';
+import axios from 'axios';
 
 const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
@@ -12,6 +13,7 @@ const Navbar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -29,10 +31,26 @@ const Navbar: React.FC = () => {
 
   const handleLogout = async () => {
     try {
+      if (!window.confirm('Are you sure you want to sign out?')) {
+        return;
+      }
+
+      setIsLoggingOut(true);
       await logout();
-      navigate('/login');
+      setIsLoggingOut(false);
+      setIsProfileOpen(false);
+      setIsMenuOpen(false);
+      
+      // Clear any local storage or session data if needed
+      localStorage.clear();
+      sessionStorage.clear();
+      
+      // Navigate to login
+      navigate('/login', { replace: true });
     } catch (error) {
+      setIsLoggingOut(false);
       console.error('Logout failed:', error);
+      alert('Failed to sign out. Please try again.');
     }
   };
 
@@ -44,7 +62,7 @@ const Navbar: React.FC = () => {
             <div className="flex-shrink-0 flex items-center">
               <Link to="/" className="flex items-center space-x-2">
                 <img src={logo} alt="PATHWAY DIGITAL" className="h-12 w-auto" />
-                <span className="text-2xl font-bold text-primary">
+                <span className="text-2xl font-bold text-accent">
                   PATHWAY
                 </span>
               </Link>
@@ -73,6 +91,12 @@ const Navbar: React.FC = () => {
                 className="inline-flex items-center px-1 pt-1 text-sm font-medium text-contrast border-b-2 border-transparent hover:border-primary"
               >
                 Contact
+              </Link>
+              <Link
+                to="/services"
+                className="inline-flex items-center px-1 pt-1 text-sm font-medium text-contrast border-b-2 border-transparent hover:border-primary"
+              >
+                Services
               </Link>
             </div>
           </div>
@@ -138,13 +162,12 @@ const Navbar: React.FC = () => {
                       Wishlist
                     </Link>
                     <button
-                      onClick={() => {
-                        setIsProfileOpen(false);
-                        handleLogout();
-                      }}
-                      className="block w-full text-left px-4 py-2 text-sm text-contrast hover:bg-background"
+                      onClick={handleLogout}
+                      disabled={isLoggingOut}
+                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 group flex items-center justify-between disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Sign out
+                      <span>{isLoggingOut ? 'Signing out...' : 'Sign out'}</span>
+                      <ArrowRightOnRectangleIcon className="h-5 w-5 text-red-500 group-hover:text-red-600" />
                     </button>
                   </div>
                 </Transition>
@@ -231,6 +254,13 @@ const Navbar: React.FC = () => {
             >
               Contact
             </Link>
+            <Link
+              to="/services"
+              className="block pl-3 pr-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Services
+            </Link>
           </div>
           <div className="pt-4 pb-3 border-t border-gray-200">
             {user ? (
@@ -278,13 +308,12 @@ const Navbar: React.FC = () => {
                     Wishlist
                   </Link>
                   <button
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      handleLogout();
-                    }}
-                    className="block w-full text-left px-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
+                    onClick={handleLogout}
+                    disabled={isLoggingOut}
+                    className="block w-full text-left px-4 py-2 text-base font-medium text-red-600 hover:bg-red-50 group flex items-center justify-between disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Sign out
+                    <span>{isLoggingOut ? 'Signing out...' : 'Sign out'}</span>
+                    <ArrowRightOnRectangleIcon className="h-5 w-5 text-red-500 group-hover:text-red-600" />
                   </button>
                 </div>
               </>

@@ -10,16 +10,16 @@ const Hero: React.FC = () => {
           <div className="flex flex-col justify-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-poppins text-contrast mb-6">
               Welcome to
-              <span className="text-primary block">PATHWAY DIGITAL</span>
+              <span className="text-accent block">PATHWAY DIGITAL</span>
             </h1>
             <p className="text-lg md:text-xl text-gray-600 mb-8">
               Explore our wide range of laptops, PCs, and accessories. Get the best deals on premium tech products.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link to="/products" className="btn-primary">
+              <Link to="/products" className="btn-secondary text-white">
                 Shop Now
               </Link>
-              <Link to="/deals" className="btn-secondary">
+              <Link to="/deals" className="btn-secondary text-white">
                 View Deals
               </Link>
             </div>

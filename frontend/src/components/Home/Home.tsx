@@ -82,7 +82,7 @@ const Home: React.FC = () => {
           <div className="mt-8 flex justify-center">
             <Link
               to="/shop"
-              className="btn-secondary inline-flex items-center justify-center px-8"
+              className="btn-secondary inline-flex items-center justify-center px-8 text-white"
             >
               Browse Products
             </Link>

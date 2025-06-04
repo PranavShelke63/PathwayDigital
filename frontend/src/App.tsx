@@ -12,6 +12,7 @@ import Shop from './components/Shop/Shop';
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import Contact from './components/Contact/Contact';
+import Services from './pages/Services';
 import AdminDashboard from './components/Admin/AdminDashboard';
 import ProductManagement from './components/Admin/ProductManagement';
 import './styles/globals.css';
@@ -30,6 +31,7 @@ function App() {
             <Route path="/shop" element={<Shop />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />

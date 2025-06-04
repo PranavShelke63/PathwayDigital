@@ -6,6 +6,45 @@ interface User {
   name: string;
   email: string;
   role: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  company?: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    country: string;
+  };
+}
+
+interface RegisterData {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  company?: string;
+  countryRegion: string;
+  street: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  password: string;
+}
+
+interface UpdateProfileData {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  company?: string;
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    country: string;
+  };
 }
 
 interface AuthContextType {
@@ -13,11 +52,12 @@ interface AuthContextType {
   loading: boolean;
   error: string | null;
   login: (email: string, password: string) => Promise<void>;
-  register: (name: string, email: string, password: string) => Promise<void>;
+  register: (data: RegisterData) => Promise<void>;
   logout: () => Promise<void>;
   forgotPassword: (email: string) => Promise<void>;
   resetPassword: (token: string, password: string) => Promise<void>;
   updatePassword: (currentPassword: string, newPassword: string) => Promise<void>;
+  updateProfile: (data: UpdateProfileData) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -69,14 +109,48 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const register = async (name: string, email: string, password: string) => {
+  const register = async (data: RegisterData) => {
     try {
+      const formattedData = {
+        name: `${data.firstName} ${data.lastName}`,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        phoneNumber: data.phoneNumber,
+        company: data.company,
+        password: data.password,
+        role: 'user',
+        address: {
+          street: data.street,
+          city: data.city,
+          state: data.state,
+          zipCode: data.zipCode,
+          country: data.countryRegion
+        }
+      };
+
       const response = await axios.post(
         `${API_URL}/auth/register`,
-        { name, email, password },
+        formattedData,
         { withCredentials: true }
       );
-      setUser(response.data.data.user);
+      
+      // Ensure we get the full user object back
+      const userData = response.data.data.user;
+      setUser({
+        ...userData,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        phoneNumber: data.phoneNumber,
+        company: data.company,
+        address: {
+          street: data.street,
+          city: data.city,
+          state: data.state,
+          zipCode: data.zipCode,
+          country: data.countryRegion
+        }
+      });
       setError(null);
     } catch (error: any) {
       setError(error.response?.data?.message || 'An error occurred');
@@ -129,6 +203,34 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const updateProfile = async (data: UpdateProfileData) => {
+    try {
+      const response = await axios.patch(
+        `${API_URL}/auth/updateProfile`,
+        {
+          ...data,
+          name: `${data.firstName} ${data.lastName}`,
+        },
+        { withCredentials: true }
+      );
+      
+      // Update the user state with the new data
+      const userData = response.data.data.user;
+      setUser({
+        ...userData,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        phoneNumber: data.phoneNumber,
+        company: data.company,
+        address: data.address
+      });
+      setError(null);
+    } catch (error: any) {
+      setError(error.response?.data?.message || 'An error occurred');
+      throw error;
+    }
+  };
+
   const value = {
     user,
     loading,
@@ -138,7 +240,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     logout,
     forgotPassword,
     resetPassword,
-    updatePassword
+    updatePassword,
+    updateProfile
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
