@@ -267,3 +267,76 @@
 {"level":"info","message":"GET /api/v1/products 304 - - 229.379 ms","timestamp":"2025-06-04T01:44:50.290Z"}
 {"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-04T02:47:11.914Z"}
 {"level":"info","message":"Database connection successful!","timestamp":"2025-06-04T02:47:12.305Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-04T23:06:27.034Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-04T23:06:27.300Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 33.174 ms","timestamp":"2025-06-04T23:06:52.176Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 11.728 ms","timestamp":"2025-06-04T23:06:52.191Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 357 - 366.929 ms","timestamp":"2025-06-04T23:07:18.887Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-04T23:10:00.891Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-04T23:10:01.128Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-04T23:10:10.564Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-04T23:10:10.784Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-04T23:10:18.538Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-04T23:10:18.764Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-04T23:10:52.304Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-04T23:10:52.765Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 64.288 ms","timestamp":"2025-06-04T23:11:04.379Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 13.037 ms","timestamp":"2025-06-04T23:11:04.401Z"}
+{"level":"info","message":"POST /api/v1/auth/register 400 65 - 3.982 ms","timestamp":"2025-06-04T23:11:38.787Z"}
+{"level":"info","message":"POST /api/v1/auth/register 400 65 - 0.654 ms","timestamp":"2025-06-04T23:11:53.605Z"}
+{"level":"info","message":"POST /api/v1/auth/register 400 65 - 0.546 ms","timestamp":"2025-06-04T23:12:03.708Z"}
+{"level":"info","message":"POST /api/v1/auth/register 400 65 - 0.362 ms","timestamp":"2025-06-04T23:12:24.677Z"}
+{"level":"info","message":"POST /api/v1/auth/register 400 65 - 0.820 ms","timestamp":"2025-06-04T23:12:39.966Z"}
+{"level":"info","message":"POST /api/v1/auth/register 400 65 - 0.836 ms","timestamp":"2025-06-04T23:12:49.027Z"}
+{"level":"info","message":"POST /api/v1/auth/register 400 65 - 0.674 ms","timestamp":"2025-06-04T23:12:57.121Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-04T23:14:51.497Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-04T23:14:51.802Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-04T23:16:33.745Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-04T23:16:34.038Z"}
+{"level":"info","message":"POST /api/v1/auth/register 400 220 - 6.250 ms","timestamp":"2025-06-04T23:16:58.501Z"}
+{"level":"info","message":"POST /api/v1/auth/register 400 220 - 1.278 ms","timestamp":"2025-06-04T23:17:10.648Z"}
+{"level":"info","message":"POST /api/v1/auth/register 400 220 - 0.650 ms","timestamp":"2025-06-04T23:17:11.209Z"}
+{"level":"info","message":"POST /api/v1/auth/register 400 220 - 0.635 ms","timestamp":"2025-06-04T23:17:18.184Z"}
+{"level":"info","message":"POST /api/v1/auth/register 400 220 - 0.565 ms","timestamp":"2025-06-04T23:17:31.872Z"}
+{"level":"info","message":"GET /api/v1/auth/me 401 80 - 88.467 ms","timestamp":"2025-06-04T23:17:34.526Z"}
+{"level":"info","message":"GET /api/v1/auth/me 401 80 - 76.703 ms","timestamp":"2025-06-04T23:17:34.610Z"}
+{"level":"info","message":"POST /api/v1/auth/register 400 220 - 0.653 ms","timestamp":"2025-06-04T23:17:49.919Z"}
+{"level":"info","message":"GET /api/v1/auth/me 401 80 - 14.261 ms","timestamp":"2025-06-04T23:19:18.643Z"}
+{"level":"info","message":"GET /api/v1/auth/me 401 80 - 12.996 ms","timestamp":"2025-06-04T23:19:18.662Z"}
+{"level":"info","message":"POST /api/v1/auth/register 400 220 - 0.296 ms","timestamp":"2025-06-04T23:19:48.260Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-04T23:22:11.815Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-04T23:22:12.039Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-04T23:22:55.694Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-04T23:22:56.066Z"}
+{"level":"info","message":"GET /api/v1/auth/me 401 80 - 25.235 ms","timestamp":"2025-06-04T23:23:28.464Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-04T23:23:48.029Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-04T23:23:48.332Z"}
+{"level":"info","message":"GET /api/v1/auth/me 401 80 - 20.977 ms","timestamp":"2025-06-04T23:23:52.132Z"}
+{"level":"info","message":"GET /api/v1/auth/me 401 80 - 13.606 ms","timestamp":"2025-06-04T23:23:52.151Z"}
+{"level":"info","message":"GET /api/v1/auth/me 401 80 - 128.160 ms","timestamp":"2025-06-04T23:25:59.772Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-04T23:26:12.317Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-04T23:26:12.555Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-04T23:26:26.313Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-04T23:26:26.566Z"}
+{"level":"info","message":"POST /api/v1/auth/register 400 107 - 80.609 ms","timestamp":"2025-06-04T23:51:23.285Z"}
+{"level":"info","message":"POST /api/v1/auth/register 201 713 - 448.505 ms","timestamp":"2025-06-04T23:51:35.926Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 27.910 ms","timestamp":"2025-06-04T23:51:47.230Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 30.944 ms","timestamp":"2025-06-04T23:51:47.267Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 713 - 433.690 ms","timestamp":"2025-06-04T23:52:02.766Z"}
+{"level":"info","message":"GET /api/v1/auth/logout 404 157 - 25.532 ms","timestamp":"2025-06-04T23:52:37.897Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 12.497 ms","timestamp":"2025-06-04T23:53:22.251Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 12.144 ms","timestamp":"2025-06-04T23:53:22.269Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 713 - 286.793 ms","timestamp":"2025-06-04T23:53:35.469Z"}
+{"level":"info","message":"PATCH /api/v1/auth/updatePassword 200 713 - 647.026 ms","timestamp":"2025-06-04T23:53:56.745Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 13.886 ms","timestamp":"2025-06-04T23:54:01.110Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 15.141 ms","timestamp":"2025-06-04T23:54:01.131Z"}
+{"level":"info","message":"POST /api/v1/auth/login 401 103 - 286.294 ms","timestamp":"2025-06-04T23:54:12.393Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 713 - 290.519 ms","timestamp":"2025-06-04T23:54:15.665Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 10.744 ms","timestamp":"2025-06-04T23:59:03.392Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-04T23:59:22.284Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-04T23:59:22.515Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-05T00:00:10.028Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-05T00:00:10.254Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 404 - 417.232 ms","timestamp":"2025-06-05T00:00:45.308Z"}
+{"level":"info","message":"GET /api/v1/auth/logout 404 157 - 24.260 ms","timestamp":"2025-06-05T00:00:48.814Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 19.170 ms","timestamp":"2025-06-05T00:02:09.383Z"}

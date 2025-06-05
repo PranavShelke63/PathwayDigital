@@ -8,12 +8,58 @@ const userSchema = new mongoose.Schema({
     required: [true, 'Please provide your name'],
     trim: true
   },
+  firstName: {
+    type: String,
+    required: [true, 'Please provide your first name'],
+    trim: true
+  },
+  lastName: {
+    type: String,
+    required: [true, 'Please provide your last name'],
+    trim: true
+  },
   email: {
     type: String,
     required: [true, 'Please provide your email'],
     unique: true,
     lowercase: true,
-    match: [/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/, 'Please provide a valid email']
+    trim: true,
+    match: [/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, 'Please provide a valid email']
+  },
+  phoneNumber: {
+    type: String,
+    required: [true, 'Please provide your phone number'],
+    trim: true,
+    match: [/^\+?[\d\s-]{10,}$/, 'Please provide a valid phone number']
+  },
+  company: {
+    type: String,
+    trim: true
+  },
+  address: {
+    street: {
+      type: String,
+      required: [true, 'Please provide street address'],
+      trim: true
+    },
+    city: {
+      type: String,
+      required: [true, 'Please provide city'],
+      trim: true
+    },
+    state: {
+      type: String,
+      required: [true, 'Please provide state']
+    },
+    zipCode: {
+      type: String,
+      required: [true, 'Please provide zip code'],
+      trim: true
+    },
+    country: {
+      type: String,
+      required: [true, 'Please provide country']
+    }
   },
   password: {
     type: String,
@@ -32,6 +78,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
+}, {
+  timestamps: true,
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true }
 });
 
 // Hash password before saving
@@ -49,7 +99,11 @@ userSchema.pre('save', async function(next) {
 
 // Compare password method
 userSchema.methods.comparePassword = async function(candidatePassword) {
-  return await bcrypt.compare(candidatePassword, this.password);
+  try {
+    return await bcrypt.compare(candidatePassword, this.password);
+  } catch (error) {
+    throw new Error('Error comparing passwords');
+  }
 };
 
 // Generate password reset token

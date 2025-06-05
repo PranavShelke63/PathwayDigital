@@ -36,21 +36,40 @@ const Navbar: React.FC = () => {
       }
 
       setIsLoggingOut(true);
-      await logout();
-      setIsLoggingOut(false);
-      setIsProfileOpen(false);
-      setIsMenuOpen(false);
       
-      // Clear any local storage or session data if needed
-      localStorage.clear();
-      sessionStorage.clear();
-      
-      // Navigate to login
-      navigate('/login', { replace: true });
-    } catch (error) {
+      try {
+        // First attempt the API logout
+        await logout();
+        
+        // Only clear storage and navigate after successful API logout
+        setIsProfileOpen(false);
+        setIsMenuOpen(false);
+        
+        // Clear storage after successful logout
+        try {
+          localStorage.clear();
+          sessionStorage.clear();
+        } catch (storageError) {
+          console.error('Storage cleanup error:', storageError);
+          // Continue with logout even if storage cleanup fails
+        }
+        
+        // Navigate last
+        navigate('/login', { replace: true });
+      } catch (logoutError: any) {
+        console.error('Logout error details:', {
+          message: logoutError.message,
+          response: logoutError.response?.data,
+          status: logoutError.response?.status
+        });
+        throw logoutError; // Re-throw to be caught by outer catch
+      }
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || error.message || 'Failed to sign out';
+      console.error('Logout failed:', errorMessage);
+      alert(errorMessage + '. Please try again or refresh the page.');
+    } finally {
       setIsLoggingOut(false);
-      console.error('Logout failed:', error);
-      alert('Failed to sign out. Please try again.');
     }
   };
 

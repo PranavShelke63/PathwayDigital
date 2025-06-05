@@ -47,10 +47,27 @@ interface UpdateProfileData {
   };
 }
 
+interface ValidationErrors {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phoneNumber?: string;
+  company?: string;
+  address?: {
+    street?: string;
+    city?: string;
+    state?: string;
+    zipCode?: string;
+    country?: string;
+  };
+  password?: string;
+  general?: string;
+}
+
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  error: string | null;
+  error: ValidationErrors | null;
   login: (email: string, password: string) => Promise<void>;
   register: (data: RegisterData) => Promise<void>;
   logout: () => Promise<void>;
@@ -58,6 +75,7 @@ interface AuthContextType {
   resetPassword: (token: string, password: string) => Promise<void>;
   updatePassword: (currentPassword: string, newPassword: string) => Promise<void>;
   updateProfile: (data: UpdateProfileData) => Promise<void>;
+  clearError: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -73,9 +91,11 @@ export const useAuth = () => {
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<ValidationErrors | null>(null);
 
   const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api/v1';
+
+  const clearError = () => setError(null);
 
   useEffect(() => {
     checkAuthStatus();
@@ -104,67 +124,94 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setUser(response.data.data.user);
       setError(null);
     } catch (error: any) {
-      setError(error.response?.data?.message || 'An error occurred');
+      const errorData = error.response?.data;
+      setError(errorData?.errors || { general: errorData?.message || 'An error occurred' });
       throw error;
     }
   };
 
   const register = async (data: RegisterData) => {
     try {
-      const formattedData = {
-        name: `${data.firstName} ${data.lastName}`,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        phoneNumber: data.phoneNumber,
-        company: data.company,
-        password: data.password,
-        role: 'user',
-        address: {
-          street: data.street,
-          city: data.city,
-          state: data.state,
-          zipCode: data.zipCode,
-          country: data.countryRegion
-        }
-      };
-
       const response = await axios.post(
         `${API_URL}/auth/register`,
-        formattedData,
+        data,
         { withCredentials: true }
       );
       
-      // Ensure we get the full user object back
-      const userData = response.data.data.user;
-      setUser({
-        ...userData,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        phoneNumber: data.phoneNumber,
-        company: data.company,
-        address: {
-          street: data.street,
-          city: data.city,
-          state: data.state,
-          zipCode: data.zipCode,
-          country: data.countryRegion
-        }
-      });
+      setUser(response.data.data.user);
       setError(null);
     } catch (error: any) {
-      setError(error.response?.data?.message || 'An error occurred');
+      const errorData = error.response?.data;
+      setError(errorData?.errors || { general: errorData?.message || 'Registration failed' });
+      throw error;
+    }
+  };
+
+  const updateProfile = async (data: UpdateProfileData) => {
+    try {
+      const response = await axios.patch(
+        `${API_URL}/auth/updateProfile`,
+        data,
+        { withCredentials: true }
+      );
+      setUser(response.data.data.user);
+      setError(null);
+    } catch (error: any) {
+      const errorData = error.response?.data;
+      setError(errorData?.errors || { general: errorData?.message || 'Failed to update profile' });
       throw error;
     }
   };
 
   const logout = async () => {
     try {
-      await axios.get(`${API_URL}/auth/logout`, { withCredentials: true });
+      // Attempt to call the logout endpoint
+      try {
+        await axios.get(`${API_URL}/auth/logout`, { 
+          withCredentials: true,
+          timeout: 5000 // 5 second timeout
+        });
+      } catch (apiError: any) {
+        // If it's a network error or timeout, we'll still proceed with local cleanup
+        if (!apiError.response || apiError.code === 'ECONNABORTED') {
+          console.warn('Logout API call failed, proceeding with local cleanup:', apiError);
+        } else {
+          throw apiError; // Re-throw other API errors
+        }
+      }
+      
+      // Clear user data
       setUser(null);
       setError(null);
+      
+      // Clear any stored tokens or user data
+      try {
+        localStorage.removeItem('user');
+        sessionStorage.removeItem('user');
+        
+        // Clear any other app-specific storage
+        localStorage.removeItem('cart');
+        localStorage.removeItem('wishlist');
+        sessionStorage.clear();
+      } catch (storageError) {
+        console.warn('Storage cleanup error:', storageError);
+        // Continue with logout even if storage cleanup fails
+      }
+      
+      // Clear all cookies
+      try {
+        document.cookie.split(";").forEach(function(c) { 
+          document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+        });
+      } catch (cookieError) {
+        console.warn('Cookie cleanup error:', cookieError);
+        // Continue with logout even if cookie cleanup fails
+      }
+      
     } catch (error: any) {
-      setError(error.response?.data?.message || 'An error occurred');
+      const errorData = error.response?.data;
+      const errorMessage = errorData?.message || 'Logout failed';
+      setError({ general: errorMessage });
       throw error;
     }
   };
@@ -174,7 +221,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       await axios.post(`${API_URL}/auth/forgotPassword`, { email });
       setError(null);
     } catch (error: any) {
-      setError(error.response?.data?.message || 'An error occurred');
+      const errorData = error.response?.data;
+      setError({ email: errorData?.message || 'Failed to process request' });
       throw error;
     }
   };
@@ -184,7 +232,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       await axios.patch(`${API_URL}/auth/resetPassword/${token}`, { password });
       setError(null);
     } catch (error: any) {
-      setError(error.response?.data?.message || 'An error occurred');
+      const errorData = error.response?.data;
+      setError({ password: errorData?.message || 'Failed to reset password' });
       throw error;
     }
   };
@@ -198,35 +247,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       );
       setError(null);
     } catch (error: any) {
-      setError(error.response?.data?.message || 'An error occurred');
-      throw error;
-    }
-  };
-
-  const updateProfile = async (data: UpdateProfileData) => {
-    try {
-      const response = await axios.patch(
-        `${API_URL}/auth/updateProfile`,
-        {
-          ...data,
-          name: `${data.firstName} ${data.lastName}`,
-        },
-        { withCredentials: true }
-      );
-      
-      // Update the user state with the new data
-      const userData = response.data.data.user;
-      setUser({
-        ...userData,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        phoneNumber: data.phoneNumber,
-        company: data.company,
-        address: data.address
-      });
-      setError(null);
-    } catch (error: any) {
-      setError(error.response?.data?.message || 'An error occurred');
+      const errorData = error.response?.data;
+      setError({ password: errorData?.message || 'Failed to update password' });
       throw error;
     }
   };
@@ -241,10 +263,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     forgotPassword,
     resetPassword,
     updatePassword,
-    updateProfile
+    updateProfile,
+    clearError
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export default AuthContext; 
+export default AuthContext;

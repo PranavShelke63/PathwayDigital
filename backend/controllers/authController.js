@@ -7,8 +7,18 @@ const sendEmail = require('../utils/email');
 // Custom error handler
 const handleError = (err) => {
   let errors = {
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
+    phoneNumber: '',
+    company: '',
+    address: {
+      street: '',
+      city: '',
+      state: '',
+      zipCode: '',
+      country: ''
+    },
     password: ''
   };
 
@@ -20,8 +30,13 @@ const handleError = (err) => {
 
   // Validation errors
   if (err.message.includes('validation failed')) {
-    Object.values(err.errors).forEach(({ properties }) => {
-      errors[properties.path] = properties.message;
+    Object.entries(err.errors).forEach(([path, error]) => {
+      if (path.startsWith('address.')) {
+        const addressField = path.split('.')[1];
+        errors.address[addressField] = error.message;
+      } else {
+        errors[path] = error.message;
+      }
     });
   }
 
@@ -50,6 +65,7 @@ const createSendToken = (user, statusCode, res) => {
 
   res.cookie('jwt', token, cookieOptions);
 
+  // Remove password from output
   user.password = undefined;
 
   res.status(statusCode).json({
@@ -62,40 +78,82 @@ const createSendToken = (user, statusCode, res) => {
 // Register new user
 exports.register = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const {
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      company,
+      street,
+      city,
+      state,
+      zipCode,
+      countryRegion,
+      password
+    } = req.body;
 
-    // Input validation
-    if (!name || !email || !password) {
-      return res.status(400).json({
-        status: 'error',
-        message: 'Please provide all required fields'
-      });
+    // Input validation with detailed errors
+    const validationErrors = {};
+
+    if (!firstName?.trim()) validationErrors.firstName = 'First Name is required';
+    if (!lastName?.trim()) validationErrors.lastName = 'Last Name is required';
+    if (!email?.trim()) validationErrors.email = 'Email is required';
+    if (email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email)) {
+      validationErrors.email = 'Invalid email format';
+    }
+    if (!phoneNumber?.trim()) validationErrors.phoneNumber = 'Phone Number is required';
+    if (phoneNumber && !/^\+?[\d\s-]{10,}$/.test(phoneNumber.trim())) {
+      validationErrors.phoneNumber = 'Invalid phone number format';
+    }
+    if (!street?.trim()) validationErrors.address = { ...validationErrors.address, street: 'Street is required' };
+    if (!city?.trim()) validationErrors.address = { ...validationErrors.address, city: 'City is required' };
+    if (!state) validationErrors.address = { ...validationErrors.address, state: 'State is required' };
+    if (!zipCode?.trim()) validationErrors.address = { ...validationErrors.address, zipCode: 'ZIP Code is required' };
+    if (!countryRegion) validationErrors.address = { ...validationErrors.address, country: 'Country is required' };
+    if (!password) validationErrors.password = 'Password is required';
+    if (password && password.length < 8) {
+      validationErrors.password = 'Password must be at least 8 characters long';
     }
 
-    if (password.length < 8) {
+    if (Object.keys(validationErrors).length > 0) {
       return res.status(400).json({
         status: 'error',
-        message: 'Password must be at least 8 characters long'
+        message: 'Validation failed',
+        errors: validationErrors
       });
     }
 
     // Check if user already exists
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email: email.toLowerCase() });
     if (existingUser) {
       return res.status(400).json({
         status: 'error',
-        message: 'Email is already registered'
+        message: 'Email is already registered',
+        errors: { email: 'Email is already registered' }
       });
     }
 
+    // Create user with all fields
     const user = await User.create({
-      name,
-      email,
+      name: `${firstName} ${lastName}`,
+      firstName,
+      lastName,
+      email: email.toLowerCase(),
+      phoneNumber,
+      company,
+      address: {
+        street,
+        city,
+        state,
+        zipCode,
+        country: countryRegion
+      },
       password
     });
 
     createSendToken(user, 201, res);
   } catch (error) {
+    console.error('Registration error:', error);
     const errors = handleError(error);
     res.status(400).json({
       status: 'error',
@@ -114,36 +172,73 @@ exports.login = async (req, res) => {
     if (!email || !password) {
       return res.status(400).json({
         status: 'error',
-        message: 'Please provide email and password'
+        message: 'Please provide email and password',
+        errors: {
+          email: !email ? 'Email is required' : '',
+          password: !password ? 'Password is required' : ''
+        }
       });
     }
 
     // Check if user exists & password is correct
-    const user = await User.findOne({ email }).select('+password');
+    const user = await User.findOne({ email: email.toLowerCase() }).select('+password');
     if (!user || !(await user.comparePassword(password))) {
       return res.status(401).json({
         status: 'error',
-        message: 'Invalid email or password'
+        message: 'Invalid email or password',
+        errors: {
+          email: 'Invalid email or password'
+        }
       });
     }
 
     createSendToken(user, 200, res);
   } catch (error) {
+    console.error('Login error:', error);
     res.status(400).json({
       status: 'error',
       message: 'Login failed',
-      error: error.message
+      errors: {
+        general: error.message
+      }
     });
   }
 };
 
 // Logout user
 exports.logout = (req, res) => {
-  res.cookie('jwt', 'loggedout', {
-    expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true
-  });
-  res.status(200).json({ status: 'success' });
+  try {
+    // Clear the JWT cookie
+    res.cookie('jwt', 'loggedout', {
+      expires: new Date(Date.now() + 1 * 1000), // Expire in 1 second
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax'
+    });
+
+    // Clear any other session cookies
+    res.clearCookie('connect.sid'); // Clear session cookie if using express-session
+    
+    // If using session
+    if (req.session) {
+      req.session.destroy((err) => {
+        if (err) {
+          console.error('Session destruction error:', err);
+        }
+      });
+    }
+
+    res.status(200).json({ 
+      status: 'success',
+      message: 'Successfully logged out'
+    });
+  } catch (error) {
+    console.error('Logout error:', error);
+    res.status(500).json({
+      status: 'error',
+      message: 'Logout failed'
+    });
+  }
 };
 
 // Protect routes middleware
@@ -158,7 +253,7 @@ exports.protect = async (req, res, next) => {
       token = req.cookies.jwt;
     }
 
-    if (!token) {
+    if (!token || token === 'loggedout') {
       return res.status(401).json({
         status: 'error',
         message: 'You are not logged in. Please log in to get access.'
@@ -184,6 +279,7 @@ exports.protect = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
+    console.error('Auth middleware error:', error);
     res.status(401).json({
       status: 'error',
       message: 'Invalid token or session expired'
@@ -195,11 +291,19 @@ exports.protect = async (req, res, next) => {
 exports.getMe = async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({
+        status: 'error',
+        message: 'User not found'
+      });
+    }
+
     res.status(200).json({
       status: 'success',
       data: { user }
     });
   } catch (error) {
+    console.error('Get user error:', error);
     res.status(400).json({
       status: 'error',
       message: 'Failed to get user information'
@@ -321,6 +425,84 @@ exports.updatePassword = async (req, res) => {
     res.status(400).json({
       status: 'error',
       message: error.message
+    });
+  }
+};
+
+// Update profile
+exports.updateProfile = async (req, res) => {
+  try {
+    const {
+      firstName,
+      lastName,
+      phoneNumber,
+      company,
+      address
+    } = req.body;
+
+    // Input validation
+    const validationErrors = {};
+
+    if (!firstName?.trim()) validationErrors.firstName = 'First Name is required';
+    if (!lastName?.trim()) validationErrors.lastName = 'Last Name is required';
+    if (!phoneNumber?.trim()) validationErrors.phoneNumber = 'Phone Number is required';
+    if (phoneNumber && !/^\+?[\d\s-]{10,}$/.test(phoneNumber.trim())) {
+      validationErrors.phoneNumber = 'Invalid phone number format';
+    }
+    if (!address?.street?.trim()) validationErrors.address = { ...validationErrors.address, street: 'Street is required' };
+    if (!address?.city?.trim()) validationErrors.address = { ...validationErrors.address, city: 'City is required' };
+    if (!address?.state) validationErrors.address = { ...validationErrors.address, state: 'State is required' };
+    if (!address?.zipCode?.trim()) validationErrors.address = { ...validationErrors.address, zipCode: 'ZIP Code is required' };
+    if (!address?.country) validationErrors.address = { ...validationErrors.address, country: 'Country is required' };
+
+    if (Object.keys(validationErrors).length > 0) {
+      return res.status(400).json({
+        status: 'error',
+        message: 'Validation failed',
+        errors: validationErrors
+      });
+    }
+
+    // Update user
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      {
+        name: `${firstName} ${lastName}`,
+        firstName: firstName.trim(),
+        lastName: lastName.trim(),
+        phoneNumber: phoneNumber.trim(),
+        company: company?.trim(),
+        address: {
+          street: address.street.trim(),
+          city: address.city.trim(),
+          state: address.state,
+          zipCode: address.zipCode.trim(),
+          country: address.country
+        }
+      },
+      {
+        new: true,
+        runValidators: true
+      }
+    );
+
+    if (!user) {
+      return res.status(404).json({
+        status: 'error',
+        message: 'User not found'
+      });
+    }
+
+    res.status(200).json({
+      status: 'success',
+      data: { user }
+    });
+  } catch (error) {
+    console.error('Update profile error:', error);
+    res.status(400).json({
+      status: 'error',
+      message: 'Failed to update profile',
+      errors: handleError(error)
     });
   }
 }; 

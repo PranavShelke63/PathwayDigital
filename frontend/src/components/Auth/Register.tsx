@@ -55,6 +55,22 @@ const countries: CountryData = {
   }
 };
 
+interface ValidationErrors {
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phoneNumber?: string;
+  company?: string;
+  address?: {
+    street?: string;
+    city?: string;
+    state?: string;
+    zipCode?: string;
+    country?: string;
+  };
+  password?: string;
+}
+
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -71,7 +87,7 @@ const Register: React.FC = () => {
     confirmPassword: ''
   });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [errors, setErrors] = useState<ValidationErrors>({});
   const [availableStates, setAvailableStates] = useState<string[]>([]);
 
   const navigate = useNavigate();
@@ -92,72 +108,98 @@ const Register: React.FC = () => {
       ...prev,
       [name]: value
     }));
-    setError('');
+    
+    // Special handling for country selection
+    if (name === 'countryRegion') {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors.address?.country;
+        if (Object.keys(newErrors.address || {}).length === 0) {
+          delete newErrors.address;
+        }
+        return newErrors;
+      });
+    } else {
+      // Clear error for the changed field
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        if (name.includes('.')) {
+          const [parent, child] = name.split('.');
+          if (parent === 'address' && newErrors.address) {
+            const addressErrors = { ...newErrors.address };
+            delete addressErrors[child as keyof typeof newErrors.address];
+            if (Object.keys(addressErrors).length === 0) {
+              delete newErrors.address;
+            } else {
+              newErrors.address = addressErrors;
+            }
+          }
+        } else if (name in newErrors) {
+          delete newErrors[name as keyof ValidationErrors];
+        }
+        return newErrors;
+      });
+    }
   };
 
-  const validateForm = () => {
+  const validateForm = (): boolean => {
+    const newErrors: ValidationErrors = {};
+
     if (!formData.firstName.trim()) {
-      setError('First Name is required');
-      return false;
+      newErrors.firstName = 'First Name is required';
     }
     if (!formData.lastName.trim()) {
-      setError('Last Name is required');
-      return false;
+      newErrors.lastName = 'Last Name is required';
     }
     if (!formData.email.trim()) {
-      setError('Email is required');
-      return false;
-    }
-    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
-      setError('Invalid email address');
-      return false;
+      newErrors.email = 'Email is required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
+      newErrors.email = 'Invalid email address';
     }
     if (!formData.phoneNumber.trim()) {
-      setError('Phone Number is required');
-      return false;
+      newErrors.phoneNumber = 'Phone Number is required';
+    } else if (!/^\+?[\d\s-]{10,}$/.test(formData.phoneNumber.trim())) {
+      newErrors.phoneNumber = 'Invalid phone number';
     }
-    if (!/^\+?[\d\s-]{10,}$/.test(formData.phoneNumber.trim())) {
-      setError('Invalid phone number');
-      return false;
-    }
+
+    // Address validation
+    const addressErrors: Record<string, string> = {};
+    
     if (!formData.countryRegion) {
-      setError('Country/Region is required');
-      return false;
+      addressErrors.country = 'Country/Region is required';
     }
     if (!formData.street.trim()) {
-      setError('Street address is required');
-      return false;
+      addressErrors.street = 'Street address is required';
     }
     if (!formData.city.trim()) {
-      setError('City is required');
-      return false;
+      addressErrors.city = 'City is required';
     }
-    if (!formData.state) {
-      setError('State is required');
-      return false;
+    if (!formData.state && formData.countryRegion) {
+      addressErrors.state = 'State is required';
     }
     if (!formData.zipCode.trim()) {
-      setError('ZIP Code is required');
-      return false;
+      addressErrors.zipCode = 'ZIP Code is required';
     }
+
+    if (Object.keys(addressErrors).length > 0) {
+      newErrors.address = addressErrors;
+    }
+
+    // Password validation
     if (!formData.password) {
-      setError('Password is required');
-      return false;
+      newErrors.password = 'Password is required';
+    } else if (formData.password.length < 8) {
+      newErrors.password = 'Password must be at least 8 characters long';
+    } else if (formData.password !== formData.confirmPassword) {
+      newErrors.password = 'Passwords do not match';
     }
-    if (formData.password.length < 8) {
-      setError('Password must be at least 8 characters long');
-      return false;
-    }
-    if (formData.password !== formData.confirmPassword) {
-      setError('Passwords do not match');
-      return false;
-    }
-    return true;
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
 
     if (!validateForm()) {
       return;
@@ -176,7 +218,7 @@ const Register: React.FC = () => {
         countryRegion: countryName,
         street: formData.street.trim(),
         city: formData.city.trim(),
-        state: formData.state.trim(),
+        state: formData.state,
         zipCode: formData.zipCode.trim(),
         password: formData.password
       };
@@ -184,11 +226,21 @@ const Register: React.FC = () => {
       await register(registrationData);
       navigate('/');
     } catch (err: any) {
-      const errorMessage = err.response?.data?.message || 'An error occurred during registration';
-      setError(errorMessage);
+      const serverErrors = err.response?.data?.errors || {};
+      setErrors(serverErrors);
     } finally {
       setLoading(false);
     }
+  };
+
+  const getInputClassName = (fieldName: string) => {
+    const hasError = fieldName.includes('.')
+      ? errors[fieldName.split('.')[0] as keyof ValidationErrors]?.[fieldName.split('.')[1] as keyof typeof errors.address]
+      : errors[fieldName as keyof ValidationErrors];
+
+    return `mt-1 appearance-none relative block w-full px-3 py-2 border ${
+      hasError ? 'border-red-500' : 'border-gray-300'
+    } placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm`;
   };
 
   return (
@@ -207,21 +259,6 @@ const Register: React.FC = () => {
         </div>
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          {error && (
-            <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-md">
-              <div className="flex">
-                <div className="flex-shrink-0">
-                  <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm text-red-700">{error}</p>
-                </div>
-              </div>
-            </div>
-          )}
-
           <div className="rounded-md shadow-sm space-y-4">
             {/* Name Fields */}
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -234,10 +271,13 @@ const Register: React.FC = () => {
                   name="firstName"
                   type="text"
                   required
-                  className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                  className={getInputClassName('firstName')}
                   value={formData.firstName}
                   onChange={handleInputChange}
                 />
+                {errors.firstName && (
+                  <p className="mt-1 text-sm text-red-600">{errors.firstName}</p>
+                )}
               </div>
               <div>
                 <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
@@ -248,10 +288,13 @@ const Register: React.FC = () => {
                   name="lastName"
                   type="text"
                   required
-                  className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                  className={getInputClassName('lastName')}
                   value={formData.lastName}
                   onChange={handleInputChange}
                 />
+                {errors.lastName && (
+                  <p className="mt-1 text-sm text-red-600">{errors.lastName}</p>
+                )}
               </div>
             </div>
 
@@ -266,10 +309,13 @@ const Register: React.FC = () => {
                 type="email"
                 autoComplete="email"
                 required
-                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                className={getInputClassName('email')}
                 value={formData.email}
                 onChange={handleInputChange}
               />
+              {errors.email && (
+                <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+              )}
             </div>
 
             <div>
@@ -281,10 +327,13 @@ const Register: React.FC = () => {
                 name="phoneNumber"
                 type="tel"
                 required
-                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                className={getInputClassName('phoneNumber')}
                 value={formData.phoneNumber}
                 onChange={handleInputChange}
               />
+              {errors.phoneNumber && (
+                <p className="mt-1 text-sm text-red-600">{errors.phoneNumber}</p>
+              )}
             </div>
 
             {/* Company */}
@@ -296,10 +345,13 @@ const Register: React.FC = () => {
                 id="company"
                 name="company"
                 type="text"
-                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                className={getInputClassName('company')}
                 value={formData.company}
                 onChange={handleInputChange}
               />
+              {errors.company && (
+                <p className="mt-1 text-sm text-red-600">{errors.company}</p>
+              )}
             </div>
 
             {/* Address Fields */}
@@ -311,7 +363,7 @@ const Register: React.FC = () => {
                 id="countryRegion"
                 name="countryRegion"
                 required
-                className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"
+                className={getInputClassName('address.country')}
                 value={formData.countryRegion}
                 onChange={handleInputChange}
               >
@@ -322,6 +374,9 @@ const Register: React.FC = () => {
                   </option>
                 ))}
               </select>
+              {errors.address?.country && (
+                <p className="mt-1 text-sm text-red-600">{errors.address.country}</p>
+              )}
             </div>
 
             <div>
@@ -333,10 +388,13 @@ const Register: React.FC = () => {
                 name="street"
                 type="text"
                 required
-                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                className={getInputClassName('address.street')}
                 value={formData.street}
                 onChange={handleInputChange}
               />
+              {errors.address?.street && (
+                <p className="mt-1 text-sm text-red-600">{errors.address.street}</p>
+              )}
             </div>
 
             <div className="grid grid-cols-2 gap-4">
@@ -349,10 +407,13 @@ const Register: React.FC = () => {
                   name="city"
                   type="text"
                   required
-                  className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                  className={getInputClassName('address.city')}
                   value={formData.city}
                   onChange={handleInputChange}
                 />
+                {errors.address?.city && (
+                  <p className="mt-1 text-sm text-red-600">{errors.address.city}</p>
+                )}
               </div>
               <div>
                 <label htmlFor="state" className="block text-sm font-medium text-gray-700">
@@ -362,7 +423,7 @@ const Register: React.FC = () => {
                   id="state"
                   name="state"
                   required
-                  className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm rounded-md"
+                  className={getInputClassName('address.state')}
                   value={formData.state}
                   onChange={handleInputChange}
                   disabled={!formData.countryRegion}
@@ -372,6 +433,9 @@ const Register: React.FC = () => {
                     <option key={state} value={state}>{state}</option>
                   ))}
                 </select>
+                {errors.address?.state && (
+                  <p className="mt-1 text-sm text-red-600">{errors.address.state}</p>
+                )}
               </div>
             </div>
 
@@ -384,10 +448,13 @@ const Register: React.FC = () => {
                 name="zipCode"
                 type="text"
                 required
-                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                className={getInputClassName('address.zipCode')}
                 value={formData.zipCode}
                 onChange={handleInputChange}
               />
+              {errors.address?.zipCode && (
+                <p className="mt-1 text-sm text-red-600">{errors.address.zipCode}</p>
+              )}
             </div>
 
             {/* Password Fields */}
@@ -401,10 +468,13 @@ const Register: React.FC = () => {
                 type="password"
                 autoComplete="new-password"
                 required
-                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                className={getInputClassName('password')}
                 value={formData.password}
                 onChange={handleInputChange}
               />
+              {errors.password && (
+                <p className="mt-1 text-sm text-red-600">{errors.password}</p>
+              )}
             </div>
 
             <div>
@@ -417,7 +487,7 @@ const Register: React.FC = () => {
                 type="password"
                 autoComplete="new-password"
                 required
-                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+                className={getInputClassName('confirmPassword')}
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
               />
