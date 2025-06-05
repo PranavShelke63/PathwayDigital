@@ -1,12 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Product, productsApi } from '../../services/api';
+import { useCart } from '../../context/CartContext';
+import { useWishlist } from '../../context/WishlistContext';
+import { ShoppingCartIcon, HeartIcon } from '@heroicons/react/24/outline';
+import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
+import toast from 'react-hot-toast';
 
 const Shop: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { addToCart, items: cartItems } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
   const categories = [
     { id: 'all', name: 'All Products' },
@@ -38,6 +45,30 @@ const Shop: React.FC = () => {
   const filteredProducts = selectedCategory === 'all'
     ? products
     : products.filter(product => product.category === selectedCategory);
+
+  const getItemInCart = (productId: string) => {
+    return cartItems.find(item => item._id === productId);
+  };
+
+  const handleWishlistToggle = (product: Product) => {
+    if (isInWishlist(product._id)) {
+      removeFromWishlist(product._id);
+      toast.success('Removed from wishlist');
+    } else {
+      addToWishlist(product);
+      toast.success('Added to wishlist');
+    }
+  };
+
+  const handleAddToCart = (product: Product) => {
+    try {
+      addToCart(product);
+      toast.success('Added to cart');
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      toast.error('Failed to add to cart');
+    }
+  };
 
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center">
@@ -84,45 +115,85 @@ const Shop: React.FC = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-            {filteredProducts.map((product) => (
-              <div key={product._id} className="card group">
-                <div className="aspect-w-4 aspect-h-3 rounded-lg overflow-hidden bg-gray-100">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-center object-cover group-hover:opacity-75 transition-opacity duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-                <div className="mt-4 flex justify-between">
-                  <div>
-                    <h3 className="text-sm font-medium text-contrast">
-                      <Link to={`/product/${product._id}`}>
-                        <span aria-hidden="true" className="absolute inset-0" />
-                        {product.name}
-                      </Link>
-                    </h3>
-                    <p className="mt-1 text-sm text-gray-500">{product.description}</p>
-                    <div className="mt-2">
-                      <span className="text-sm text-gray-500">Brand: {product.brand}</span>
-                      {product.stock > 0 ? (
-                        <span className="ml-4 text-sm text-green-600">In Stock: {product.stock}</span>
-                      ) : (
-                        <span className="ml-4 text-sm text-red-600">Out of Stock</span>
-                      )}
-                    </div>
-                  </div>
-                  <p className="text-sm font-medium text-contrast">${product.price.toFixed(2)}</p>
-                </div>
-                <button
-                  type="button"
-                  className="btn-primary mt-4 w-full"
-                  disabled={product.stock === 0}
+            {filteredProducts.map((product) => {
+              const cartItem = getItemInCart(product._id);
+              const isInCart = !!cartItem;
+              const remainingStock = product.stock - (cartItem?.quantity || 0);
+              const inWishlist = isInWishlist(product._id);
+
+              return (
+                <Link
+                  to={`/product/${product._id}`}
+                  key={product._id}
+                  className="card group relative block"
                 >
-                  {product.stock === 0 ? 'Out of Stock' : 'Add to Cart'}
-                </button>
-              </div>
-            ))}
+                  <div className="aspect-w-4 aspect-h-3 rounded-lg overflow-hidden bg-gray-100">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-full object-center object-cover group-hover:opacity-75 transition-opacity duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  {/* Wishlist button */}
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      handleWishlistToggle(product);
+                    }}
+                    className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 transition-colors duration-200 z-10"
+                  >
+                    {inWishlist ? (
+                      <HeartSolidIcon className="h-6 w-6 text-red-500" />
+                    ) : (
+                      <HeartIcon className="h-6 w-6 text-gray-400" />
+                    )}
+                  </button>
+                  <div className="mt-4 flex justify-between">
+                    <div>
+                      <h3 className="text-sm font-medium text-contrast group-hover:text-primary">
+                        {product.name}
+                      </h3>
+                      <p className="mt-1 text-sm text-gray-500">{product.description}</p>
+                      <div className="mt-2">
+                        <span className="text-sm text-gray-500">Brand: {product.brand}</span>
+                        {remainingStock > 0 ? (
+                          <span className="ml-4 text-sm text-green-600">In Stock: {remainingStock}</span>
+                        ) : (
+                          <span className="ml-4 text-sm text-red-600">Out of Stock</span>
+                        )}
+                      </div>
+                    </div>
+                    <p className="text-sm font-medium text-contrast">${product.price.toFixed(2)}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      handleAddToCart(product);
+                    }}
+                    className={`mt-4 w-full flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                      remainingStock === 0
+                        ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                        : isInCart
+                        ? 'bg-green-500 text-white hover:bg-green-600'
+                        : 'bg-primary text-white hover:bg-primary/90'
+                    }`}
+                    disabled={remainingStock === 0}
+                  >
+                    <ShoppingCartIcon className="h-5 w-5 mr-2" />
+                    {remainingStock === 0
+                      ? 'Out of Stock'
+                      : isInCart
+                      ? `Add More (${cartItem.quantity} in cart)`
+                      : 'Add to Cart'}
+                  </button>
+                </Link>
+              );
+            })}
           </div>
         )}
       </div>

@@ -53,15 +53,24 @@ export interface Cart {
   totalPrice: number;
 }
 
+interface ApiResponse<T> {
+  status: string;
+  data: T;
+}
+
+interface ApiDataResponse<T> {
+  data: T;
+}
+
 // Products API
 export const productsApi = {
-  getAll: () => api.get<{ status: string; data: { data: Product[] } }>('/products'),
-  getById: (id: string) => api.get<{ status: string; data: { data: Product } }>(`/products/${id}`),
-  getByCategory: (category: string) => api.get<{ status: string; data: { data: Product[] } }>(`/products/category/${category}`),
-  search: (query: string) => api.get<{ status: string; data: { data: Product[] } }>(`/products/search?q=${query}`),
-  create: (product: Omit<Product, '_id'>) => api.post<{ status: string; data: { data: Product } }>('/products', product),
-  update: (id: string, product: Partial<Product>) => api.patch<{ status: string; data: { data: Product } }>(`/products/${id}`, product),
-  delete: (id: string) => api.delete<{ status: string; data: null }>(`/products/${id}`),
+  getAll: () => api.get<ApiResponse<ApiDataResponse<Product[]>>>('/products'),
+  getById: (id: string) => api.get<ApiResponse<ApiDataResponse<Product>>>(`/products/${id}`),
+  getByCategory: (category: string) => api.get<ApiResponse<ApiDataResponse<Product[]>>>(`/products/category/${category}`),
+  search: (query: string) => api.get<ApiResponse<ApiDataResponse<Product[]>>>(`/products/search?q=${query}`),
+  create: (product: Omit<Product, '_id'>) => api.post<ApiResponse<ApiDataResponse<Product>>>('/products', product),
+  update: (id: string, product: Partial<Product>) => api.patch<ApiResponse<ApiDataResponse<Product>>>(`/products/${id}`, product),
+  delete: (id: string) => api.delete<ApiResponse<null>>(`/products/${id}`),
   uploadImage: (file: File) => {
     const formData = new FormData();
     formData.append('image', file);
