@@ -25,11 +25,13 @@ const About: React.FC = () => {
   return (
     <div className="bg-background">
       {/* Hero Section */}
-      <div className="relative bg-primary">
-        <div className="absolute inset-0 bg-black/50"></div>
+      <div className="relative bg-gradient-to-r from-primary to-primary-dark">
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
         <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">About Us</h1>
-          <p className="mt-6 text-xl text-gray-100 max-w-3xl">
+          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl animate-fade-in">
+            About Us
+          </h1>
+          <p className="mt-6 text-xl text-gray-100 max-w-3xl animate-fade-in-delay">
             PATHWAY DIGITAL is your trusted partner in tech hardware. We're committed to providing high-quality products
             and exceptional service to our customers.
           </p>
@@ -39,7 +41,7 @@ const About: React.FC = () => {
       {/* Mission Section */}
       <div className="py-16 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:text-center">
+          <div className="lg:text-center p-8 rounded-2xl shadow-lg bg-gradient-to-b from-white to-gray-50">
             <h2 className="text-base text-primary font-semibold tracking-wide uppercase">Our Mission</h2>
             <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-contrast sm:text-4xl">
               Empowering Your Digital Journey
@@ -85,7 +87,7 @@ const About: React.FC = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-primary">
+      <div className="bg-gradient-to-r from-primary to-primary-dark">
         <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
             <span className="block">Ready to get started?</span>
@@ -96,7 +98,7 @@ const About: React.FC = () => {
           </p>
           <Link
             to="/shop"
-            className="btn-secondary mt-8 inline-block"
+            className="mt-8 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-white hover:bg-gray-50 transition-colors"
           >
             View Products
           </Link>

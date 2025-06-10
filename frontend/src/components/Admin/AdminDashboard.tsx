@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Navigate, Link } from 'react-router-dom';
+import { usersApi } from '../../services/api';
 
 const AdminDashboard: React.FC = () => {
   const { user } = useAuth();
+  const [userCount, setUserCount] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const fetchUserCount = async () => {
+      try {
+        const response = await usersApi.getAll();
+        setUserCount(response.data.data.users.length);
+      } catch (error) {
+        console.error('Failed to fetch user count:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserCount();
+  }, []);
 
   // Redirect if not admin
   if (!user || user.email !== 'pranavopshelke@gmail.com') {
@@ -30,10 +48,18 @@ const AdminDashboard: React.FC = () => {
               <p className="text-gray-500">Total Revenue</p>
               <p className="text-2xl font-bold text-primary">$12,450</p>
             </div>
-            <div>
-              <p className="text-gray-500">Active Users</p>
-              <p className="text-2xl font-bold text-accent">48</p>
-            </div>
+            <Link to="/admin/users" className="block">
+              <div className="cursor-pointer hover:bg-gray-50 p-2 -mx-2 rounded transition-colors">
+                <p className="text-gray-500">Active Users</p>
+                <p className="text-2xl font-bold text-accent">
+                  {loading ? (
+                    <span className="inline-block w-8 h-8 border-t-2 border-accent rounded-full animate-spin"></span>
+                  ) : (
+                    userCount
+                  )}
+                </p>
+              </div>
+            </Link>
           </div>
         </div>
 
@@ -49,23 +75,18 @@ const AdminDashboard: React.FC = () => {
           </div>
         </div>
 
-        {/* Orders Card */}
+        {/* Customer Support Card */}
         <div className="card">
-          <h3 className="text-lg font-semibold text-contrast mb-4">Recent Orders</h3>
+          <h3 className="text-lg font-semibold text-contrast mb-4">Customer Support</h3>
           <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <span className="text-gray-500">#1234</span>
-              <span className="px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                Delivered
-              </span>
+            <Link to="/admin/queries" className="btn-primary w-full block text-center">
+              View Customer Queries
+            </Link>
+            <div className="p-4 bg-yellow-50 rounded-lg">
+              <p className="text-sm text-yellow-800">
+                You have new customer inquiries waiting for your response.
+              </p>
             </div>
-            <div className="flex justify-between items-center">
-              <span className="text-gray-500">#1235</span>
-              <span className="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                Processing
-              </span>
-            </div>
-            <button className="btn-secondary w-full mt-4">View All Orders</button>
           </div>
         </div>
       </div>

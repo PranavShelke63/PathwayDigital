@@ -42,6 +42,7 @@ export interface Product {
 }
 
 export interface CartItem {
+  _id: string;
   product: Product;
   quantity: number;
 }
@@ -51,6 +52,27 @@ export interface Cart {
   user: string;
   items: CartItem[];
   totalPrice: number;
+}
+
+export interface User {
+  _id: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  company?: string;
+  lastLoginTime: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Query {
+  _id: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  timestamp: string;
+  createdAt: string;
 }
 
 interface ApiResponse<T> {
@@ -82,6 +104,11 @@ export const productsApi = {
   }
 };
 
+// Users API
+export const usersApi = {
+  getAll: () => api.get<ApiResponse<{ users: User[] }>>('/users'),
+};
+
 // Cart API
 export const cartApi = {
   get: () => api.get<{ data: Cart }>('/cart'),
@@ -92,6 +119,13 @@ export const cartApi = {
   removeItem: (productId: string) => 
     api.delete(`/cart/items/${productId}`),
   clear: () => api.delete('/cart')
+};
+
+// Queries API
+export const queriesApi = {
+  getAll: () => api.get<ApiResponse<{ queries: Query[] }>>('/queries'),
+  create: (query: Omit<Query, '_id' | 'timestamp' | 'createdAt'>) => 
+    api.post<ApiResponse<{ query: Query }>>('/queries', query),
 };
 
 // Add request interceptor for JWT token

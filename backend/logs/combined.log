@@ -427,3 +427,214 @@
 {"level":"info","message":"GET /api/v1/products 304 - - 121.327 ms","timestamp":"2025-06-05T00:47:47.519Z"}
 {"level":"info","message":"GET /api/v1/products 304 - - 21.524 ms","timestamp":"2025-06-05T00:48:18.364Z"}
 {"level":"info","message":"GET /api/v1/products 304 - - 48.828 ms","timestamp":"2025-06-05T00:50:39.735Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 48.059 ms","timestamp":"2025-06-05T00:53:50.161Z"}
+{"level":"info","message":"GET /api/v1/products/683a12b27dfd084983d3da7e 200 929 - 34.602 ms","timestamp":"2025-06-05T00:53:50.954Z"}
+{"level":"info","message":"GET /api/v1/products/683a12b27dfd084983d3da7e 304 - - 91.105 ms","timestamp":"2025-06-05T00:53:51.062Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 16.191 ms","timestamp":"2025-06-05T00:53:59.275Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 33.393 ms","timestamp":"2025-06-05T00:53:59.318Z"}
+{"level":"info","message":"GET /api/v1/products/683a12b27dfd084983d3da7f 200 806 - 15.709 ms","timestamp":"2025-06-05T00:54:01.045Z"}
+{"level":"info","message":"GET /api/v1/products/683a12b27dfd084983d3da7f 304 - - 10.899 ms","timestamp":"2025-06-05T00:54:01.060Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 13.578 ms","timestamp":"2025-06-05T00:54:13.133Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 28.362 ms","timestamp":"2025-06-05T00:54:13.165Z"}
+{"level":"info","message":"GET /api/v1/products/683a12b27dfd084983d3da7e 304 - - 10.838 ms","timestamp":"2025-06-05T00:54:26.323Z"}
+{"level":"info","message":"GET /api/v1/products/683a12b27dfd084983d3da7e 304 - - 9.548 ms","timestamp":"2025-06-05T00:54:26.338Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 10.889 ms","timestamp":"2025-06-05T00:54:28.306Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 11.451 ms","timestamp":"2025-06-05T00:54:28.320Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-05T23:21:15.447Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-05T23:21:16.453Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 381.321 ms","timestamp":"2025-06-05T23:21:39.728Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 156.285 ms","timestamp":"2025-06-05T23:21:39.904Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-05T23:22:05.186Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-05T23:22:06.152Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-05T23:22:52.968Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-05T23:22:54.130Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 101.056 ms","timestamp":"2025-06-05T23:23:14.149Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 59.034 ms","timestamp":"2025-06-05T23:23:14.293Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 39.106 ms","timestamp":"2025-06-05T23:23:26.451Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 68.097 ms","timestamp":"2025-06-05T23:23:26.531Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 133.486 ms","timestamp":"2025-06-05T23:24:04.242Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 75.879 ms","timestamp":"2025-06-05T23:24:04.321Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 713 - 234.649 ms","timestamp":"2025-06-05T23:24:41.285Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 96.093 ms","timestamp":"2025-06-05T23:24:47.533Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 56.199 ms","timestamp":"2025-06-05T23:24:47.591Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 77.774 ms","timestamp":"2025-06-05T23:25:03.170Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 58.958 ms","timestamp":"2025-06-05T23:25:03.233Z"}
+{"level":"info","message":"GET /api/v1/products/683a12b27dfd084983d3da7e 304 - - 44.343 ms","timestamp":"2025-06-05T23:25:06.369Z"}
+{"level":"info","message":"GET /api/v1/products/683a12b27dfd084983d3da7e 304 - - 57.072 ms","timestamp":"2025-06-05T23:25:06.429Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 97.319 ms","timestamp":"2025-06-05T23:25:20.394Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 95.890 ms","timestamp":"2025-06-05T23:25:20.492Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 68.637 ms","timestamp":"2025-06-05T23:25:51.209Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 75.803 ms","timestamp":"2025-06-05T23:25:51.288Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 404 - 185.549 ms","timestamp":"2025-06-05T23:25:58.252Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 71.706 ms","timestamp":"2025-06-05T23:26:01.730Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 59.722 ms","timestamp":"2025-06-05T23:26:01.792Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T01:48:33.535Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T01:48:36.062Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 108.756 ms","timestamp":"2025-06-10T01:48:57.587Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 77.875 ms","timestamp":"2025-06-10T01:48:57.718Z"}
+{"level":"info","message":"GET /api/v1/products 200 - - 160.732 ms","timestamp":"2025-06-10T01:49:23.105Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 261.169 ms","timestamp":"2025-06-10T01:49:23.377Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 404 - 527.561 ms","timestamp":"2025-06-10T01:51:35.406Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 315.014 ms","timestamp":"2025-06-10T01:51:44.410Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 70.341 ms","timestamp":"2025-06-10T01:51:44.485Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T01:55:38.637Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T01:55:44.156Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T01:55:48.199Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T01:55:57.063Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T01:55:59.150Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T01:56:00.645Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T01:56:05.801Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T01:56:28.325Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T01:56:29.819Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T01:59:20.970Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T01:59:23.638Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 2541.635 ms","timestamp":"2025-06-10T02:00:24.719Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 66.722 ms","timestamp":"2025-06-10T02:00:24.788Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 404 - 6005.734 ms","timestamp":"2025-06-10T02:00:35.964Z"}
+{"level":"info","message":"GET /api/v1/users 200 732 - 568.637 ms","timestamp":"2025-06-10T02:02:02.971Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 395.817 ms","timestamp":"2025-06-10T02:02:18.430Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 510.108 ms","timestamp":"2025-06-10T02:02:18.945Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T02:05:43.207Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T02:05:45.687Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T02:05:59.276Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T02:06:00.802Z"}
+{"level":"info","message":"GET /api/v1/users 401 80 - 106.504 ms","timestamp":"2025-06-10T02:06:09.512Z"}
+{"level":"info","message":"GET /api/v1/auth/me 401 80 - 61.238 ms","timestamp":"2025-06-10T02:06:11.746Z"}
+{"level":"info","message":"GET /api/v1/auth/me 401 80 - 108.141 ms","timestamp":"2025-06-10T02:06:11.863Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T02:06:32.239Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T02:06:36.068Z"}
+{"level":"info","message":"GET /api/v1/auth/me 401 80 - 168.120 ms","timestamp":"2025-06-10T02:07:07.723Z"}
+{"level":"info","message":"GET /api/v1/auth/me 401 80 - 76.919 ms","timestamp":"2025-06-10T02:07:07.807Z"}
+{"level":"info","message":"POST /api/v1/auth/register 201 739 - 910.521 ms","timestamp":"2025-06-10T02:07:39.361Z"}
+{"level":"info","message":"GET /api/v1/users 200 572 - 406.947 ms","timestamp":"2025-06-10T02:07:46.522Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 498.988 ms","timestamp":"2025-06-10T02:07:47.031Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 150.239 ms","timestamp":"2025-06-10T02:07:54.104Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 196.130 ms","timestamp":"2025-06-10T02:07:54.306Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 761 - 781.046 ms","timestamp":"2025-06-10T02:08:01.568Z"}
+{"level":"info","message":"GET /api/v1/users 200 594 - 410.639 ms","timestamp":"2025-06-10T02:08:03.112Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 308.552 ms","timestamp":"2025-06-10T02:08:03.426Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 599.002 ms","timestamp":"2025-06-10T02:09:23.704Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T02:09:25.917Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T02:09:29.017Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 3594.685 ms","timestamp":"2025-06-10T02:09:29.641Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T02:09:46.415Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T02:09:49.199Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T02:09:53.246Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T02:09:55.951Z"}
+{"level":"info","message":"GET /api/v1/auth/logout 404 157 - 311.626 ms","timestamp":"2025-06-10T02:09:59.545Z"}
+{"level":"info","message":"GET /api/v1/auth/logout 404 157 - 331.541 ms","timestamp":"2025-06-10T02:10:04.961Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 92.084 ms","timestamp":"2025-06-10T02:10:09.520Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 207.977 ms","timestamp":"2025-06-10T02:10:09.735Z"}
+{"level":"info","message":"POST /api/v1/auth/register 201 744 - 958.544 ms","timestamp":"2025-06-10T02:10:42.559Z"}
+{"level":"info","message":"GET /api/v1/auth/logout 404 157 - 194.067 ms","timestamp":"2025-06-10T02:10:54.421Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 105.771 ms","timestamp":"2025-06-10T02:10:55.448Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 100.406 ms","timestamp":"2025-06-10T02:10:55.562Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 247.045 ms","timestamp":"2025-06-10T02:11:03.433Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 288.269 ms","timestamp":"2025-06-10T02:11:03.741Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 144.007 ms","timestamp":"2025-06-10T02:11:09.885Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 191.112 ms","timestamp":"2025-06-10T02:11:10.090Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 159.028 ms","timestamp":"2025-06-10T02:11:17.254Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 88.961 ms","timestamp":"2025-06-10T02:11:17.356Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 150.824 ms","timestamp":"2025-06-10T02:11:56.061Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 94.928 ms","timestamp":"2025-06-10T02:11:56.163Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 100.267 ms","timestamp":"2025-06-10T02:11:56.267Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 96.229 ms","timestamp":"2025-06-10T02:11:56.368Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 761 - 684.828 ms","timestamp":"2025-06-10T02:12:03.540Z"}
+{"level":"info","message":"GET /api/v1/users 200 - - 241.024 ms","timestamp":"2025-06-10T02:12:05.762Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 229.138 ms","timestamp":"2025-06-10T02:12:05.996Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 343.379 ms","timestamp":"2025-06-10T02:17:12.988Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 299.123 ms","timestamp":"2025-06-10T02:17:13.294Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 564.513 ms","timestamp":"2025-06-10T02:17:26.817Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 295.121 ms","timestamp":"2025-06-10T02:17:27.117Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 473.666 ms","timestamp":"2025-06-10T02:17:30.089Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 300.048 ms","timestamp":"2025-06-10T02:17:30.394Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 518.184 ms","timestamp":"2025-06-10T02:17:43.193Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 608.435 ms","timestamp":"2025-06-10T02:17:43.808Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 492.333 ms","timestamp":"2025-06-10T02:18:12.446Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 336.711 ms","timestamp":"2025-06-10T02:18:12.788Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 142.384 ms","timestamp":"2025-06-10T02:18:25.498Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 188.737 ms","timestamp":"2025-06-10T02:18:25.696Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 63.146 ms","timestamp":"2025-06-10T02:24:41.664Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 57.291 ms","timestamp":"2025-06-10T02:24:41.737Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 287.588 ms","timestamp":"2025-06-10T02:26:38.386Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 297.167 ms","timestamp":"2025-06-10T02:26:38.391Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 345.990 ms","timestamp":"2025-06-10T02:26:38.743Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 344.854 ms","timestamp":"2025-06-10T02:26:38.747Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T02:40:26.888Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T02:40:31.215Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T02:40:32.498Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T02:40:48.796Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T02:40:50.250Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 221.900 ms","timestamp":"2025-06-10T02:47:22.107Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 274.758 ms","timestamp":"2025-06-10T02:47:22.387Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T02:49:09.488Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T02:49:10.880Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T02:50:00.425Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T02:50:01.640Z"}
+{"level":"info","message":"POST /api/v1/api/v1/queries 404 161 - 1.277 ms","timestamp":"2025-06-10T02:51:51.690Z"}
+{"level":"info","message":"POST /api/v1/api/v1/queries 404 161 - 0.747 ms","timestamp":"2025-06-10T02:51:53.349Z"}
+{"level":"info","message":"POST /api/v1/api/v1/queries 404 161 - 0.230 ms","timestamp":"2025-06-10T02:51:53.770Z"}
+{"level":"info","message":"POST /api/v1/api/v1/queries 404 161 - 0.466 ms","timestamp":"2025-06-10T02:51:53.931Z"}
+{"level":"info","message":"POST /api/v1/api/v1/queries 404 161 - 0.389 ms","timestamp":"2025-06-10T02:51:54.118Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 79.969 ms","timestamp":"2025-06-10T02:52:10.813Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 63.849 ms","timestamp":"2025-06-10T02:52:10.883Z"}
+{"level":"info","message":"POST /api/v1/api/v1/queries 404 161 - 0.526 ms","timestamp":"2025-06-10T02:52:22.594Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T02:53:59.560Z"}
+{"level":"info","message":"GET /api/v1/auth/me 401 63 - 10065.805 ms","timestamp":"2025-06-10T02:54:20.664Z"}
+{"cause":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"localhost:27017":{"$clusterTime":null,"address":"localhost:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":198603873,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"errorLabelSet":{},"level":"error","message":"Database connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","reason":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"localhost:27017":{"$clusterTime":null,"address":"localhost:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":198603873,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"stack":"MongooseServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017\n    at _handleConnectionErrors (C:\\src\\pathway\\backend\\node_modules\\mongoose\\lib\\connection.js:1165:11)\n    at NativeConnection.openUri (C:\\src\\pathway\\backend\\node_modules\\mongoose\\lib\\connection.js:1096:11)\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at listOnTimeout (node:internal/timers:555:9)\n    at process.processTimers (node:internal/timers:529:7)","timestamp":"2025-06-10T02:54:29.629Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T02:56:47.150Z"}
+{"cause":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"localhost:27017":{"$clusterTime":null,"address":"localhost:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":198771594,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"errorLabelSet":{},"level":"error","message":"Database connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","reason":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"localhost:27017":{"$clusterTime":null,"address":"localhost:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":198771594,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"stack":"MongooseServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017\n    at _handleConnectionErrors (C:\\src\\pathway\\backend\\node_modules\\mongoose\\lib\\connection.js:1165:11)\n    at NativeConnection.openUri (C:\\src\\pathway\\backend\\node_modules\\mongoose\\lib\\connection.js:1096:11)\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at listOnTimeout (node:internal/timers:555:9)\n    at process.processTimers (node:internal/timers:529:7)","timestamp":"2025-06-10T02:57:17.166Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T02:59:44.065Z"}
+{"cause":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"localhost:27017":{"$clusterTime":null,"address":"localhost:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":198948509,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"errorLabelSet":{},"level":"error","message":"Database connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","reason":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"localhost:27017":{"$clusterTime":null,"address":"localhost:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":198948509,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"stack":"MongooseServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017\n    at _handleConnectionErrors (C:\\src\\pathway\\backend\\node_modules\\mongoose\\lib\\connection.js:1165:11)\n    at NativeConnection.openUri (C:\\src\\pathway\\backend\\node_modules\\mongoose\\lib\\connection.js:1096:11)\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at listOnTimeout (node:internal/timers:555:9)\n    at process.processTimers (node:internal/timers:529:7)","timestamp":"2025-06-10T03:00:14.082Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T03:04:39.993Z"}
+{"level":"info","message":"POST /api/v1/auth/login 400 128 - 10030.200 ms","timestamp":"2025-06-10T03:04:51.967Z"}
+{"cause":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"localhost:27017":{"$clusterTime":null,"address":"localhost:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":199244469,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"errorLabelSet":{},"level":"error","message":"Database connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","reason":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"localhost:27017":{"$clusterTime":null,"address":"localhost:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":199244469,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"stack":"MongooseServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017\n    at _handleConnectionErrors (C:\\src\\pathway\\backend\\node_modules\\mongoose\\lib\\connection.js:1165:11)\n    at NativeConnection.openUri (C:\\src\\pathway\\backend\\node_modules\\mongoose\\lib\\connection.js:1096:11)\n    at runNextTicks (node:internal/process/task_queues:65:5)\n    at listOnTimeout (node:internal/timers:555:9)\n    at process.processTimers (node:internal/timers:529:7)","timestamp":"2025-06-10T03:05:10.001Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T03:06:10.392Z"}
+{"level":"info","message":"POST /api/v1/auth/login 400 128 - 10038.742 ms","timestamp":"2025-06-10T03:06:28.759Z"}
+{"cause":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"localhost:27017":{"$clusterTime":null,"address":"localhost:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":199334838,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"errorLabelSet":{},"level":"error","message":"Database connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017","reason":{"commonWireVersion":0,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"logicalSessionTimeoutMinutes":null,"maxElectionId":null,"maxSetVersion":null,"servers":{"localhost:27017":{"$clusterTime":null,"address":"localhost:27017","arbiters":[],"electionId":null,"error":{"beforeHandshake":false,"errorLabelSet":{}},"hosts":[],"iscryptd":false,"lastUpdateTime":199334838,"lastWriteDate":0,"logicalSessionTimeoutMinutes":null,"maxBsonObjectSize":null,"maxMessageSizeBytes":null,"maxWireVersion":0,"maxWriteBatchSize":null,"me":null,"minRoundTripTime":0,"minWireVersion":0,"passives":[],"primary":null,"roundTripTime":-1,"setName":null,"setVersion":null,"tags":{},"topologyVersion":null,"type":"Unknown"}},"setName":null,"stale":false,"type":"Unknown"},"stack":"MongooseServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017\n    at _handleConnectionErrors (C:\\src\\pathway\\backend\\node_modules\\mongoose\\lib\\connection.js:1165:11)\n    at NativeConnection.openUri (C:\\src\\pathway\\backend\\node_modules\\mongoose\\lib\\connection.js:1096:11)","timestamp":"2025-06-10T03:06:40.280Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T03:07:30.803Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T03:07:32.657Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 761 - 1698.783 ms","timestamp":"2025-06-10T03:07:34.690Z"}
+{"level":"info","message":"GET /api/v1/users 200 - - 219.412 ms","timestamp":"2025-06-10T03:07:34.986Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 335.979 ms","timestamp":"2025-06-10T03:07:35.331Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 290.258 ms","timestamp":"2025-06-10T03:07:37.229Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 149.206 ms","timestamp":"2025-06-10T03:07:37.386Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T03:14:54.378Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T03:14:56.310Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T03:15:01.061Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T03:15:03.073Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 225.745 ms","timestamp":"2025-06-10T03:15:10.575Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 77.484 ms","timestamp":"2025-06-10T03:15:10.657Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T03:15:41.488Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T03:15:44.340Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 77.670 ms","timestamp":"2025-06-10T03:16:01.039Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 205.739 ms","timestamp":"2025-06-10T03:16:01.335Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T03:16:21.123Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T03:16:22.840Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 761 - 751.587 ms","timestamp":"2025-06-10T03:16:23.984Z"}
+{"level":"info","message":"GET /api/v1/users 200 - - 177.360 ms","timestamp":"2025-06-10T03:16:24.209Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 221.050 ms","timestamp":"2025-06-10T03:16:24.437Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 87.173 ms","timestamp":"2025-06-10T03:16:25.662Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 649.424 ms","timestamp":"2025-06-10T03:16:26.320Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 352.256 ms","timestamp":"2025-06-10T03:16:32.272Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 298.560 ms","timestamp":"2025-06-10T03:16:32.577Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T03:19:57.483Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-06-10T03:19:58.867Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-06-10T03:20:01.215Z"}
+{"level":"info","message":"POST /api/v1/queries 201 324 - 159.238 ms","timestamp":"2025-06-10T03:23:33.337Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 351.873 ms","timestamp":"2025-06-10T03:26:25.416Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 819.868 ms","timestamp":"2025-06-10T03:26:26.247Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 289.639 ms","timestamp":"2025-06-10T03:26:26.993Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 364.704 ms","timestamp":"2025-06-10T03:26:27.368Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 162.303 ms","timestamp":"2025-06-10T03:27:42.258Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 411.802 ms","timestamp":"2025-06-10T03:27:42.681Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 563.801 ms","timestamp":"2025-06-10T03:27:45.225Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 205.925 ms","timestamp":"2025-06-10T03:27:45.438Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 511.571 ms","timestamp":"2025-06-10T03:27:46.361Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 97.236 ms","timestamp":"2025-06-10T03:27:46.468Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 297.936 ms","timestamp":"2025-06-10T03:28:56.696Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 276.378 ms","timestamp":"2025-06-10T03:29:46.057Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 195.131 ms","timestamp":"2025-06-10T03:29:46.262Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 345.789 ms","timestamp":"2025-06-10T03:29:48.819Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 302.193 ms","timestamp":"2025-06-10T03:29:49.129Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 139.106 ms","timestamp":"2025-06-10T03:30:53.688Z"}

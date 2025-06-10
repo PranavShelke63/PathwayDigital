@@ -10,7 +10,9 @@ const { logger, morganMiddleware } = require('./middleware/logger');
 const errorHandler = require('./middleware/errorHandler');
 const limiter = require('./middleware/rateLimiter');
 const authRoutes = require('./routes/authRoutes');
-const productRoutes = require('./routes/productRoutes'); // Add this line
+const productRoutes = require('./routes/productRoutes');
+const userRoutes = require('./routes/userRoutes');
+const queryRoutes = require('./routes/queryRoutes');
 
 const app = express();
 
@@ -40,7 +42,9 @@ app.use(morganMiddleware);
 
 // Routes
 app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/products', productRoutes); // Add this line
+app.use('/api/v1/products', productRoutes);
+app.use('/api/v1/users', userRoutes);
+app.use('/api/v1/queries', queryRoutes);
 
 // Error handling
 app.use(errorHandler);

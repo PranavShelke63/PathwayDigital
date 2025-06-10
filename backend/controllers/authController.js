@@ -148,7 +148,8 @@ exports.register = async (req, res) => {
         zipCode,
         country: countryRegion
       },
-      password
+      password,
+      lastLoginTime: new Date() // Set initial login time during registration
     });
 
     createSendToken(user, 201, res);
@@ -191,6 +192,10 @@ exports.login = async (req, res) => {
         }
       });
     }
+
+    // Update last login time
+    user.lastLoginTime = new Date();
+    await user.save({ validateBeforeSave: false });
 
     createSendToken(user, 200, res);
   } catch (error) {

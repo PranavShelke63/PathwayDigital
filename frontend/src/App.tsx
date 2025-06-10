@@ -17,6 +17,8 @@ import Contact from './components/Contact/Contact';
 import Services from './pages/Services';
 import AdminDashboard from './components/Admin/AdminDashboard';
 import ProductManagement from './components/Admin/ProductManagement';
+import UserList from './components/Admin/UserList';
+import QueryList from './components/Admin/QueryList';
 import ProductDetails from './components/Product/ProductDetails';
 import './styles/globals.css';
 import { Toaster } from 'react-hot-toast';
@@ -72,6 +74,22 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <ProductManagement />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/users"
+                  element={
+                    <ProtectedRoute>
+                      <UserList />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/queries"
+                  element={
+                    <ProtectedRoute>
+                      <QueryList />
                     </ProtectedRoute>
                   }
                 />
