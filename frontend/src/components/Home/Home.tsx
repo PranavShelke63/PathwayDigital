@@ -69,26 +69,7 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* CTA Section */}
-      <div className="bg-primary">
-        <div className="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-extrabold text-white sm:text-4xl">
-            <span className="block">Ready to upgrade your tech?</span>
-            <span className="block">Start shopping today.</span>
-          </h2>
-          <p className="mt-4 text-lg leading-6 text-accent">
-            Join thousands of satisfied customers who trust PATHWAY DIGITAL for their tech needs.
-          </p>
-          <div className="mt-8 flex justify-center">
-            <Link
-              to="/shop"
-              className="btn-secondary inline-flex items-center justify-center px-8 text-white"
-            >
-              Browse Products
-            </Link>
-          </div>
-        </div>
-      </div>
+      
     </div>
   );
 };

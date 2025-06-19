@@ -22,6 +22,7 @@ import QueryList from './components/Admin/QueryList';
 import ProductDetails from './components/Product/ProductDetails';
 import './styles/globals.css';
 import { Toaster } from 'react-hot-toast';
+import Footer from './components/layout/Footer';
 
 function App() {
   return (
@@ -99,6 +100,7 @@ function App() {
                 {/* Catch all route */}
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
+              <Footer />
             </div>
           </Router>
         </WishlistProvider>
