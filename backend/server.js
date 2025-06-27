@@ -13,6 +13,8 @@ const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoutes');
 const queryRoutes = require('./routes/queryRoutes');
+const repairJobRoutes = require('./routes/repairJobRoutes');
+const path = require('path');
 
 const app = express();
 
@@ -40,11 +42,15 @@ app.use(compression());
 // Logging
 app.use(morganMiddleware);
 
+// Serve uploads directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // Routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/products', productRoutes);
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/queries', queryRoutes);
+app.use('/api/v1/repairs', repairJobRoutes);
 
 // Error handling
 app.use(errorHandler);

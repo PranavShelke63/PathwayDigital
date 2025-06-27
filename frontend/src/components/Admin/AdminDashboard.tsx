@@ -89,6 +89,19 @@ const AdminDashboard: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Repair CRM Card */}
+        <div className="card">
+          <h3 className="text-lg font-semibold text-contrast mb-4">Repair CRM</h3>
+          <div className="space-y-4">
+            <Link to="/admin/repairs/new" className="btn-primary w-full block text-center">
+              New Repair Entry
+            </Link>
+            <Link to="/admin/repairs" className="btn-secondary w-full block text-center">
+              Repair Jobs Dashboard
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );

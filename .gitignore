@@ -11,6 +11,7 @@ frontend/coverage
 frontend/npm-debug.log*
 frontend/yarn-debug.log*
 frontend/yarn-error.log*
+frontend/logs
 
 # Backend
 backend/node_modules

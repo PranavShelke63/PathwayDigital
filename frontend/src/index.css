@@ -16,15 +16,18 @@
   }
 
   .input {
-    @apply rounded-md border-gray-300 focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50;
+    @apply w-full px-3 py-2 rounded-md border border-gray-300 bg-gray-50 text-base text-gray-800 shadow-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary focus:ring-opacity-30 transition-all duration-150 placeholder-gray-400;
+  }
+  .input-error {
+    @apply border-red-500 focus:border-red-500 focus:ring-red-400 bg-red-50;
   }
 
   .label {
-    @apply block text-sm font-medium text-gray-700 mb-1;
+    @apply block text-base font-medium text-gray-700 mb-1;
   }
 
   .error {
-    @apply text-red-500 text-sm mt-1;
+    @apply text-red-500 text-sm mt-1 font-medium;
   }
 }
 

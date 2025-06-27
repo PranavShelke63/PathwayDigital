@@ -20,6 +20,8 @@ import ProductManagement from './components/Admin/ProductManagement';
 import UserList from './components/Admin/UserList';
 import QueryList from './components/Admin/QueryList';
 import ProductDetails from './components/Product/ProductDetails';
+import RepairEntryForm from './components/Admin/RepairEntryForm';
+import RepairDashboard from './components/Admin/RepairDashboard';
 import './styles/globals.css';
 import { Toaster } from 'react-hot-toast';
 import Footer from './components/layout/Footer';
@@ -91,6 +93,30 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <QueryList />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/repairs/new"
+                  element={
+                    <ProtectedRoute>
+                      <RepairEntryForm />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/repairs/edit/:id"
+                  element={
+                    <ProtectedRoute>
+                      <RepairEntryForm />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/repairs"
+                  element={
+                    <ProtectedRoute>
+                      <RepairDashboard />
                     </ProtectedRoute>
                   }
                 />

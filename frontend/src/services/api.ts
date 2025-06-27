@@ -128,6 +128,58 @@ export const queriesApi = {
     api.post<ApiResponse<{ query: Query }>>('/queries', query),
 };
 
+// Repair Job interfaces
+export interface PartUsed {
+  partName: string;
+  partCost: number;
+}
+
+export interface RepairJob {
+  _id?: string;
+  customerName: string;
+  customerPhone: string;
+  customerEmail: string;
+  deviceType: string;
+  deviceBrand: string;
+  deviceModel: string;
+  deviceSerial: string;
+  problemDescription: string;
+  dropOffDate: string;
+  expectedDeliveryDate: string;
+  status: 'pending' | 'in-progress' | 'completed';
+  partsUsed: PartUsed[];
+  laborCharges: number;
+  taxes: number;
+  totalAmount: number;
+  paymentStatus: 'unpaid' | 'paid';
+  address: {
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    country: string;
+  };
+  physicalConditionImages: string[];
+  physicalConditionDescription: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export const repairsApi = {
+  create: (job: Omit<RepairJob, '_id' | 'createdAt' | 'updatedAt'>) => api.post<{ success: boolean; data: RepairJob }>('/repairs', job),
+  getAll: (params?: any) => api.get<{ success: boolean; data: RepairJob[] }>('/repairs', { params }),
+  getById: (id: string) => api.get<{ success: boolean; data: RepairJob }>(`/repairs/${id}`),
+  update: (id: string, job: Partial<RepairJob>) => api.put<{ success: boolean; data: RepairJob }>(`/repairs/${id}`, job),
+  delete: (id: string) => api.delete<{ success: boolean; message: string }>(`/repairs/${id}`),
+  uploadConditionImages: (files: File[]) => {
+    const formData = new FormData();
+    files.forEach(f => formData.append('images', f));
+    return api.post<{ success: boolean; urls: string[] }>('/repairs/upload-condition-images', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+  },
+};
+
 // Add request interceptor for JWT token
 api.interceptors.request.use(
   (config) => {
