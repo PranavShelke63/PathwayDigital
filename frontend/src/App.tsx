@@ -22,6 +22,7 @@ import QueryList from './components/Admin/QueryList';
 import ProductDetails from './components/Product/ProductDetails';
 import RepairEntryForm from './components/Admin/RepairEntryForm';
 import RepairDashboard from './components/Admin/RepairDashboard';
+import QuotationBillPage from './components/Admin/QuotationBillPage';
 import './styles/globals.css';
 import { Toaster } from 'react-hot-toast';
 import Footer from './components/layout/Footer';
@@ -117,6 +118,14 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <RepairDashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/quotation/new"
+                  element={
+                    <ProtectedRoute>
+                      <QuotationBillPage />
                     </ProtectedRoute>
                   }
                 />

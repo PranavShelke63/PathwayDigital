@@ -102,6 +102,16 @@ const AdminDashboard: React.FC = () => {
             </Link>
           </div>
         </div>
+
+        {/* Quotation Bills Card */}
+        <div className="card">
+          <h3 className="text-lg font-semibold text-contrast mb-4">Quotation Bills</h3>
+          <div className="space-y-4">
+            <Link to="/admin/quotation/new" className="btn-primary w-full block text-center">
+              Create Quotation Bill
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
