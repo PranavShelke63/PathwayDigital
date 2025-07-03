@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import QuotationPreview from './QuotationPreview';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { quotationsApi } from '../../services/api';
 
 interface QuotationFormProps {
   onClose: () => void;
@@ -150,7 +151,7 @@ const QuotationForm: React.FC<QuotationFormProps> = ({ onClose }) => {
   };
 
   // On submit, validate all number fields
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     let newErrors: any = {};
     form.items.forEach((item, idx) => {
@@ -171,8 +172,51 @@ const QuotationForm: React.FC<QuotationFormProps> = ({ onClose }) => {
     });
     setErrors(newErrors);
     if (Object.keys(newErrors).length === 0) {
-      // Submit logic here
-      alert('Quotation submitted!');
+      // Prepare payload for API
+      const payload = {
+        // Backend model fields
+        quoteOwner: form.quoteOwner,
+        subject: form.subject,
+        quoteStage: form.quoteStage,
+        team: form.team,
+        carrier: form.carrier,
+        dealName: form.dealName,
+        validUntil: form.validUntil,
+        contactName: form.contactName,
+        accountName: form.accountName,
+        billing: form.billing,
+        shipping: form.shipping,
+        items: form.items.map(item => ({
+          description: item.description,
+          quantity: Number(item.quantity) || 0,
+          unitPrice: Number(item.listPrice) || 0,
+          total: Number(item.total) || 0,
+        })),
+        terms: form.terms,
+        description: form.description,
+        subTotal: form.subTotal,
+        discount: form.discount,
+        tax: form.tax,
+        adjustment: form.adjustment,
+        grandTotal: form.grandTotal,
+        // Quotation interface fields
+        customerName: form.contactName || form.accountName || '',
+        customerPhone: '', // Add if available in form
+        customerEmail: '', // Add if available in form
+        subtotal: Number(form.subTotal) || 0,
+        taxes: Number(form.tax) || 0,
+        totalAmount: Number(form.grandTotal) || 0,
+        status: "pending" as import('../../services/api').Quotation["status"],
+        notes: form.terms || '',
+      };
+      try {
+        await quotationsApi.create(payload);
+        alert('Quotation submitted and stored!');
+        onClose();
+      } catch (err) {
+        console.error('Failed to store quotation:', err);
+        alert('Failed to store quotation. Please try again.');
+      }
     }
   };
 

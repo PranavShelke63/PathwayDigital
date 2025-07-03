@@ -180,6 +180,42 @@ export const repairsApi = {
   },
 };
 
+// Quotation interfaces
+export interface QuotationItem {
+  description: string;
+  quantity: number;
+  unitPrice: number;
+  total: number;
+}
+
+export interface Quotation {
+  _id?: string;
+  customerName: string;
+  customerPhone: string;
+  customerEmail: string;
+  items: QuotationItem[];
+  subtotal: number;
+  taxes: number;
+  totalAmount: number;
+  status: 'pending' | 'sent' | 'accepted' | 'rejected';
+  notes?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export const quotationsApi = {
+  create: (quotation: Omit<Quotation, '_id' | 'createdAt' | 'updatedAt'>) =>
+    api.post<{ success: boolean; data: Quotation }>('/quotations', quotation),
+  getAll: (params?: any) =>
+    api.get<{ success: boolean; data: Quotation[] }>('/quotations', { params }),
+  getById: (id: string) =>
+    api.get<{ success: boolean; data: Quotation }>(`/quotations/${id}`),
+  update: (id: string, quotation: Partial<Quotation>) =>
+    api.put<{ success: boolean; data: Quotation }>(`/quotations/${id}`, quotation),
+  delete: (id: string) =>
+    api.delete<{ success: boolean; message: string }>(`/quotations/${id}`),
+};
+
 // Add request interceptor for JWT token
 api.interceptors.request.use(
   (config) => {

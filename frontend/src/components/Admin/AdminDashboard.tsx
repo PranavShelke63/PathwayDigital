@@ -110,6 +110,9 @@ const AdminDashboard: React.FC = () => {
             <Link to="/admin/quotation/new" className="btn-primary w-full block text-center">
               Create Quotation Bill
             </Link>
+            <Link to="/admin/quotation" className="btn-secondary w-full block text-center">
+              View Quotations
+            </Link>
           </div>
         </div>
       </div>
