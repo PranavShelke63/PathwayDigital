@@ -176,7 +176,13 @@ const RepairEntryForm: React.FC = () => {
     try {
       let imageUrls: string[] = [];
       if (physicalConditionFiles.length > 0) {
-        const uploadRes = await repairsApi.uploadConditionImages(physicalConditionFiles);
+        let uploadRes;
+        if (isEdit && typeof id === 'string') {
+          uploadRes = await repairsApi.uploadConditionImages(physicalConditionFiles, id);
+        } else {
+          console.log('Uploading images with customerName:', job.customerName);
+          uploadRes = await repairsApi.uploadConditionImages(physicalConditionFiles, undefined, job.customerName);
+        }
         imageUrls = uploadRes.data.urls;
       }
       const totalAmount = calculateTotal();

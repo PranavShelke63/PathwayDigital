@@ -70,8 +70,18 @@ const storage = multer.diskStorage({
     cb(null, path.join(__dirname, '../uploads/repair-conditions'));
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, uniqueSuffix + '-' + file.originalname);
+    // Debug logs for troubleshooting
+    console.log('customerName from query:', req.query.customerName);
+    console.log('customerName from body:', req.body.customerName);
+    // Get jobId or customerName from form data
+    const jobId = req.body.jobId || req.query.jobId || 'unknownJob';
+    const customerName = req.body.customerName || req.query.customerName || 'unknownCustomer';
+    const timestamp = Date.now();
+    // Clean up customerName for filesystem
+    const safeCustomer = customerName.replace(/[^a-zA-Z0-9]/g, '_');
+    // Use jobId if available, else customerName
+    const prefix = jobId !== 'unknownJob' ? `repair_${jobId}` : `repair_${safeCustomer}`;
+    cb(null, `${prefix}_${timestamp}_${file.originalname}`);
   }
 });
 const upload = multer({

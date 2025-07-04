@@ -43,8 +43,11 @@ app.use(compression());
 // Logging
 app.use(morganMiddleware);
 
-// Serve uploads directory
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Serve uploads directory with CORS for static files
+app.use('/uploads', cors({
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  credentials: true
+}), express.static(path.join(__dirname, 'uploads')));
 
 // Routes
 app.use('/api/v1/auth', authRoutes);

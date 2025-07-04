@@ -1448,3 +1448,108 @@
 {"level":"info","message":"GET /api/v1/products/683a12b27dfd084983d3da7e 304 - - 95.459 ms","timestamp":"2025-07-04T08:27:53.333Z"}
 {"level":"info","message":"GET /api/v1/users 304 - - 1558.855 ms","timestamp":"2025-07-04T08:27:56.400Z"}
 {"level":"info","message":"GET /api/v1/users 304 - - 875.519 ms","timestamp":"2025-07-04T08:27:57.282Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-04T10:11:55.649Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-07-04T10:11:58.627Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-04T10:12:05.104Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-07-04T10:12:07.689Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 2829.086 ms","timestamp":"2025-07-04T10:12:07.988Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 761 - 698.205 ms","timestamp":"2025-07-04T10:12:11.144Z"}
+{"level":"info","message":"GET /api/v1/users 200 - - 443.866 ms","timestamp":"2025-07-04T10:12:11.643Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 769.821 ms","timestamp":"2025-07-04T10:12:12.419Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 292.108 ms","timestamp":"2025-07-04T10:16:23.733Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-04T10:16:45.511Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-07-04T10:16:50.159Z"}
+{"level":"info","message":"POST /api/v1/repairs/upload-condition-images 200 121 - 52.979 ms","timestamp":"2025-07-04T10:17:59.584Z"}
+{"level":"info","message":"POST /api/v1/repairs 201 902 - 155.725 ms","timestamp":"2025-07-04T10:17:59.794Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 743.838 ms","timestamp":"2025-07-04T10:18:03.895Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 190.582 ms","timestamp":"2025-07-04T10:18:04.099Z"}
+{"level":"info","message":"GET /api/v1/repairs 200 904 - 150.738 ms","timestamp":"2025-07-04T10:18:04.127Z"}
+{"level":"info","message":"GET /api/v1/repairs 304 - - 259.394 ms","timestamp":"2025-07-04T10:18:04.396Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 108.430 ms","timestamp":"2025-07-04T10:18:09.020Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 185.710 ms","timestamp":"2025-07-04T10:18:09.218Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-04T10:20:49.162Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-07-04T10:20:50.807Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 2266.584 ms","timestamp":"2025-07-04T10:20:51.559Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 241.277 ms","timestamp":"2025-07-04T10:20:51.820Z"}
+{"level":"info","message":"POST /api/v1/repairs/upload-condition-images?customerName=Pranav%20Yashwant%20Shelke 200 128 - 16.232 ms","timestamp":"2025-07-04T10:22:42.342Z"}
+{"level":"info","message":"POST /api/v1/repairs 201 904 - 351.688 ms","timestamp":"2025-07-04T10:22:42.722Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 555.293 ms","timestamp":"2025-07-04T10:22:45.176Z"}
+{"level":"info","message":"GET /api/v1/repairs 200 - - 236.325 ms","timestamp":"2025-07-04T10:22:45.601Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 501.532 ms","timestamp":"2025-07-04T10:22:45.689Z"}
+{"level":"info","message":"GET /api/v1/repairs 304 - - 93.719 ms","timestamp":"2025-07-04T10:22:45.700Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 296.662 ms","timestamp":"2025-07-04T10:24:45.666Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 213.506 ms","timestamp":"2025-07-04T10:24:45.931Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_unknownCustomer_1751624279536_WIN_20230726_08_22_42_Pro.jpg 200 214353 - 71.306 ms","timestamp":"2025-07-04T10:24:55.704Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 58.829 ms","timestamp":"2025-07-04T10:24:55.739Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 101.587 ms","timestamp":"2025-07-04T10:24:55.847Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_Pranav_Yashwant_Shelke_1751624562332_WIN_20230726_08_23_03_Pro.jpg 200 211425 - 2.740 ms","timestamp":"2025-07-04T10:25:06.206Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_unknownCustomer_1751624279536_WIN_20230726_08_22_42_Pro.jpg 200 214353 - 2.959 ms","timestamp":"2025-07-04T10:25:11.653Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_Pranav_Yashwant_Shelke_1751624562332_WIN_20230726_08_23_03_Pro.jpg 200 211425 - 1.500 ms","timestamp":"2025-07-04T10:25:14.877Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_Pranav_Yashwant_Shelke_1751624562332_WIN_20230726_08_23_03_Pro.jpg 200 211425 - 2.507 ms","timestamp":"2025-07-04T10:25:16.189Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_Pranav_Yashwant_Shelke_1751624562332_WIN_20230726_08_23_03_Pro.jpg 304 - - 1.692 ms","timestamp":"2025-07-04T10:25:21.341Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_unknownCustomer_1751624279536_WIN_20230726_08_22_42_Pro.jpg 200 214353 - 2.447 ms","timestamp":"2025-07-04T10:27:41.523Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_unknownCustomer_1751624279536_WIN_20230726_08_22_42_Pro.jpg 200 214353 - 2.605 ms","timestamp":"2025-07-04T10:27:42.956Z"}
+{"level":"info","message":"DELETE /api/v1/repairs/6867ab7209b9bdf5359469eb 200 36 - 177.497 ms","timestamp":"2025-07-04T10:27:50.487Z"}
+{"level":"info","message":"GET /api/v1/repairs 200 904 - 130.862 ms","timestamp":"2025-07-04T10:27:50.624Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_unknownCustomer_1751624279536_WIN_20230726_08_22_42_Pro.jpg 304 - - 1.633 ms","timestamp":"2025-07-04T10:27:51.675Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_unknownCustomer_1751624279536_WIN_20230726_08_22_42_Pro.jpg 304 - - 2.342 ms","timestamp":"2025-07-04T10:28:03.209Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_unknownCustomer_1751624279536_WIN_20230726_08_22_42_Pro.jpg 304 - - 0.704 ms","timestamp":"2025-07-04T10:28:04.254Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_unknownCustomer_1751624279536_WIN_20230726_08_22_42_Pro.jpg 304 - - 1.360 ms","timestamp":"2025-07-04T10:29:05.345Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_unknownCustomer_1751624279536_WIN_20230726_08_22_42_Pro.jpg 304 - - 1.417 ms","timestamp":"2025-07-04T10:29:06.660Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_unknownCustomer_1751624279536_WIN_20230726_08_22_42_Pro.jpg 304 - - 1.188 ms","timestamp":"2025-07-04T10:29:23.633Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_unknownCustomer_1751624279536_WIN_20230726_08_22_42_Pro.jpg 304 - - 0.495 ms","timestamp":"2025-07-04T10:29:57.236Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 214.335 ms","timestamp":"2025-07-04T10:30:08.968Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 93.832 ms","timestamp":"2025-07-04T10:30:09.073Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 761 - 1184.173 ms","timestamp":"2025-07-04T10:30:14.824Z"}
+{"level":"info","message":"GET /api/v1/users 200 - - 224.775 ms","timestamp":"2025-07-04T10:30:15.106Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 369.833 ms","timestamp":"2025-07-04T10:30:15.480Z"}
+{"level":"info","message":"GET /api/v1/repairs 304 - - 339.588 ms","timestamp":"2025-07-04T10:30:17.782Z"}
+{"level":"info","message":"GET /api/v1/repairs 304 - - 286.178 ms","timestamp":"2025-07-04T10:30:18.082Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_unknownCustomer_1751624279536_WIN_20230726_08_22_42_Pro.jpg 304 - - 0.955 ms","timestamp":"2025-07-04T10:30:23.578Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-04T10:31:30.021Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-07-04T10:31:31.757Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 95.483 ms","timestamp":"2025-07-04T10:31:41.410Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 327.002 ms","timestamp":"2025-07-04T10:31:41.742Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 761 - 693.449 ms","timestamp":"2025-07-04T10:31:46.178Z"}
+{"level":"info","message":"GET /api/v1/users 200 - - 241.531 ms","timestamp":"2025-07-04T10:31:46.471Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 279.597 ms","timestamp":"2025-07-04T10:31:46.759Z"}
+{"level":"info","message":"GET /api/v1/repairs 304 - - 264.839 ms","timestamp":"2025-07-04T10:31:48.020Z"}
+{"level":"info","message":"GET /api/v1/repairs 304 - - 71.827 ms","timestamp":"2025-07-04T10:31:48.101Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_unknownCustomer_1751624279536_WIN_20230726_08_22_42_Pro.jpg 304 - - 3.058 ms","timestamp":"2025-07-04T10:31:50.100Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_unknownCustomer_1751624279536_WIN_20230726_08_22_42_Pro.jpg 304 - - 5.332 ms","timestamp":"2025-07-04T10:31:53.727Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-04T10:32:08.108Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-07-04T10:32:10.307Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-04T10:32:18.664Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-07-04T10:32:25.771Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 170.853 ms","timestamp":"2025-07-04T10:32:36.093Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 43.384 ms","timestamp":"2025-07-04T10:32:36.163Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 761 - 828.649 ms","timestamp":"2025-07-04T10:32:41.772Z"}
+{"level":"info","message":"GET /api/v1/users 200 - - 340.723 ms","timestamp":"2025-07-04T10:32:42.178Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 181.292 ms","timestamp":"2025-07-04T10:32:42.363Z"}
+{"level":"info","message":"GET /api/v1/repairs 304 - - 190.353 ms","timestamp":"2025-07-04T10:32:44.423Z"}
+{"level":"info","message":"GET /api/v1/repairs 304 - - 134.177 ms","timestamp":"2025-07-04T10:32:44.570Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_unknownCustomer_1751624279536_WIN_20230726_08_22_42_Pro.jpg 304 - - 8.490 ms","timestamp":"2025-07-04T10:32:45.762Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-04T10:34:40.945Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-07-04T10:34:45.759Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-04T10:35:17.350Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-07-04T10:35:19.030Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 89.512 ms","timestamp":"2025-07-04T10:35:20.387Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 101.083 ms","timestamp":"2025-07-04T10:35:20.497Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 761 - 805.703 ms","timestamp":"2025-07-04T10:35:26.219Z"}
+{"level":"info","message":"GET /api/v1/users 200 - - 231.070 ms","timestamp":"2025-07-04T10:35:26.542Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 318.552 ms","timestamp":"2025-07-04T10:35:26.868Z"}
+{"level":"info","message":"GET /api/v1/repairs 304 - - 134.890 ms","timestamp":"2025-07-04T10:35:28.557Z"}
+{"level":"info","message":"GET /api/v1/repairs 304 - - 198.356 ms","timestamp":"2025-07-04T10:35:28.760Z"}
+{"level":"info","message":"DELETE /api/v1/repairs/6867aa5795756612eed4ab8c 200 36 - 87.693 ms","timestamp":"2025-07-04T10:35:33.697Z"}
+{"level":"info","message":"GET /api/v1/repairs 200 26 - 261.266 ms","timestamp":"2025-07-04T10:35:33.975Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 278.709 ms","timestamp":"2025-07-04T10:35:36.143Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 678.677 ms","timestamp":"2025-07-04T10:35:36.846Z"}
+{"level":"info","message":"POST /api/v1/repairs/upload-condition-images?customerName=Pranav%20Yashwant%20Shelke 200 128 - 32.715 ms","timestamp":"2025-07-04T10:36:02.852Z"}
+{"level":"info","message":"POST /api/v1/repairs 201 903 - 195.632 ms","timestamp":"2025-07-04T10:36:03.059Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 289.202 ms","timestamp":"2025-07-04T10:36:06.850Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 203.509 ms","timestamp":"2025-07-04T10:36:07.060Z"}
+{"level":"info","message":"GET /api/v1/repairs 200 905 - 138.899 ms","timestamp":"2025-07-04T10:36:07.978Z"}
+{"level":"info","message":"GET /api/v1/repairs 304 - - 121.234 ms","timestamp":"2025-07-04T10:36:08.107Z"}
+{"level":"info","message":"GET /uploads/repair-conditions/repair_Pranav_Yashwant_Shelke_1751625362828_WIN_20230726_08_23_03_Pro.jpg 200 211425 - 7.839 ms","timestamp":"2025-07-04T10:36:11.054Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-04T10:37:14.812Z"}
+{"code":"ECONNREFUSED","hostname":"_mongodb._tcp.pathway.zos2qgp.mongodb.net","level":"error","message":"Database connection error: querySrv ECONNREFUSED _mongodb._tcp.pathway.zos2qgp.mongodb.net","stack":"Error: querySrv ECONNREFUSED _mongodb._tcp.pathway.zos2qgp.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)","syscall":"querySrv","timestamp":"2025-07-04T10:37:14.826Z"}

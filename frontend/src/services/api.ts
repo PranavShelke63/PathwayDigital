@@ -171,10 +171,16 @@ export const repairsApi = {
   getById: (id: string) => api.get<{ success: boolean; data: RepairJob }>(`/repairs/${id}`),
   update: (id: string, job: Partial<RepairJob>) => api.put<{ success: boolean; data: RepairJob }>(`/repairs/${id}`, job),
   delete: (id: string) => api.delete<{ success: boolean; message: string }>(`/repairs/${id}`),
-  uploadConditionImages: (files: File[]) => {
+  uploadConditionImages: (files: File[], jobId?: string, customerName?: string) => {
     const formData = new FormData();
     files.forEach(f => formData.append('images', f));
-    return api.post<{ success: boolean; urls: string[] }>('/repairs/upload-condition-images', formData, {
+    let url = '/repairs/upload-condition-images';
+    if (jobId) {
+      url += `?jobId=${encodeURIComponent(jobId)}`;
+    } else if (customerName) {
+      url += `?customerName=${encodeURIComponent(customerName)}`;
+    }
+    return api.post<{ success: boolean; urls: string[] }>(url, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   },
