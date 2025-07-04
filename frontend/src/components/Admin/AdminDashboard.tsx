@@ -35,9 +35,9 @@ const AdminDashboard: React.FC = () => {
         <p className="text-gray-600 mt-2">Manage your store and view analytics.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Analytics Card */}
-        <div className="card">
+        <div className="card flex flex-col justify-between min-h-[260px]">
           <h3 className="text-lg font-semibold text-contrast mb-4">Analytics Overview</h3>
           <div className="space-y-4">
             <div>
@@ -49,7 +49,7 @@ const AdminDashboard: React.FC = () => {
               <p className="text-2xl font-bold text-primary">$12,450</p>
             </div>
             <Link to="/admin/users" className="block">
-              <div className="cursor-pointer hover:bg-gray-50 p-2 -mx-2 rounded transition-colors">
+              <div className="cursor-pointer hover:bg-gray-100 p-2 -mx-2 rounded transition-colors">
                 <p className="text-gray-500">Active Users</p>
                 <p className="text-2xl font-bold text-accent">
                   {loading ? (
@@ -64,7 +64,7 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         {/* Products Card */}
-        <div className="card">
+        <div className="card flex flex-col justify-between min-h-[260px]">
           <h3 className="text-lg font-semibold text-contrast mb-4">Product Management</h3>
           <div className="space-y-4">
             <Link to="/admin/products" className="btn-primary w-full block text-center">
@@ -76,7 +76,7 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         {/* Customer Support Card */}
-        <div className="card">
+        <div className="card flex flex-col justify-between min-h-[260px]">
           <h3 className="text-lg font-semibold text-contrast mb-4">Customer Support</h3>
           <div className="space-y-4">
             <Link to="/admin/queries" className="btn-primary w-full block text-center">
@@ -91,7 +91,7 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         {/* Repair CRM Card */}
-        <div className="card">
+        <div className="card flex flex-col justify-between min-h-[260px]">
           <h3 className="text-lg font-semibold text-contrast mb-4">Repair CRM</h3>
           <div className="space-y-4">
             <Link to="/admin/repairs/new" className="btn-primary w-full block text-center">
@@ -104,7 +104,7 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         {/* Quotation Bills Card */}
-        <div className="card">
+        <div className="card flex flex-col justify-between min-h-[260px]">
           <h3 className="text-lg font-semibold text-contrast mb-4">Quotation Bills</h3>
           <div className="space-y-4">
             <Link to="/admin/quotation/new" className="btn-primary w-full block text-center">

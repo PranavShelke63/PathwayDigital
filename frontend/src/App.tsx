@@ -27,6 +27,7 @@ import AdminQuotationList from './components/Admin/AdminQuotationList';
 import './styles/globals.css';
 import { Toaster } from 'react-hot-toast';
 import Footer from './components/layout/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
             <div className="min-h-screen bg-background">
               <Toaster position="top-right" />
               <Navbar />
+              <ScrollToTop />
               <Routes>
                 {/* Public routes */}
                 <Route path="/" element={<Home />} />
