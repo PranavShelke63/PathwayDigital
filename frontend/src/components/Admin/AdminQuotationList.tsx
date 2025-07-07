@@ -84,7 +84,27 @@ const AdminQuotationList: React.FC = () => {
     setExpandedQuotationId(expandedQuotationId === id ? null : id);
   };
 
-  if (loading) return <div>Loading...</div>;
+  const handleDelete = async (id: string) => {
+    if (window.confirm('Are you sure you want to delete this quotation?')) {
+      try {
+        await quotationsApi.delete(id);
+        setQuotations(prev => prev.filter(q => q._id !== id));
+        if (expandedQuotationId === id) setExpandedQuotationId(null);
+      } catch (error) {
+        alert('Failed to delete quotation.');
+      }
+    }
+  };
+
+  if (loading) return (
+    <div className="flex justify-center items-center h-64">
+      <svg className="animate-spin h-8 w-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+      </svg>
+      <span className="ml-3 text-primary text-lg">Loading quotations...</span>
+    </div>
+  );
 
   return (
     <div className="max-w-4xl mx-auto py-8">
@@ -93,26 +113,46 @@ const AdminQuotationList: React.FC = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead>
             <tr>
+              <th className="px-4 py-2 text-left">Sr No</th>
               <th className="px-4 py-2 text-left">Customer</th>
+              <th className="px-4 py-2 text-left">Date</th>
               <th className="px-4 py-2 text-left">Total</th>
               <th className="px-4 py-2 text-left">Status</th>
               <th className="px-4 py-2 text-left">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {quotations.map(q => (
+            {quotations.map((q, idx) => (
               <React.Fragment key={q._id}>
                 <tr className="hover:bg-gray-50">
+                  <td className="px-4 py-2">{idx + 1}</td>
                   <td className="px-4 py-2">{q.quoteOwner}</td>
+                  <td className="px-4 py-2">{q.createdAt ? new Date(q.createdAt).toLocaleDateString() : '-'}</td>
                   <td className="px-4 py-2">{q.grandTotal}</td>
                   <td className="px-4 py-2 capitalize">{q.quoteStage}</td>
                   <td className="px-4 py-2">
-                    <button
-                      className="text-primary underline"
-                      onClick={() => handleToggleDetails(q._id!)}
-                    >
-                      {expandedQuotationId === q._id ? 'Hide' : 'View'}
-                    </button>
+                    <div className="flex items-center gap-3">
+                      <button
+                        className="text-primary underline hover:text-blue-700 focus:outline-none transition-colors"
+                        onClick={() => handleToggleDetails(q._id!)}
+                        aria-label={expandedQuotationId === q._id ? 'Hide details' : 'View details'}
+                        title={expandedQuotationId === q._id ? 'Hide details' : 'View details'}
+                      >
+                        {expandedQuotationId === q._id ? 'Hide' : 'View'}
+                      </button>
+                      <button
+                        className="text-red-600 hover:text-red-800 focus:outline-none p-1 rounded-full transition-colors"
+                        onClick={() => handleDelete(q._id!)}
+                        aria-label="Delete quotation"
+                        title="Delete quotation"
+                      >
+                        {/* Heroicons solid trash bin icon */}
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M6 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm4 0a1 1 0 012 0v6a1 1 0 11-2 0V8z" />
+                          <path fillRule="evenodd" d="M4 6a1 1 0 011-1h10a1 1 0 011 1v10a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm2 0v10h8V6H6zm2-3a1 1 0 00-1 1v1h6V4a1 1 0 00-1-1H8z" clipRule="evenodd" />
+                        </svg>
+                      </button>
+                    </div>
                   </td>
                 </tr>
                 {expandedQuotationId === q._id && (

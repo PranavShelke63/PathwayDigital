@@ -31,4 +31,17 @@ exports.getAllQuotations = async (req, res) => {
       message: error.message
     });
   }
+};
+
+// Delete a quotation by ID
+exports.deleteQuotation = async (req, res) => {
+  try {
+    const quotation = await Quotation.findByIdAndDelete(req.params.id);
+    if (!quotation) {
+      return res.status(404).json({ status: 'error', message: 'Quotation not found' });
+    }
+    res.status(200).json({ status: 'success', message: 'Quotation deleted' });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
 }; 

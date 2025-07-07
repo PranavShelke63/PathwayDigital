@@ -10,4 +10,7 @@ router.post('/', quotationController.createQuotation);
 // Protected route for getting all quotations (admin only)
 router.get('/', protect, quotationController.getAllQuotations);
 
+// Protected route for deleting a quotation by ID (admin only)
+router.delete('/:id', protect, quotationController.deleteQuotation);
+
 module.exports = router; 

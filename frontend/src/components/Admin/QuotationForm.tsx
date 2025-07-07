@@ -3,6 +3,7 @@ import QuotationPreview from './QuotationPreview';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { quotationsApi } from '../../services/api';
+import { FaCheckCircle } from 'react-icons/fa';
 
 interface QuotationFormProps {
   onClose: () => void;
@@ -57,6 +58,7 @@ const QuotationForm: React.FC<QuotationFormProps> = ({ onClose }) => {
   });
   const [errors, setErrors] = useState<ErrorsState>({});
   const [showPreview, setShowPreview] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   // Helper to check if a value is a valid number
   const isNumber = (val: string) => val === '' || /^-?\d*\.?\d*$/.test(val);
@@ -211,8 +213,19 @@ const QuotationForm: React.FC<QuotationFormProps> = ({ onClose }) => {
       };
       try {
         await quotationsApi.create(payload);
-        alert('Quotation submitted and stored!');
-        onClose();
+        setSuccess(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setForm({
+          quoteOwner: '', subject: '', quoteStage: 'Draft', team: '', carrier: 'FedEX',
+          dealName: '', validUntil: '', contactName: '', accountName: '',
+          billing: { street: '', city: '', state: '', code: '', country: '' },
+          shipping: { street: '', city: '', state: '', code: '', country: '' },
+          items: [{ productName: '', description: '', quantity: '', listPrice: '', amount: '', discount: '', tax: '', total: '' }],
+          terms: '', description: '',
+          subTotal: '', discount: '', tax: '', adjustment: '', grandTotal: '',
+        });
+        setErrors({});
+        setTimeout(() => setSuccess(false), 2000);
       } catch (err) {
         console.error('Failed to store quotation:', err);
         alert('Failed to store quotation. Please try again.');
@@ -246,6 +259,12 @@ const QuotationForm: React.FC<QuotationFormProps> = ({ onClose }) => {
         onSubmit={handleSubmit}
       >
         <h2 className="text-2xl font-bold mb-6 text-center">Create Quotation Bill</h2>
+        {success && (
+          <div className="mb-4 flex items-center justify-center gap-2 text-green-600 text-lg font-semibold" aria-live="polite">
+            <FaCheckCircle className="text-2xl text-green-600" />
+            Quotation submitted and stored!
+          </div>
+        )}
         {/* Quote Information */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>

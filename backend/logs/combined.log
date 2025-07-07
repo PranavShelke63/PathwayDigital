@@ -1553,3 +1553,91 @@
 {"level":"info","message":"GET /uploads/repair-conditions/repair_Pranav_Yashwant_Shelke_1751625362828_WIN_20230726_08_23_03_Pro.jpg 200 211425 - 7.839 ms","timestamp":"2025-07-04T10:36:11.054Z"}
 {"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-04T10:37:14.812Z"}
 {"code":"ECONNREFUSED","hostname":"_mongodb._tcp.pathway.zos2qgp.mongodb.net","level":"error","message":"Database connection error: querySrv ECONNREFUSED _mongodb._tcp.pathway.zos2qgp.mongodb.net","stack":"Error: querySrv ECONNREFUSED _mongodb._tcp.pathway.zos2qgp.mongodb.net\n    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)","syscall":"querySrv","timestamp":"2025-07-04T10:37:14.826Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-05T14:00:43.401Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-07-05T14:00:43.836Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 761 - 140.272 ms","timestamp":"2025-07-05T14:00:50.508Z"}
+{"level":"info","message":"GET /api/v1/users 200 - - 101.649 ms","timestamp":"2025-07-05T14:00:50.640Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 417.475 ms","timestamp":"2025-07-05T14:00:51.062Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 45.131 ms","timestamp":"2025-07-05T14:01:07.304Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 30.075 ms","timestamp":"2025-07-05T14:01:07.345Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 761 - 137.345 ms","timestamp":"2025-07-05T14:01:11.649Z"}
+{"level":"info","message":"GET /api/v1/users 200 - - 35.555 ms","timestamp":"2025-07-05T14:01:11.700Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 23.090 ms","timestamp":"2025-07-05T14:01:11.726Z"}
+{"level":"info","message":"GET /api/v1/repairs 304 - - 17.751 ms","timestamp":"2025-07-05T14:01:15.061Z"}
+{"level":"info","message":"GET /api/v1/repairs 304 - - 10.832 ms","timestamp":"2025-07-05T14:01:15.074Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-05T14:01:30.798Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-07-05T14:01:31.073Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-07T05:52:50.956Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-07-07T05:52:54.708Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 67.820 ms","timestamp":"2025-07-07T05:53:17.967Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 56.592 ms","timestamp":"2025-07-07T05:53:18.026Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 761 - 1335.957 ms","timestamp":"2025-07-07T05:53:55.517Z"}
+{"level":"info","message":"GET /api/v1/users 200 - - 144.827 ms","timestamp":"2025-07-07T05:53:55.688Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 1063.958 ms","timestamp":"2025-07-07T05:53:56.755Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 140.266 ms","timestamp":"2025-07-07T05:54:05.150Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 665.127 ms","timestamp":"2025-07-07T05:54:05.817Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 134.883 ms","timestamp":"2025-07-07T05:56:36.957Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 400.604 ms","timestamp":"2025-07-07T05:56:37.367Z"}
+{"level":"info","message":"POST /api/v1/repairs 201 808 - 118.204 ms","timestamp":"2025-07-07T05:57:02.213Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 108.041 ms","timestamp":"2025-07-07T05:59:02.074Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 353.685 ms","timestamp":"2025-07-07T05:59:02.432Z"}
+{"level":"info","message":"POST /api/v1/quotations 400 96 - 6.627 ms","timestamp":"2025-07-07T05:59:30.957Z"}
+{"level":"info","message":"POST /api/v1/quotations 201 919 - 102.399 ms","timestamp":"2025-07-07T05:59:42.354Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 126.612 ms","timestamp":"2025-07-07T05:59:47.335Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 133.246 ms","timestamp":"2025-07-07T05:59:47.472Z"}
+{"level":"info","message":"GET /api/v1/quotations 200 - - 9129.951 ms","timestamp":"2025-07-07T05:59:57.764Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 509.354 ms","timestamp":"2025-07-07T05:59:58.277Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 134.597 ms","timestamp":"2025-07-07T06:00:12.096Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 126.849 ms","timestamp":"2025-07-07T06:00:12.225Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 163.186 ms","timestamp":"2025-07-07T06:01:14.604Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 1282.318 ms","timestamp":"2025-07-07T06:01:15.891Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 37.614 ms","timestamp":"2025-07-07T06:03:14.086Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 338.632 ms","timestamp":"2025-07-07T06:03:14.427Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 761 - 276.261 ms","timestamp":"2025-07-07T06:03:19.492Z"}
+{"level":"info","message":"GET /api/v1/users 200 - - 687.966 ms","timestamp":"2025-07-07T06:03:20.209Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 120.924 ms","timestamp":"2025-07-07T06:03:20.334Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 528.369 ms","timestamp":"2025-07-07T06:07:41.627Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 136.488 ms","timestamp":"2025-07-07T06:07:41.766Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 3665.135 ms","timestamp":"2025-07-07T06:09:33.459Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 128.322 ms","timestamp":"2025-07-07T06:09:33.806Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 103.872 ms","timestamp":"2025-07-07T06:09:33.914Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 135.107 ms","timestamp":"2025-07-07T06:09:34.879Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 100.584 ms","timestamp":"2025-07-07T06:09:34.982Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 125.500 ms","timestamp":"2025-07-07T06:09:36.078Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 121.315 ms","timestamp":"2025-07-07T06:09:36.210Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 123.443 ms","timestamp":"2025-07-07T06:09:36.619Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 126.340 ms","timestamp":"2025-07-07T06:09:36.747Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 63.661 ms","timestamp":"2025-07-07T06:09:38.974Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 49.566 ms","timestamp":"2025-07-07T06:09:39.026Z"}
+{"level":"info","message":"POST /api/v1/auth/login 401 103 - 236.479 ms","timestamp":"2025-07-07T06:09:43.019Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 761 - 240.597 ms","timestamp":"2025-07-07T06:09:44.765Z"}
+{"level":"info","message":"GET /api/v1/users 200 - - 225.149 ms","timestamp":"2025-07-07T06:09:45.019Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 112.990 ms","timestamp":"2025-07-07T06:09:45.135Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 124.705 ms","timestamp":"2025-07-07T06:09:46.582Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 147.206 ms","timestamp":"2025-07-07T06:09:46.734Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 128.993 ms","timestamp":"2025-07-07T06:10:21.982Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 110.280 ms","timestamp":"2025-07-07T06:10:44.060Z"}
+{"level":"info","message":"DELETE /api/v1/quotations/686b624e7989766c583b1915 404 184 - 0.439 ms","timestamp":"2025-07-07T06:10:54.065Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 118.069 ms","timestamp":"2025-07-07T06:12:18.361Z"}
+{"level":"info","message":"GET /api/v1/quotations 304 - - 190.746 ms","timestamp":"2025-07-07T06:12:50.873Z"}
+{"level":"info","message":"DELETE /api/v1/quotations/686b624e7989766c583b1915 404 184 - 0.436 ms","timestamp":"2025-07-07T06:12:59.616Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-07T06:14:05.869Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-07-07T06:14:09.410Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2025-07-07T06:14:12.706Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2025-07-07T06:14:14.546Z"}
+{"level":"info","message":"DELETE /api/v1/quotations/686b624e7989766c583b1915 200 50 - 151.581 ms","timestamp":"2025-07-07T06:14:20.884Z"}
+{"level":"info","message":"GET /api/v1/quotations 200 - - 119.264 ms","timestamp":"2025-07-07T06:16:45.924Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 209.588 ms","timestamp":"2025-07-07T06:17:22.663Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 1105.152 ms","timestamp":"2025-07-07T06:17:23.775Z"}
+{"level":"info","message":"GET /api/v1/queries 304 - - 217.625 ms","timestamp":"2025-07-07T06:17:24.927Z"}
+{"level":"info","message":"GET /api/v1/queries 304 - - 173.761 ms","timestamp":"2025-07-07T06:17:25.104Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 670.455 ms","timestamp":"2025-07-07T06:17:27.731Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 145.188 ms","timestamp":"2025-07-07T06:17:27.883Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 690.064 ms","timestamp":"2025-07-07T06:17:35.782Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 158.149 ms","timestamp":"2025-07-07T06:17:35.947Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 443.334 ms","timestamp":"2025-07-07T06:18:03.914Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 142.427 ms","timestamp":"2025-07-07T06:18:04.060Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 130.484 ms","timestamp":"2025-07-07T06:21:21.573Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 672.162 ms","timestamp":"2025-07-07T06:21:22.248Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 347.578 ms","timestamp":"2025-07-07T06:21:26.959Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 300.637 ms","timestamp":"2025-07-07T06:21:27.262Z"}

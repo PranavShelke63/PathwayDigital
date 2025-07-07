@@ -83,8 +83,11 @@ const Login: React.FC = () => {
             </div>
           )}
 
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div>
+          <div className="rounded-md shadow-sm">
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                Email address
+              </label>
               <label htmlFor="email" className="sr-only">
                 Email address
               </label>
@@ -104,6 +107,9 @@ const Login: React.FC = () => {
               />
             </div>
             <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                Password
+              </label>
               <label htmlFor="password" className="sr-only">
                 Password
               </label>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { repairsApi, RepairJob, PartUsed } from '../../services/api';
-import { FaTrash, FaPlus } from 'react-icons/fa';
+import { FaTrash, FaPlus, FaCheckCircle } from 'react-icons/fa';
 import { useParams, useNavigate } from 'react-router-dom';
 
 const initialJob: Omit<RepairJob, '_id' | 'createdAt' | 'updatedAt'> = {
@@ -194,13 +194,16 @@ const RepairEntryForm: React.FC = () => {
       if (isEdit && typeof id === 'string') {
         await repairsApi.update(id, jobData);
         setSuccess(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         setTimeout(() => navigate('/admin/repairs'), 1000);
       } else {
         await repairsApi.create(jobData);
         setSuccess(true);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         setJob(initialJob);
         setErrors(initialErrors);
         setPhysicalConditionFiles([]);
+        setPart({ partName: '', partCost: 0 });
       }
     } catch (err: any) {
       setError(err.response?.data?.message || 'Failed to submit');
@@ -212,7 +215,12 @@ const RepairEntryForm: React.FC = () => {
   return (
     <div className="w-full min-h-screen bg-white p-4 md:p-8">
       <h2 className="text-2xl font-bold mb-6 text-contrast text-center">{isEdit ? 'Edit Repair Entry' : 'New Repair Entry'}</h2>
-      {success && <div className="mb-4 text-green-600" aria-live="polite">{isEdit ? 'Repair job updated successfully!' : 'Repair job submitted successfully!'}</div>}
+      {success && (
+        <div className="mb-4 flex items-center justify-center gap-2 text-green-600 text-lg font-semibold" aria-live="polite">
+          <FaCheckCircle className="text-2xl text-green-600" />
+          {isEdit ? 'Repair job updated successfully!' : 'Repair job submitted successfully!'}
+        </div>
+      )}
       {error && <div className="mb-4 text-red-600" aria-live="polite">{error}</div>}
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Customer Details */}
