@@ -22,6 +22,7 @@ backend/coverage
 backend/npm-debug.log*
 backend/yarn-debug.log*
 backend/yarn-error.log*
+backend/uploads
 
 # IDE and Editor files
 .vscode/

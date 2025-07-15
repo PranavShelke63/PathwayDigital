@@ -20,7 +20,23 @@ const path = require('path');
 const app = express();
 
 // Security HTTP headers
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      imgSrc: ["'self'", "http://localhost:3000", "http://localhost:5000", "data:"],
+      baseUri: ["'self'"],
+      fontSrc: ["'self'", "https:", "data:"],
+      formAction: ["'self'"],
+      frameAncestors: ["'self'"],
+      objectSrc: ["'none'"],
+      scriptSrc: ["'self'"],
+      scriptSrcAttr: ["'none'"],
+      styleSrc: ["'self'", "https:", "'unsafe-inline'"],
+      upgradeInsecureRequests: []
+    }
+  }
+}));
 
 // CORS configuration
 app.use(cors({
@@ -43,11 +59,12 @@ app.use(compression());
 // Logging
 app.use(morganMiddleware);
 
-// Serve uploads directory with CORS for static files
-app.use('/uploads', cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
-  credentials: true
-}), express.static(path.join(__dirname, 'uploads')));
+// Serve uploads directory as static files with CORS and CORP headers for images
+app.use('/uploads', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL || 'http://localhost:3000');
+  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+  next();
+}, express.static(path.join(__dirname, 'uploads')));
 
 // Routes
 app.use('/api/v1/auth', authRoutes);

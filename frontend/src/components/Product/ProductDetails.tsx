@@ -105,11 +105,21 @@ const ProductDetails: React.FC = () => {
           {/* Image gallery */}
           <div className="flex flex-col">
             <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-full object-center object-cover"
-              />
+              {product && (
+                (() => {
+                  const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
+                  const imageUrl = product.image.startsWith('http')
+                    ? product.image
+                    : `${backendBase}/${product.image}`;
+                  return (
+                    <img
+                      src={imageUrl}
+                      alt={product.name}
+                      className="w-full h-full object-center object-cover"
+                    />
+                  );
+                })()
+              )}
             </div>
           </div>
 

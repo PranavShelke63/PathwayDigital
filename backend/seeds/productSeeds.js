@@ -15,7 +15,7 @@ const products = [
     price: 1299.99,
     category: 'laptops',
     brand: 'Dell',
-    image: 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+    image: 'uploads/products/dell_xps_13.png',
     stock: 15,
     specifications: {
       processor: 'Intel Core i7-1165G7',
@@ -39,7 +39,7 @@ const products = [
     price: 999.99,
     category: 'desktops',
     brand: 'HP',
-    image: 'https://images.unsplash.com/photo-1587831990711-23ca6441447b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+    image: 'uploads/products/hp_pavilion_gaming_desktop.jpg',
     stock: 10,
     specifications: {
       processor: 'AMD Ryzen 7 5700G',
@@ -59,7 +59,7 @@ const products = [
     price: 699.99,
     category: 'monitors',
     brand: 'ASUS',
-    image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+    image: 'uploads/products/asus_rog_swift_pg279q.jpg',
     stock: 8,
     specifications: {
       display: '27" WQHD (2560 x 1440) IPS',
@@ -77,7 +77,7 @@ const products = [
     price: 99.99,
     category: 'accessories',
     brand: 'Logitech',
-    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1467&q=80',
+    image: 'uploads/products/logitech_mx_master_3.jpg',
     stock: 25,
     specifications: {
       connectivity: ['Bluetooth', 'USB Wireless'],
@@ -93,7 +93,7 @@ const products = [
     price: 379.99,
     category: 'networking',
     brand: 'Ubiquiti',
-    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80',
+    image: 'uploads/products/ubiquiti_unifi_dream_machine_pro.jpg',
     stock: 5,
     specifications: {
       processor: '1.7 GHz Quad-Core',
@@ -110,7 +110,7 @@ const products = [
     price: 799.99,
     category: 'components',
     brand: 'NVIDIA',
-    image: 'https://images.unsplash.com/photo-1587202372634-32705e3bf49c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+    image: 'uploads/products/rtx_4080_graphics_card.jpg',
     stock: 7,
     specifications: {
       graphics: 'NVIDIA RTX 4080',
@@ -126,7 +126,7 @@ const products = [
     price: 129.99,
     category: 'accessories',
     brand: 'Corsair',
-    image: 'https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+    image: 'uploads/products/mechanical_gaming_keyboard.jpg',
     stock: 20,
     specifications: {
       connectivity: ['USB-C', 'USB-A adapter included'],
@@ -136,6 +136,14 @@ const products = [
     warranty: '2 Years Limited Warranty'
   }
 ];
+
+// --- Added for image download script ---
+const imageDownloads = products.map((product, idx) => ({
+  url: product.image.replace(/w=\d+/, 'w=300'),
+  filename: `backend/uploads/products/${product.name.toLowerCase().replace(/[^a-z0-9]+/g, '_')}.jpg`
+}));
+
+module.exports.imageDownloads = imageDownloads;
 
 // Function to seed the database
 const seedProducts = async () => {

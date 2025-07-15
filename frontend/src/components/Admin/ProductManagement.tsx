@@ -137,6 +137,13 @@ const ProductManagement: React.FC = () => {
     }
   };
 
+  // Helper to get image URL
+  const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
+  const getImageUrl = (image: string | undefined) => {
+    if (!image) return '';
+    return image.startsWith('http') ? image : `${backendBase}/${image}`;
+  };
+
   if (loading) return <div className="text-center py-8">Loading...</div>;
   if (error) return <div className="text-red-500 text-center py-8">{error}</div>;
 
@@ -147,6 +154,26 @@ const ProductManagement: React.FC = () => {
         <button
           onClick={() => {
             setSelectedProduct(null);
+            setFormData({
+              name: '',
+              description: '',
+              price: 0,
+              category: 'laptops',
+              brand: '',
+              stock: 0,
+              warranty: '',
+              specifications: {
+                processor: '',
+                ram: '',
+                storage: '',
+                graphics: '',
+                display: '',
+                operatingSystem: '',
+                connectivity: [],
+                ports: [],
+              },
+              features: [],
+            });
             setIsModalOpen(true);
           }}
           className="btn-primary flex items-center gap-2"
@@ -172,7 +199,7 @@ const ProductManagement: React.FC = () => {
             {products.map((product) => (
               <tr key={product._id}>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <img src={product.image} alt={product.name} className="h-12 w-12 object-cover rounded" />
+                  <img src={getImageUrl(product.image)} alt={product.name} className="h-12 w-12 object-cover rounded" />
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">{product.name}</td>
                 <td className="px-6 py-4 whitespace-nowrap">${product.price}</td>
@@ -420,7 +447,7 @@ const ProductManagement: React.FC = () => {
                       className="mt-1 block w-full"
                     />
                     {formData.image && (
-                      <img src={formData.image} alt="Preview" className="mt-2 h-32 w-32 object-cover rounded" />
+                      <img src={getImageUrl(formData.image)} alt="Preview" className="mt-2 h-32 w-32 object-cover rounded" />
                     )}
                   </div>
                 </div>

@@ -121,6 +121,12 @@ const Shop: React.FC = () => {
               const remainingStock = product.stock - (cartItem?.quantity || 0);
               const inWishlist = isInWishlist(product._id);
 
+              // Compute image URL
+              const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
+              const imageUrl = product.image.startsWith('http')
+                ? product.image
+                : `${backendBase}/${product.image}`;
+
               return (
                 <Link
                   to={`/product/${product._id}`}
@@ -129,7 +135,7 @@ const Shop: React.FC = () => {
                 >
                   <div className="aspect-w-4 aspect-h-3 rounded-lg overflow-hidden bg-gray-100">
                     <img
-                      src={product.image}
+                      src={imageUrl}
                       alt={product.name}
                       className="w-full h-full object-center object-cover group-hover:opacity-75 transition-opacity duration-300"
                     />

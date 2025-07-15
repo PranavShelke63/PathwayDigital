@@ -13,6 +13,13 @@ const Wishlist: React.FC = () => {
     return cartItems.some(item => item._id === productId);
   };
 
+  // Helper to get image URL
+  const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
+  const getImageUrl = (image: string | undefined) => {
+    if (!image) return '';
+    return image.startsWith('http') ? image : `${backendBase}/${image}`;
+  };
+
   if (items.length === 0) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -43,7 +50,7 @@ const Wishlist: React.FC = () => {
           <div key={product._id} className="relative">
             <div className="relative w-full h-72 rounded-lg overflow-hidden">
               <img
-                src={product.image}
+                src={getImageUrl(product.image)}
                 alt={product.name}
                 className="w-full h-full object-center object-cover"
               />
