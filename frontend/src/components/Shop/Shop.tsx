@@ -93,12 +93,12 @@ const Shop: React.FC = () => {
         </div>
 
         {/* Categories */}
-        <div className="flex flex-wrap gap-4 mb-8">
+        <div className="flex flex-nowrap gap-2 mb-8 overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
           {categories.map((category) => (
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium ${
+              className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 shadow-sm ${
                 selectedCategory === category.id
                   ? 'bg-primary text-white'
                   : 'bg-background text-contrast hover:bg-accent'
@@ -114,7 +114,7 @@ const Shop: React.FC = () => {
             <p className="text-xl text-gray-600">No products found in this category.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+          <div className="grid grid-cols-2 gap-y-6 gap-x-4 lg:grid-cols-3 xl:gap-x-8">
             {filteredProducts.map((product) => {
               const cartItem = getItemInCart(product._id);
               const isInCart = !!cartItem;
@@ -131,9 +131,9 @@ const Shop: React.FC = () => {
                 <Link
                   to={`/product/${product._id}`}
                   key={product._id}
-                  className="card group relative block"
+                  className="card group relative block rounded-lg shadow-md bg-white overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-200"
                 >
-                  <div className="aspect-w-4 aspect-h-3 rounded-lg overflow-hidden bg-gray-100">
+                  <div className="aspect-w-4 aspect-h-3 w-full bg-gray-100">
                     <img
                       src={imageUrl}
                       alt={product.name}
@@ -149,7 +149,7 @@ const Shop: React.FC = () => {
                       e.stopPropagation();
                       handleWishlistToggle(product);
                     }}
-                    className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 transition-colors duration-200 z-10"
+                    className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 transition-colors duration-200 z-10 w-10 h-10 flex items-center justify-center"
                   >
                     {inWishlist ? (
                       <HeartSolidIcon className="h-6 w-6 text-red-500" />
@@ -157,22 +157,22 @@ const Shop: React.FC = () => {
                       <HeartIcon className="h-6 w-6 text-gray-400" />
                     )}
                   </button>
-                  <div className="mt-4 flex justify-between">
+                  <div className="mt-4 flex flex-col sm:flex-row sm:justify-between gap-2 px-3">
                     <div>
-                      <h3 className="text-sm font-medium text-contrast group-hover:text-primary">
+                      <h3 className="text-base font-semibold text-contrast group-hover:text-primary truncate">
                         {product.name}
                       </h3>
-                      <p className="mt-1 text-sm text-gray-500">{product.description}</p>
-                      <div className="mt-2">
-                        <span className="text-sm text-gray-500">Brand: {product.brand}</span>
+                      <p className="mt-1 text-xs text-gray-500 line-clamp-2">{product.description}</p>
+                      <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1">
+                        <span className="text-xs text-gray-500">Brand: {product.brand}</span>
                         {remainingStock > 0 ? (
-                          <span className="ml-4 text-sm text-green-600">In Stock: {remainingStock}</span>
+                          <span className="text-xs text-green-600">In Stock: {remainingStock}</span>
                         ) : (
-                          <span className="ml-4 text-sm text-red-600">Out of Stock</span>
+                          <span className="text-xs text-red-600">Out of Stock</span>
                         )}
                       </div>
                     </div>
-                    <p className="text-sm font-medium text-contrast">${product.price.toFixed(2)}</p>
+                    <p className="text-base font-bold text-contrast">${product.price.toFixed(2)}</p>
                   </div>
                   <button
                     type="button"
@@ -181,7 +181,7 @@ const Shop: React.FC = () => {
                       e.stopPropagation();
                       handleAddToCart(product);
                     }}
-                    className={`mt-4 w-full flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                    className={`mt-4 w-full flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 ${
                       remainingStock === 0
                         ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
                         : isInCart
