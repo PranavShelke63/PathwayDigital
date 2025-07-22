@@ -14,6 +14,7 @@ const ProductDetails: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   const { addToCart, items: cartItems } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
@@ -75,6 +76,23 @@ const ProductDetails: React.FC = () => {
     }
   };
 
+  // Helper to get image URL
+  const getImageUrl = (img: string) => {
+    const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
+    return img.startsWith('http') ? img : `${backendBase}/${img}`;
+  };
+
+  const handlePrevImage = () => {
+    if (!product?.images) return;
+    setCurrentImageIndex((prev) => (prev === 0 ? product.images.length - 1 : prev - 1));
+  };
+  const handleNextImage = () => {
+    if (!product?.images) return;
+    setCurrentImageIndex((prev) => (prev === product.images.length - 1 ? 0 : prev + 1));
+  };
+
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth < 1024 : false;
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -103,24 +121,68 @@ const ProductDetails: React.FC = () => {
       <div className="max-w-2xl sm:max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         {/* Mobile layout */}
         <div className="block lg:hidden">
-          <div className="w-full h-[50vh] bg-gray-200 rounded-lg overflow-hidden">
-            {product && (() => {
-              const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
-              const imageUrl = product.image.startsWith('http')
-                ? product.image
-                : `${backendBase}/${product.image}`;
-              return (
-                <img
-                  src={imageUrl}
-                  alt={product.name}
-                  className="w-full h-full object-center object-cover"
-                />
-              );
-            })()}
+          <div className="flex flex-col items-center w-full">
+            <div className="relative w-full max-w-lg aspect-square bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center">
+              {product && product.images && product.images.length > 0 ? (
+                <>
+                  <img
+                    src={getImageUrl(product.images[currentImageIndex])}
+                    alt={product.name}
+                    className="w-full h-full object-contain"
+                    style={{ maxHeight: isMobile ? '50vh' : '500px' }}
+                  />
+                  {product.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={handlePrevImage}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-3 shadow text-xl"
+                        aria-label="Previous image"
+                        style={{ zIndex: 2 }}
+                      >
+                        &#8592;
+                      </button>
+                      <button
+                        onClick={handleNextImage}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-3 shadow text-xl"
+                        aria-label="Next image"
+                        style={{ zIndex: 2 }}
+                      >
+                        &#8594;
+                      </button>
+                      {/* Dots */}
+                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+                        {product.images.map((_, idx) => (
+                          <span
+                            key={idx}
+                            className={`inline-block w-2 h-2 rounded-full ${idx === currentImageIndex ? 'bg-primary' : 'bg-gray-300'}`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </>
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-gray-400">No image</div>
+              )}
+            </div>
+            {/* Optional: Thumbnails for desktop */}
+            {!isMobile && product?.images?.length > 1 && (
+              <div className="flex gap-2 mt-4 overflow-x-auto">
+                {product.images.map((img, idx) => (
+                  <img
+                    key={idx}
+                    src={getImageUrl(img)}
+                    alt={`Thumbnail ${idx + 1}`}
+                    className={`w-16 h-16 object-contain rounded border cursor-pointer ${idx === currentImageIndex ? 'border-primary' : 'border-gray-300'}`}
+                    onClick={() => setCurrentImageIndex(idx)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
           <div className="flex items-center justify-between mt-4 px-1">
             <h1 className="text-lg font-bold text-gray-900 truncate max-w-[60%]">{product.name}</h1>
-            <span className="text-lg font-bold text-contrast">${product.price.toFixed(2)}</span>
+            <span className="text-lg font-bold text-contrast">₹{product.price.toFixed(2)}</span>
           </div>
           <div className="flex items-center gap-2 mt-3 px-1">
             <button
@@ -188,22 +250,64 @@ const ProductDetails: React.FC = () => {
         {/* Desktop layout */}
         <div className="hidden lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
           {/* Image gallery */}
-          <div className="flex flex-col">
-            <div className="w-full aspect-w-1 aspect-h-1 bg-gray-200 rounded-lg overflow-hidden">
-              {product && (() => {
-                const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
-                const imageUrl = product.image.startsWith('http')
-                  ? product.image
-                  : `${backendBase}/${product.image}`;
-                return (
+          <div className="flex flex-col items-center w-full">
+            <div className="relative w-full max-w-lg aspect-square bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center">
+              {product && product.images && product.images.length > 0 ? (
+                <>
                   <img
-                    src={imageUrl}
+                    src={getImageUrl(product.images[currentImageIndex])}
                     alt={product.name}
-                    className="w-full h-full object-center object-cover"
+                    className="w-full h-full object-contain"
+                    style={{ maxHeight: isMobile ? '50vh' : '500px' }}
                   />
-                );
-              })()}
+                  {product.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={handlePrevImage}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-3 shadow text-xl"
+                        aria-label="Previous image"
+                        style={{ zIndex: 2 }}
+                      >
+                        &#8592;
+                      </button>
+                      <button
+                        onClick={handleNextImage}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-3 shadow text-xl"
+                        aria-label="Next image"
+                        style={{ zIndex: 2 }}
+                      >
+                        &#8594;
+                      </button>
+                      {/* Dots */}
+                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+                        {product.images.map((_, idx) => (
+                          <span
+                            key={idx}
+                            className={`inline-block w-2 h-2 rounded-full ${idx === currentImageIndex ? 'bg-primary' : 'bg-gray-300'}`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </>
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-gray-400">No image</div>
+              )}
             </div>
+            {/* Optional: Thumbnails for desktop */}
+            {!isMobile && product?.images?.length > 1 && (
+              <div className="flex gap-2 mt-4 overflow-x-auto">
+                {product.images.map((img, idx) => (
+                  <img
+                    key={idx}
+                    src={getImageUrl(img)}
+                    alt={`Thumbnail ${idx + 1}`}
+                    className={`w-16 h-16 object-contain rounded border cursor-pointer ${idx === currentImageIndex ? 'border-primary' : 'border-gray-300'}`}
+                    onClick={() => setCurrentImageIndex(idx)}
+                  />
+                ))}
+              </div>
+            )}
           </div>
           {/* Product info */}
           <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
@@ -222,7 +326,7 @@ const ProductDetails: React.FC = () => {
             </div>
             <div className="mt-3">
               <h2 className="sr-only">Product information</h2>
-              <p className="text-3xl text-gray-900">${product.price.toFixed(2)}</p>
+              <p className="text-3xl text-gray-900">₹{product.price.toFixed(2)}</p>
             </div>
             <div className="mt-6">
               <h3 className="sr-only">Description</h3>
@@ -284,18 +388,23 @@ const ProductDetails: React.FC = () => {
                 </button>
               </div>
             </div>
-            {/* Additional product details */}
-            <div className="mt-8 border-t border-gray-200 pt-8">
-              <h3 className="text-sm font-medium text-gray-900">Highlights</h3>
-              <div className="mt-4 prose prose-sm text-gray-500">
-                <ul role="list">
-                  <li>High-quality product</li>
-                  <li>Durable construction</li>
-                  <li>Professional grade</li>
-                  <li>Reliable performance</li>
-                </ul>
+           
+            {/* Specifications section */}
+            {product.specifications && Object.keys(product.specifications).length > 0 && (
+              <div className="mt-8 border-t border-gray-200 pt-8">
+                <h3 className="text-sm font-medium text-gray-900 mb-2">Specifications</h3>
+                <table className="min-w-full text-sm text-gray-700">
+                  <tbody>
+                    {Object.entries(product.specifications).map(([key, value]) => (
+                      <tr key={key}>
+                        <td className="pr-4 py-3 font-semibold capitalize">{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
+                        <td className="py-3">{Array.isArray(value) ? value.join(', ') : value?.toString()}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

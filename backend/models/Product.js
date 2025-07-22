@@ -7,28 +7,33 @@ const productSchema = new mongoose.Schema({
     trim: true,
     maxLength: [100, 'Product name cannot exceed 100 characters']
   },
-  description: {
+  brand: {
     type: String,
-    required: [true, 'A product must have a description'],
+    required: [true, 'A product must have a brand'],
     trim: true
-  },
-  price: {
-    type: Number,
-    required: [true, 'A product must have a price'],
-    min: [0, 'Price cannot be negative']
   },
   category: {
     type: String,
     required: [true, 'A product must belong to a category'],
     enum: {
-      values: ['laptops', 'desktops', 'components', 'accessories', 'monitors', 'networking'],
-      message: 'Category is either: laptops, desktops, components, accessories, monitors, networking'
+      values: [
+        'ASUS MB 1&2',
+        'ASUS VGA',
+        'ASUS Headset',
+        'ASUS Keyboard',
+        'ASUS Mouse',
+        'ASUS Monitor',
+        'ASUS ODD',
+        'PSU Chasis',
+        'ASUS NUC'
+      ],
+      message: 'Category must be one of the allowed values'
     }
   },
-  brand: {
-    type: String,
-    required: [true, 'A product must have a brand'],
-    trim: true
+  price: {
+    type: Number,
+    required: [true, 'A product must have a price'],
+    min: [0, 'Price cannot be negative']
   },
   image: {
     type: String,
@@ -42,24 +47,15 @@ const productSchema = new mongoose.Schema({
     required: [true, 'A product must have stock quantity'],
     min: [0, 'Stock cannot be negative']
   },
-  specifications: {
-    processor: String,
-    ram: String,
-    storage: String,
-    graphics: String,
-    display: String,
-    operatingSystem: String,
-    connectivity: [String],
-    ports: [String],
-    battery: String,
-    dimensions: String,
-    weight: String
-  },
-  features: [String],
   warranty: {
     type: String,
     required: [true, 'A product must have warranty information']
   },
+  specifications: {
+    type: Object,
+    default: {}
+  },
+  features: [String],
   ratings: {
     type: Number,
     default: 0,

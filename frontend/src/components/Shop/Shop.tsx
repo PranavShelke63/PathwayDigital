@@ -133,13 +133,12 @@ const Shop: React.FC = () => {
                   key={product._id}
                   className="card group relative block rounded-lg shadow-md bg-white overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-200"
                 >
-                  <div className="aspect-w-4 aspect-h-3 w-full bg-gray-100">
+                  <div className="flex items-center justify-center w-full aspect-square bg-gray-100 overflow-hidden">
                     <img
                       src={imageUrl}
                       alt={product.name}
-                      className="w-full h-full object-center object-cover group-hover:opacity-75 transition-opacity duration-300"
+                      className="w-full h-full object-contain"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                   {/* Wishlist button */}
                   <button
@@ -172,7 +171,7 @@ const Shop: React.FC = () => {
                         )}
                       </div>
                     </div>
-                    <p className="text-base font-bold text-contrast">${product.price.toFixed(2)}</p>
+                    <p className="text-base font-bold text-contrast">₹{product.price.toFixed(2)}</p>
                   </div>
                   <button
                     type="button"
