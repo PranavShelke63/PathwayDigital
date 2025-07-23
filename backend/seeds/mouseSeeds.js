@@ -146,13 +146,14 @@ const products = [
     price: 14999,
     category: 'ASUS Mouse',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_1.jpg',
+    image: 'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_1.png',
     images: [
-      'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_1.jpg',
+      'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_1.png',
       'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_2.jpg',
       'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_3.jpg',
       'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_4.jpg',
-      'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_5.jpg'
+      'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_5.jpg',
+      'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_6.jpg',
     ],
     stock: 10,
     specifications: {
