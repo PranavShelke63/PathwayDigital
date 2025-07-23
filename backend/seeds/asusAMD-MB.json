@@ -1,0 +1,1623 @@
+[
+  {
+    "model": "B650M-AYW-WIFI",
+    "price_inr": 25000,
+    "chipset": "AMD B650",
+    "socket": "AM5 (Ryzen 7000/8000/9000 Series)",
+    "form_factor": "micro‑ATX (244 × 221 mm)",
+    "memory": {
+      "type": "DDR5",
+      "slots": 2,
+      "max_capacity": "96 GB",
+      "overclock_speed": "up to DDR5‑8000+ (EXPO/OC)"
+    },
+    "storage": {
+      "m2_slots": [
+        {"name":"M.2_1","interface":"PCIe 5.0 x4 (128 Gbps)"},
+        {"name":"M.2_2","interface":"PCIe 4.0 x4 (64 Gbps)"}
+      ],
+      "sata_ports": 4
+    },
+    "expansion_slots": [
+      {"slot":"PCIe 4.0 x16 SafeSlot Core+","mode":"x16"},
+      {"slot":"PCIe 4.0 x16 (x4 mode)","mode":"x4"}
+    ],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": "Wi‑Fi 6 (802.11ax)",
+      "bluetooth": "BT 5.2"
+    },
+    "usb_ports": {
+      "rear": ["2× USB‑C 10 Gbps", "2× USB‑A 10 Gbps", "4× USB‑A 2.0"],
+      "front_headers": ["2× USB‑A 5 Gbps", "1× USB‑C 5 Gbps"]
+    },
+    "video_outputs": ["HDMI", "2× DisplayPort", "VGA"],
+    "audio": "Realtek ALC897 codec; 3 audio jacks",
+    "cooling_features": [
+      "VRM heatsink with thermal pads",
+      "M.2 SSD heatsink (captive screws)",
+      "PCH heatsink",
+      "Hybrid fan headers + Fan Xpert 2+",
+      "Six-layer PCB for thermal stability"
+    ],
+    "rgb": {
+      "headers": ["1× Addressable Gen2", "1× Aura RGB"],
+      "support": "Aura Sync"
+    },
+    "special_features": [
+      "Two‑Way AI Noise‑Cancellation for mic/speaker",
+      "USB FlashBack BIOS update",
+      "ASUS OptiMem II trace layout for high-speed DDR5",
+      "Aura Sync lighting control"
+    ],
+    "description": "Feature-packed mATX board for Ryzen AM5 — PCIe 5.0 storage, Wi‑Fi 6, strong cooling, premium connectivity and ASUS intelligent controls."
+  },
+  {
+    "model": "PRIME A520M-K-CSM",
+    "price_inr": 8000,
+    "chipset": "AMD A520",
+    "socket": "AM4 (Ryzen 5000/4000/3000 Series)",
+    "form_factor": "micro‑ATX (226 × 221 mm)",
+    "memory": {
+      "type": "DDR4",
+      "slots": 2,
+      "max_capacity": "64 GB",
+      "overclock_speed": "up to DDR4‑4866(O.C.)"
+    },
+    "storage": {
+      "m2_slots": 1,
+      "sata_ports": 4,
+      "raid_support": ["RAID 0", "RAID 1", "RAID 10"]
+    },
+    "expansion_slots": [
+      {"slot":"PCIe 3.0 x16","mode":"x16"},
+      {"slot":"PCIe 3.0 x1","mode":"x1 (×2)"}
+    ],
+    "networking": {
+      "ethernet": "Realtek RTL8111H 1 Gb",
+      "wifi": null
+    },
+    "usb_ports": {
+      "rear": ["4× USB 3.2 Gen1", "2× USB 2.0", "HDMI 4K@60", "VGA"],
+      "front_headers": ["2× USB 3.2 Gen1", "4× USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1 (4K@60)", "D‑Sub VGA"],
+    "audio": {
+      "codec": "Realtek ALC887",
+      "features": ["Jack detection", "Multi-streaming", "High‑fidelity playback"],
+      "protection": ["Audio shielding", "Dedicated PCB layers"]
+    },
+    "cooling_features": ["PCH heatsink", "Fan Xpert", "Temperature-controlled fan headers"],
+    "rgb": false,
+    "special_features": [
+      "5X Protection III (DIGI+ VRM, LANGuard, Overvoltage protection, SafeSlot, stainless steel I/O)",
+      "Corporate Stable Model (CSM) for enterprise durability",
+      "BIOS FlashBack, UEFI EZ mode"
+    ],
+"description": "Budget-friendly AM4 board with essential features—M.2 support, reliable audio protections, enterprise-grade lifecycles and RAID storage options."
+},
+{
+    "model": "PRIME B650M-A WIFI",
+    "price_inr": 23000,
+    "socket": "AM5 (Ryzen 7000/8000/9000)",
+    "chipset": "AMD B650",
+    "form_factor": "micro‑ATX (244 × 244 mm)",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "128 GB",
+      "speeds": "up to DDR5‑5600+(OC) with EXPO",
+      "features": ["OptiMem II trace layout", "EXPO overclocking"]
+    },
+    "storage": {
+      "m2_slots": ["PCIe 5.0 x4 (CPU)", "PCIe 4.0 x4 (chipset)"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16 SafeSlot", "PCIe 4.0 x1 ×2"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": "Wi‑Fi 6 (802.11ax)",
+      "bluetooth": "BT 5.2"
+    },
+    "usb": {
+      "rear": ["2× USB 3.2 Gen2 Type‑A", "2× USB 3.2 Gen1 Type‑A", "4× USB 2.0"],
+      "headers": ["USB 3.2 Gen1 Type‑C", "USB 3.2 Gen1 Type‑A", "2× USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4", "VGA"],
+    "cooling": ["VRM heatsink", "PCH heatsink", "Fan Xpert 2+", "hybrid fan headers"],
+    "features": [
+      "Aura Sync RGB + addressable Gen2 header",
+      "USB BIOS FlashBack™",
+      "Built‑in Two‑Way AI Noise‑Cancelation"
+    ],
+    "description": "Feature-rich microATX board for Ryzen AM5 with PCIe 5.0, Wi‑Fi 6, robust cooling, and extensive connectivity options for gamers and creators."
+  },
+  {
+    "model": "PRIME-A620M-K-CSM",
+    "price_inr": 14000,
+    "socket": "AM5 (Ryzen 7000/8000/9000)",
+    "chipset": "AMD A620",
+    "form_factor": "micro‑ATX (226 × 221 mm)",
+    "memory": {
+      "type": "DDR5",
+      "slots": 2,
+      "max_capacity": "64 GB",
+      "speeds": "up to DDR5‑6400",
+      "features": ["2 oz copper PCB"]
+    },
+    "storage": {
+      "m2_slots": 1,
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 1 Gb (DASH)",
+      "wifi": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen1", "USB 2.0", "HDMI", "VGA"],
+      "headers": ["USB 3.2 Gen1"]
+    },
+    "cooling": ["Standard heatsinks", "Fan headers"],
+    "features": [
+      "ASUS Control Center Express (ACCE)",
+      "BIOS FlashBack™, SafeSlot Core",
+      "Q‑LED core status indicators"
+    ],
+    "description": "Affordable AM5 microATX board with essential features for Ryzen 7000 series, including DDR5 support, reliable networking, and enterprise-grade stability."
+  },
+  {
+    "model": "PRIME-B450M-K-II",
+    "price_inr": 10000,
+    "socket": "AM4 (Ryzen 3000/4000/5000)",
+    "chipset": "AMD B450",
+    "form_factor": "micro‑ATX (226 × 221 mm)",
+    "memory": {
+      "type": "DDR4",
+      "slots": 2,
+      "max_capacity": "64 GB",
+      "speeds": "up to DDR4‑4400(O.C.)"
+    },
+    "storage": {
+      "m2_slots": 1,
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 3.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 1 Gb",
+      "wifi": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen1", "USB 2.0", "HDMI", "DVI‑D", "VGA", "PS/2"],
+      "headers": ["USB 3.2 Gen1", "USB 2.0 ×2"]
+    },
+    "cooling": ["PCH heatsink", "Fan headers"],
+    "features": [
+      "5X Protection III: SafeSlot, LANGuard, Overvoltage protection",
+      "BIOS FlashBack™",
+      "Aura Sync RGB support",
+      "AI Noise‑Canceling microphone"
+    ],
+    "description": "Compact and cost-effective AM4 board with essential features for Ryzen 3000/4000/5000 series, including M.2 support, reliable audio, and enterprise-grade stability."
+  },
+  {
+    "model": "PRIME-B550M-K",
+    "price_inr": 15400,
+    "socket": "AM4 (Ryzen 3000/4000/5000)",
+    "chipset": "AMD B550",
+    "form_factor": "micro‑ATX (226 × 226 mm)",
+    "memory": {
+      "type": "DDR4",
+      "slots": "2 or 4",
+      "max_capacity": "128 GB",
+      "speeds": "up to DDR4‑4800+(O.C.)"
+    },
+    "storage": {
+      "m2_slots": 2,
+      "sata_ports": 4,
+      "raid": ["RAID 0/1/10"]
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1 ×2"],
+    "networking": {
+      "ethernet": "Realtek 1 Gb",
+      "wifi": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2 Type‑A", "USB 3.2 Gen1", "USB 2.0"],
+      "headers": ["USB 3.2 Gen1"]
+    },
+    "video_outputs": ["HDMI 2.1", "DVI‑D", "D‑Sub"],
+    "cooling": ["PCH heatsink", "Fan Xpert 2+"],
+    "features": ["ECC memory support", "5X Protection III"],
+    "description": "Compact and feature-rich AM4 board with PCIe 4.0 support, robust cooling, and extensive connectivity options for Ryzen 3000/4000/5000 series processors."
+  },
+  {
+    "model": "PRIME-B550M-K-ARGB",
+    "price_inr": 16000,
+    "socket": "AM4 (Ryzen 3000/4000/5000)",
+    "chipset": "AMD B550",
+    "form_factor": "micro‑ATX (226 × 226 mm)",
+    "memory": {
+      "type": "DDR4",
+      "slots": 2,
+      "max_capacity": "64 GB",
+      "speeds": "up to DDR4‑4800+(O.C.)"
+    },
+    "storage": {
+      "m2_slots": 2,
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 1 Gb",
+      "wifi": null
+    },
+    "usb": {
+      "rear": ["4× USB 3.2 Gen1", "2× USB 2.0"],
+      "headers": ["USB 3.2 Gen1 Type‑C", "USB 3.2 Gen1 header", "USB 2.0 ×2"]
+    },
+    "video_outputs": ["HDMI", "DisplayPort"],
+    "cooling": ["PCH heatsink", "Hybrid fan headers", "Fan Xpert 2+"],
+    "rgb": true,
+    "features": [
+      "Aura Sync RGB lighting + addressable Gen2 headers",
+      "AI‑Ready with Aura control",
+      "PCIe 4.0 dual M.2",
+      "5X Protection III"
+    ],
+    "description": "Compact AM4 board with dual M.2 PCIe 4.0, Aura Sync RGB, and robust cooling for Ryzen 3000/4000/5000 series processors, ideal for gamers and creators."
+  },
+  {
+    "model": "PRIME-B650M-A-II",
+    "price_inr": 25000,
+    "socket": "AM5 (Ryzen 7000/8000/9000 Series)",
+    "chipset": "AMD B650",
+    "form_factor": "micro‑ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑7200+(OC)",
+      "features": ["EXPO support", "OptiMem II", "Dual Channel"]
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 5.0 x4", "1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1 ×2"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": null,
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2 Type‑A", "USB 3.2 Gen1", "USB 2.0"],
+      "headers": ["USB 3.2 Gen1 Type‑C", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM Heatsinks", "M.2 heatsinks", "Fan Xpert"],
+    "rgb": true,
+    "features": ["BIOS FlashBack", "Q-LED", "5X Protection III"],
+    "description": "High-performance micro‑ATX board with PCIe 5.0 M.2, fast DDR5 support, and enhanced cooling for mainstream AM5 desktop builds."
+  },
+  {
+    "model": "PRIME-B650M-R",
+    "price_inr": 18000,
+    "socket": "AM5",
+    "chipset": "AMD B650",
+    "form_factor": "micro‑ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑7200+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 5.0 x4", "1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1 ×2"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": null,
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB 3.2 Gen1", "USB 2.0"],
+      "headers": ["USB 3.2 Gen1", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["Heatsinks", "Hybrid fan headers", "Fan Xpert"],
+    "rgb": false,
+    "features": ["BIOS FlashBack", "Q-LED Core"],
+    "description": "Cost-effective B650 board offering PCIe Gen 5 M.2 and DDR5 with a minimalist feature set for basic AM5 builds."
+  },
+  {
+    "model": "PRIME-B840M-A-CSM",
+    "price_inr": 28000,
+    "socket": "AM5",
+    "chipset": "AMD B840",
+    "form_factor": "micro‑ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 5.0 x4", "1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1 ×2"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": null,
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB 3.2 Gen1 Type‑C", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort"],
+    "cooling": ["VRM and PCH heatsinks", "Fan Xpert 2+"],
+    "rgb": false,
+    "features": ["CSM ready", "AI Cooling", "Q-LED"],
+    "description": "Commercial-grade B840 platform designed for durability and stable performance with high-speed DDR5, PCIe Gen 5 storage, and business-focused lifecycle support."
+  },
+  {
+    "model": "PRIME-X670-P-CSM",
+    "price_inr": 40000,
+    "socket": "AM5",
+    "chipset": "AMD X670",
+    "form_factor": "ATX (305 × 244 mm)",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 5.0 x4", "2× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16 (x4)", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": null,
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2x2", "USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB 3.2 Gen1", "USB 3.2 Gen2", "USB-C"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["Large VRM heatsinks", "M.2 cooling", "AI Cooling II", "6-layer PCB"],
+    "rgb": true,
+    "features": ["CSM support", "Q-LED", "BIOS FlashBack", "ProCool power connectors"],
+    "description": "High-end ATX X670 motherboard offering next-gen I/O, full PCIe Gen 5 readiness, ultra-fast M.2 slots, and reliability for pro and business builds."
+  },
+  {
+    "model": "PRIME-X870-P-CSM",
+    "price_inr": 43000,
+    "socket": "AM5",
+    "chipset": "AMD X870",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 5.0 x4", "3× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16 (x4)", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": null,
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2x2 Type‑C", "USB 3.2 Gen1", "USB 2.0"],
+      "headers": ["USB 3.2 Gen1 header", "USB 3.2 Gen2 Type‑C", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["High-mass VRM heatsinks", "4 M.2 heatsinks", "AI Cooling II"],
+    "rgb": true,
+    "features": ["Q-LED, CSM certified, SafeSlot, BIOS FlashBack", "ProCool II connectors", "Reinforced PCIe slots"],
+    "description": "Cutting-edge AM5 board built on the new X870 chipset. Designed for prosumers, workstations, and power users requiring PCIe 5.0 bandwidth and multi-M.2 NVMe performance."
+},
+{
+  "model": "PRIME-X870-P-WIFI",
+    "price_inr": 46000,
+    "socket": "AM5",
+    "chipset": "AMD X870",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5-8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 5.0 x4", "2× PCIe 4.0 x4", "1× PCIe 3.0 x2"],
+      "sata_ports": 2
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16 (x4)", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": "Wi‑Fi 7",
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["2× USB4", "USB 3.2 Gen2", "USB 2.0", "USB-C"],
+      "headers": ["USB-C", "USB 3.2 Gen1", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "M.2 heatsinks", "AI Cooling II"],
+    "rgb": true,
+    "features": ["USB4 support", "PCIe 5.0 storage", "BIOS FlashBack", "Q-LED"],
+    "description": "High-end ATX board with Wi‑Fi 7, USB4, PCIe 5.0 x16, and robust cooling for AM5 enthusiast builds."
+  },
+  {
+    "model": "PRIMEB450MK-II-CSM",
+    "price_inr": 10000,
+    "socket": "AM4",
+    "chipset": "AMD B450",
+    "form_factor": "micro-ATX",
+    "memory": {
+      "type": "DDR4",
+      "slots": 2,
+      "max_capacity": "64 GB",
+      "speeds": "up to DDR4-4400(O.C.)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 3.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 3.0 x16", "PCIe 2.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 1 Gb",
+      "wifi": null,
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen1", "USB 2.0", "HDMI", "DVI-D", "VGA"],
+      "headers": ["USB 3.2 Gen1", "USB 2.0 x2"]
+    },
+    "video_outputs": ["HDMI", "DVI-D", "VGA"],
+    "cooling": ["PCH heatsink", "Fan headers"],
+    "rgb": false,
+    "features": ["BIOS FlashBack", "CSM support", "5X Protection III"],
+    "description": "Basic but durable B450 mATX board for AM4 with CSM support and multi-output display."
+  },
+  {
+    "model": "PRIMEB650M-A-WF-II",
+    "price_inr": 23000,
+    "socket": "AM5",
+    "chipset": "AMD B650",
+    "form_factor": "micro-ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5-7200+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 5.0 x4", "1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1 x2"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": "Wi‑Fi 6E",
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB 3.2 Gen1", "USB 2.0"],
+      "headers": ["USB-C", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "M.2 heatsinks", "Fan Xpert"],
+    "rgb": true,
+    "features": ["Aura Sync RGB", "CSM support", "BIOS FlashBack"],
+    "description": "Reliable mATX AM5 board with PCIe 5.0 M.2, DDR5, Wi‑Fi 6E, and excellent cooling."
+  },
+  {
+    "model": "PRIMEB650MA-II-CSM",
+    "price_inr": 25000,
+    "socket": "AM5",
+    "chipset": "AMD B650",
+    "form_factor": "micro-ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5-7200+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 5.0 x4", "1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1 x2"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": null,
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB 3.2 Gen1", "USB 2.0"],
+      "headers": ["USB-C", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "Fan headers"],
+    "rgb": false,
+    "features": ["CSM lifecycle", "BIOS FlashBack", "Q-LED"],
+    "description": "Business-grade B650 board with high-speed storage and memory support for stable AM5 deployments."
+  },
+  {
+    "model": "PRIMEB840MA-WF-CSM",
+    "price_inr": 30000,
+    "socket": "AM5",
+    "chipset": "AMD B840",
+    "form_factor": "micro-ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5-8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["3× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x16 x2", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": "Wi‑Fi 6E",
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB-C 10 Gbps", "USB 2.0"],
+      "headers": ["USB-C 10 Gbps", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort"],
+    "cooling": ["VRM heatsinks", "Fan headers"],
+    "rgb": true,
+    "features": ["CSM certified", "AI Cooling", "Aura Sync"],
+    "description": "Wi‑Fi 6E enabled B840 board with strong connectivity, stability features, and extended M.2 support."
+  },
+  {
+    "model": "PRIMEB840PLUSWFCSM",
+    "price_inr": 33000,
+    "socket": "AM5",
+    "chipset": "AMD B840",
+    "form_factor": "micro-ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5-8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["3× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": "Wi‑Fi 6E",
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB-C 10 Gbps", "USB 2.0"],
+      "headers": ["USB-C 10 Gbps", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort"],
+    "cooling": ["VRM heatsinks", "Fan Xpert"],
+    "rgb": true,
+    "features": ["CSM certification", "Aura Sync RGB", "AI Cooling"],
+    "description": "Feature-rich B840 platform with Wi‑Fi 6E, enhanced power delivery, and full enterprise lifecycle design."
+  },
+  {
+    "model": "PRIMEX870-P-WF-CSM",
+    "price_inr": 46000,
+    "socket": "AM5",
+    "chipset": "AMD X870",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5-8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 5.0 x4", "2× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16 (x4)", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": "Wi‑Fi 6E",
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2x2", "USB 3.2 Gen2", "USB-C"],
+      "headers": ["USB 3.2 Gen1", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "M.2 heatsinks", "Fan Xpert"],
+    "rgb": true,
+    "features": ["CSM certified", "BIOS FlashBack", "SafeSlot Core+"],
+    "description": "All-round X870 ATX motherboard with Wi‑Fi 6E, PCIe 5.0 support, robust cooling, and enterprise-grade lifecycle."
+  },
+  {
+    "model": "PRO-WS-WRX80E-SAGE",
+    "price_inr": 155000,
+    "socket": "sWRX8",
+    "chipset": "AMD WRX80",
+    "form_factor": "E-ATX",
+    "memory": {
+      "type": "DDR4",
+      "slots": 8,
+      "max_capacity": "2 TB",
+      "speeds": "up to DDR4-3200"
+    },
+    "storage": {
+      "m2_slots": ["3× PCIe 4.0 x4"],
+      "sata_ports": 8
+    },
+    "expansion_slots": ["4× PCIe 4.0 x16", "PCIe 4.0 x8"],
+    "networking": {
+      "ethernet": "Dual 10 Gb Intel",
+      "wifi": null,
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2x2 Type-C", "USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB 3.2 Gen1", "USB 2.0 x2"]
+    },
+    "video_outputs": null,
+    "cooling": ["Massive VRM heatsinks", "Active chipset cooler"],
+    "rgb": false,
+    "features": ["ECC support", "Pro workstation reliability", "PCIe bifurcation"],
+    "description": "High-end workstation board supporting Threadripper Pro CPUs with massive memory, dual 10 Gb LAN and enterprise stability."
+  },
+  {
+    "model": "PROARTB650-CREATOR",
+    "price_inr": 35000,
+    "socket": "AM5",
+    "chipset": "AMD B650",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5-7200+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 5.0 x4", "1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1 x2"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": "Wi‑Fi 6E",
+      "bluetooth": "BT 5.2"
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2x2 Type-C", "USB 3.2 Gen2", "USB-C"],
+      "headers": ["USB 3.2 Gen1", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "M.2 heatsinks", "Fan Xpert"],
+    "rgb": true,
+    "features": ["Creator-first I/O", "USB-C front panel support", "ProArt validation"],
+    "description": "Creator-focused B650 ATX board with robust USB-C connectivity, PCIe 5.0, DDR5 performance, and Wi‑Fi 6E support."
+  },
+  {
+    "model": "PROWS-TRX50SAGEWF",
+    "price_inr": 120000,
+    "socket": "sTRX9",
+    "chipset": "AMD TRX50",
+    "form_factor": "E-ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 8,
+      "max_capacity": "2 TB",
+      "speeds": "up to DDR5‑6400+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["4× PCIe 5.0 x4"],
+      "sata_ports": 6
+    },
+    "expansion_slots": ["5× PCIe 5.0 x16"],
+    "networking": {
+      "ethernet": "Dual 10 Gb",
+      "wifi": "Wi‑Fi 7",
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB4", "USB 3.2 Gen2x2", "USB-C"],
+      "headers": ["USB 3.2 Gen1", "USB 2.0 x2"]
+    },
+    "video_outputs": null,
+    "cooling": ["Active VRM fin array", "M.2 heatsinks"],
+    "rgb": false,
+    "features": ["Workstation-class Threadripper Pro", "PCIe bifurcation", "ECC memory support"],
+    "description": "Professional E‑ATX board ready for TRX50 CPUs, offering massive I/O, PCIe 5.0 lanes and workstation-grade reliability."
+  },
+  {
+    "model": "PROX670ECREATORWF",
+    "price_inr": 58000,
+    "socket": "AM5",
+    "chipset": "AMD X670E",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 5.0 x4", "2× PCIe 4.0 x4"],
+      "sata_ports": 6
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": "Wi‑Fi 6E",
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2x2 Type-C", "USB 3.2 Gen1", "USB 2.0"],
+      "headers": ["USB 3.2 Gen1", "USB 2.0 x2"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "M.2 heatsinks", "AI Cooling II"],
+    "rgb": true,
+    "features": ["Creator aesthetic", "PCIe 5.0 x16", "ProCool connectors"],
+    "description": "X670E creator board with dual PCIe 5.0 storage, high-speed networking and creator-focused I/O in ATX."
+  },
+  {
+    "model": "PROX870ECREATOR-WF",
+    "price_inr": 80000,
+    "socket": "AM5",
+    "chipset": "AMD X870E",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["3× PCIe 5.0 x4", "1× PCIe 4.0 x4"],
+      "sata_ports": 6
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": "Wi‑Fi 7",
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB4", "USB 3.2 Gen2x2", "USB-C"],
+      "headers": ["USB 3.2 Gen1", "USB 2.0 x2"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "AI Cooling II"],
+    "rgb": true,
+    "features": ["Enhanced with Wi‑Fi 7", "PCIe 5.0 multi-slot", "Creator branding"],
+    "description": "Premium creator-focused X870E motherboard with Wi‑Fi 7, multi-slot PCIe 5.0 and pro-level connectivity."
+  },
+  {
+    "model": "ROG CROSSHAIRX670EHERO",
+    "price_inr": 77000,
+    "socket": "AM5",
+    "chipset": "AMD X670E",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 5.0 x4", "2× PCIe 4.0 x4"],
+      "sata_ports": 6
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "2.5 Gb + 10 Gb",
+      "wifi": "Wi‑Fi 7",
+      "bluetooth": "BT 5.3"
+    },
+    "usb": {
+      "rear": ["USB4", "USB 3.2 Gen2x2", "USB 3.2 Gen2", "USB-C"],
+      "headers": ["USB 3.2 Gen1", "USB 2.0 x2"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM cold-plate", "Active cooling", "AI Cooling II"],
+    "rgb": true,
+    "features": ["Overclock-ready chipset", "Voltage monitoring points", "Q-LED"],
+    "description": "Flagship ROG Hero board with top-tier overclocking, dual 10 Gb LAN, Wi‑Fi 7, and premium cooling for AM5 enthusiasts."
+  },
+  {
+    "model": "ROG CROSSHAIRX870EHERO",
+    "price_inr": 104000,
+    "socket": "AM5",
+    "chipset": "AMD X870E",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5-8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 5.0 x4", "2× PCIe 4.0 x4"],
+      "sata_ports": 6
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "2.5 Gb + 10 Gb",
+      "wifi": "Wi‑Fi 7",
+      "bluetooth": "BT 5.3"
+    },
+    "usb": {
+      "rear": ["USB4", "USB 3.2 Gen2x2", "USB 3.2 Gen2", "USB-C"],
+      "headers": ["USB 3.2 Gen1", "USB 2.0 x2"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM cold-plate", "Active cooling", "AI Cooling II"],
+    "rgb": true,
+    "features": ["PCIe 5.0 multi-slot", "Voltage monitoring points", "SafeSlot Core+ support"],
+    "description": "Flagship ROG Hero-class board with premium overclocking support, dual high-speed LAN, Wi‑Fi 7, and enhanced cooling for AM5 enthusiasts."
+  },
+  {
+    "model": "STRIX 650E-F G-WF",
+    "price_inr": 35000,
+    "socket": "AM5",
+    "chipset": "AMD X670E (Strix series)",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5-8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 5.0 x4", "1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "2.5 Gb",
+      "wifi": "Wi‑Fi 7",
+      "bluetooth": "BT 5.3"
+    },
+    "usb": {
+      "rear": ["USB4", "USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB 3.2 Gen1", "USB-C"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["Heatsinks with ROG cooling design", "VRM heatsinks", "Hybrid fan headers"],
+    "rgb": true,
+    "features": ["Aura Sync", "Q-LED", "BIOS FlashBack"],
+    "description": "Mid-range STRIX X670E board with Wi‑Fi 7, PCIe 5.0 storage, and robust gaming-grade cooling."
+  },
+  {
+    "model": "STRIX-B850-A-G-WF",
+    "price_inr": 45000,
+    "socket": "AM5",
+    "chipset": "AMD B850",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5-8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "2.5 Gb",
+      "wifi": "Wi‑Fi 6E",
+      "bluetooth": "BT 5.2"
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB-C", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "M.2 heatsinks", "Fan Xpert"],
+    "rgb": true,
+    "features": ["Aura Sync", "AI Cooling", "SafeSlot Core+"],
+    "description": "STRIX B850 ATX board balancing performance, connectivity, and RGB flair with strong AM5 features."
+  },
+  {
+    "model": "STRIX-B850-F-G-WF",
+    "price_inr": 49000,
+    "socket": "AM5",
+    "chipset": "AMD B850",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5-8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "2.5 Gb",
+      "wifi": "Wi‑Fi 6E",
+      "bluetooth": "BT 5.2"
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB-C", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["Reinforced VRM heatsinks", "M.2 heatsinks", "Fan Xpert"],
+    "rgb": true,
+    "features": ["Aura Sync", "Dust Defender", "SafeSlot Core+"],
+    "description": "STRIX B850 F variant with gaming-focused features, enhanced cooling, and style for AM5 users."
+  },
+  {
+    "model": "STRIX-B850-I-G-WF",
+    "price_inr": 53000,
+    "socket": "AM5",
+    "chipset": "AMD B850",
+    "form_factor": "Mini-ITX (174×174 mm)",
+    "memory": {
+      "type": "DDR5",
+      "slots": 2,
+      "max_capacity": "64 GB",
+      "speeds": "up to DDR5-7600+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 4.0 x4"],
+      "sata_ports": 2
+    },
+    "expansion_slots": ["PCIe 4.0 x16"],
+    "networking": {
+      "ethernet": "2.5 Gb",
+      "wifi": "Wi‑Fi 6E",
+      "bluetooth": "BT 5.2"
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB-C", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsink", "M.2 heatsink"],
+    "rgb": true,
+    "features": ["Aura Sync", "Compact design", "SafeSlot Core+"],
+    "description": "Premium Mini-ITX STRIX board with Wi‑Fi 6E, PCIe 4.0, and robust cooling for compact AM5 builds."
+  },
+  {
+    "model": "STRIX-X670E-A-G-WF",
+    "price_inr": 48000,
+    "socket": "AM5",
+    "chipset": "AMD X670E",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5-8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 5.0 x4", "2× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "2.5 Gb",
+      "wifi": "Wi‑Fi 7",
+      "bluetooth": "BT 5.3"
+    },
+    "usb": {
+      "rear": ["USB4", "USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB-C", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "M.2 heatsinks", "AI Cooling II"],
+    "rgb": true,
+    "features": ["PCIe 5.0 storage", "Q-LED", "BIOS FlashBack"],
+    "description": "STRIX's X670E ATX board featuring next-gen PCIe 5.0, Wi‑Fi 7, and gamer-oriented cooling for high-performance AM5 builds."
+  },
+  {
+    "model": "STRIX-X870-A-G-WF",
+    "price_inr": 55000,
+    "socket": "AM5",
+    "chipset": "AMD X870",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5-8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 5.0 x4", "2× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "2.5 Gb",
+      "wifi": "Wi‑Fi 7",
+      "bluetooth": "BT 5.3"
+    },
+    "usb": {
+      "rear": ["USB4", "USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB-C", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "AI Cooling II"],
+    "rgb": true,
+    "features": ["PCIe 5.0 support", "SafeSlot Core+", "Aura Sync"],
+    "description": "High-performance STRIX X870 board with Wi‑Fi 7, PCIe 5.0 storage, and advanced thermal design."
+  },
+  {
+    "model": "STRIX-X870-I-G-WF",
+    "price_inr": 48000,
+    "socket": "AM5",
+    "chipset": "AMD X870",
+    "form_factor": "Mini-ITX (174×174 mm)",
+    "memory": {
+      "type": "DDR5",
+      "slots": 2,
+      "max_capacity": "64 GB",
+      "speeds": "up to DDR5-7600+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 5.0 x4", "1× PCIe 4.0 x4"],
+      "sata_ports": 2
+    },
+    "expansion_slots": ["PCIe 5.0 x16"],
+    "networking": {
+      "ethernet": "2.5 Gb",
+      "wifi": "Wi‑Fi 7",
+      "bluetooth": "BT 5.3"
+    },
+    "usb": {
+      "rear": ["USB4", "USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB-C", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsink", "M.2 heatsink"],
+    "rgb": true,
+    "features": ["Compact PCIe 5.0 solution", "Aura Sync"],
+    "description": "Mini-ITX STRIX X870 board with PCIe 5.0, Wi‑Fi 7, and premium small-form-factor design."
+  },
+  {
+    "model": "STRIX-X870E-E-G-WF",
+    "price_inr": 84000,
+    "socket": "AM5",
+    "chipset": "AMD X870E",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 5.0 x4", "2× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "2.5 Gb",
+      "wifi": "Wi‑Fi 7",
+      "bluetooth": "BT 5.3"
+    },
+    "usb": {
+      "rear": ["USB4", "USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB-C", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "AI Cooling II"],
+    "rgb": true,
+    "features": ["PCIe 5.0 M.2", "Aura Sync", "SafeSlot Core+"],
+    "description": "High-end STRIX X870E board with PCIe 5.0, Wi‑Fi 7, and flagship-level design aesthetics."
+  },
+  {
+    "model": "STRIXB550FGWIFI-II",
+    "price_inr": 29100,
+    "socket": "AM4",
+    "chipset": "AMD B550",
+    "form_factor": "micro‑ATX",
+    "memory": {
+      "type": "DDR4",
+      "slots": 2,
+      "max_capacity": "64 GB",
+      "speeds": "up to DDR4‑4600+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "2.5 Gb",
+      "wifi": "Wi‑Fi 6",
+      "bluetooth": "BT 5.1"
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB 3.2 Gen1", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI", "DisplayPort"],
+    "cooling": ["VRM heatsink", "Fan headers"],
+    "rgb": true,
+    "features": ["Aura Sync", "CSM-ready", "PCIe 4.0 storage"],
+    "description": "Compact STRIX B550 board with Wi‑Fi 6, PCIe 4.0 support, and stylish gaming design for AM4 builds."
+  },
+  {
+    "model": "TUF-G-A620M-PLUSWF",
+    "price_inr": 19000,
+    "socket": "AM5",
+    "chipset": "AMD A620",
+    "form_factor": "micro‑ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 2,
+      "max_capacity": "64 GB",
+      "speeds": "up to DDR5‑6400"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "1 Gb",
+      "wifi": "Wi‑Fi 6",
+      "bluetooth": "BT 5.2"
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen1", "USB 2.0"],
+      "headers": ["USB 3.2 Gen1", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI", "DisplayPort"],
+    "cooling": ["VRM heatsink", "Fan headers"],
+    "rgb": true,
+    "features": ["TUF durability", "Aura Sync", "BIOS FlashBack"],
+    "description": "Entry to mid‑level AM5 micro‑ATX board with Wi‑Fi 6, TUF resilience, PCIe‑grade storage, and power efficiency."
+  },
+  {
+    "model": "TUF-G-B650-PLUS",
+    "price_inr": 33000,
+    "socket": "AM5",
+    "chipset": "AMD B650",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑7200+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 5.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1 x2"],
+    "networking": {
+      "ethernet": "2.5 Gb",
+      "wifi": null,
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB 3.2 Gen2", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI", "DisplayPort"],
+    "cooling": ["VRM heatsinks", "Fan headers"],
+    "rgb": true,
+    "features": ["TUF armour, SafeSlot", "PCIe 5.0 storage", "Aura Sync"],
+    "description": "Robust ATX B650 board with PCIe 5.0, TUF reliability, and gaming-focused design."
+  },
+  {
+    "model": "TUF-G-B650M-PLUS",
+    "price_inr": 30000,
+    "socket": "AM5",
+    "chipset": "AMD B650",
+    "form_factor": "micro‑ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑7200+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 5.0 x4", "1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1 x2"],
+    "networking": {
+      "ethernet": "2.5 Gb",
+      "wifi": null,
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB 3.2 Gen2", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI", "DisplayPort"],
+    "cooling": ["VRM heatsinks", "Fan headers"],
+    "rgb": true,
+    "features": ["TUF armour", "Aura Sync", "PCIe 5.0-ready"],
+    "description": "Compact and sturdy mATX AM5 board offering PCIe 5.0, TUF durability, and gaming aesthetics."
+  },
+  {
+    "model": "TUF-G-B650MPLUS-WF",
+    "price_inr": 33000,
+    "socket": "AM5",
+    "chipset": "AMD B650",
+    "form_factor": "micro‑ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑7200+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 5.0 x4", "1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1 x2"],
+    "networking": {
+      "ethernet": "2.5 Gb",
+      "wifi": "Wi‑Fi 6E",
+      "bluetooth": "BT 5.2"
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB 3.2 Gen2", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI", "DisplayPort"],
+    "cooling": ["VRM heatsinks", "Fan headers"],
+    "rgb": true,
+    "features": ["Wi‑Fi 6E built-in", "TUF armour", "Aura Sync"],
+    "description": "mATX AM5 board with onboard Wi‑Fi 6E, TUF-grade components, and PCIe 5.0 readiness."
+  },
+  {
+    "model": "TUF-G-B650PLUS-WF",
+    "price_inr": 35000,
+    "socket": "AM5",
+    "chipset": "AMD B650",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑7200+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 5.0 x4", "1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1 x2"],
+    "networking": {
+      "ethernet": "2.5 Gb",
+      "wifi": "Wi‑Fi 6E",
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB 3.2 Gen2", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI", "DisplayPort"],
+    "cooling": ["VRM heatsinks", "Fan headers"],
+    "rgb": true,
+    "features": ["Onboard Wi‑Fi 6E", "Aura Sync", "TUF durability"],
+    "description": "Full‑sized ATX TUF AM5 board with integrated Wi‑Fi 6E, PCIe 5.0 support, and rugged design."
+  },
+  {
+    "model": "TUF-G-B850-PLUS-WF",
+    "price_inr": 40000,
+    "socket": "AM5",
+    "chipset": "AMD B850",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1 x2"],
+    "networking": {
+      "ethernet": "2.5 Gb",
+      "wifi": "Wi‑Fi 6E",
+      "bluetooth": "BT 5.2"
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB 2.0"],
+      "headers": ["USB 3.2 Gen2", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI", "DisplayPort"],
+    "cooling": ["VRM heatsinks", "Fan headers"],
+    "rgb": true,
+    "features": ["Wi‑Fi 6E", "TUF protection", "Aura Sync"],
+    "description": "Planned TUF ATX board on B850—featuring Wi‑Fi 6E, high-speed memory support, and ruggedized TUF protections."
+  },
+  {
+    "model": "TUF-G-B850M-PLUS",
+    "price_inr": 36000,
+    "socket": "AM5",
+    "chipset": "AMD B850",
+    "form_factor": "micro-ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 5.0 x4", "1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": null,
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2x2", "USB 3.2 Gen2", "USB 3.2 Gen1", "USB 2.0"],
+      "headers": ["USB‑C", "USB 2.0 x2"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "M.2 heatsinks", "TUF thermal design"],
+    "rgb": false,
+    "features": ["SafeSlot Core+", "BIOS FlashBack", "MIL-STD-810H validation"],
+    "description": "Durable B850 micro‑ATX board in the TUF family with PCIe 5.0 support and comprehensive cooling design."
+  },
+  {
+    "model": "TUF-G-B850M-PLUSWF",
+    "price_inr": 38000,
+    "socket": "AM5",
+    "chipset": "AMD B850",
+    "form_factor": "micro-ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 5.0 x4", "1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": "Wi‑Fi 6E",
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2x2", "USB 3.2 Gen2", "USB 3.2 Gen1", "USB 2.0"],
+      "headers": ["USB‑C", "USB 2.0 x2"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "M.2 heatsinks", "TUF thermal design"],
+    "rgb": false,
+    "features": ["TUF durability", "SafeSlot Core+", "BIOS FlashBack"],
+    "description": "Enhanced B850 micro‑ATX board with integrated Wi‑Fi 6E, rugged build, PCIe 5.0, and strong thermal performance."
+  },
+  {
+    "model": "TUF-G-X670E-PLUS",
+    "price_inr": 47000,
+    "socket": "AM5",
+    "chipset": "AMD X670E",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 5.0 x4", "2× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16 (x4)", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": null,
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2x2", "USB 3.2 Gen2", "USB 3.2 Gen1", "USB 2.0"],
+      "headers": ["USB‑C", "USB 2.0 x2"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "M.2 heatsinks", "TUF thermal design"],
+    "rgb": false,
+    "features": ["PCIe 5.0 graphics slot", "SafeSlot Core+", "BIOS FlashBack"],
+    "description": "Reliable X670E ATX board minus Wi‑Fi, built with TUF-grade cooling, power delivery, and PCIe 5.0 readiness."
+  },
+  {
+    "model": "TUF-G-X670EPLUS-WF",
+    "price_inr": 50000,
+    "socket": "AM5",
+    "chipset": "AMD X670E",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 5.0 x4", "2× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16 (x4)", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": "Wi‑Fi 6E",
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2x2", "USB 3.2 Gen2", "USB 3.2 Gen1", "USB 2.0"],
+      "headers": ["USB‑C", "USB 2.0 x2"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "M.2 heatsinks", "TUF thermal design"],
+    "rgb": false,
+    "features": ["Wi‑Fi 6E", "PCIe 5.0 support", "SafeSlot Core+", "BIOS FlashBack"],
+    "description": "Fully-featured X670E board with Wi‑Fi 6E, PCIe 5.0, and military-grade durability in ATX form."
+  },
+  {
+    "model": "TUF-G-X870-PLUS-WF",
+    "price_inr": 55000,
+    "socket": "AM5",
+    "chipset": "AMD X870",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 4,
+      "max_capacity": "192 GB",
+      "speeds": "up to DDR5‑8000+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["2× PCIe 5.0 x4", "2× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 5.0 x16", "PCIe 4.0 x16 (x4)", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": "Wi‑Fi 6E",
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2x2", "USB 3.2 Gen2", "USB 3.2 Gen1", "USB 2.0"],
+      "headers": ["USB‑C", "USB 2.0 x2"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort 1.4"],
+    "cooling": ["VRM heatsinks", "M.2 heatsinks", "TUF thermal design"],
+    "rgb": false,
+    "features": ["X870 chipset", "PCIe 5.0 cross-gen", "SafeSlot Core+"],
+    "description": "Feature-dense X870 board with full PCIe 5.0 readiness, Wi‑Fi 6E and rugged TUF engineering."
+  },
+  {
+    "model": "TUF-GAM-A620M-PLUS",
+    "price_inr": 17000,
+    "socket": "AM5",
+    "chipset": "AMD A620",
+    "form_factor": "micro-ATX",
+    "memory": {
+      "type": "DDR5",
+      "slots": 2,
+      "max_capacity": "64 GB",
+      "speeds": "up to DDR5‑6400"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 1 Gb",
+      "wifi": null,
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen1", "USB 2.0", "HDMI", "VGA"],
+      "headers": ["USB 3.2 Gen1", "USB 2.0"]
+    },
+    "video_outputs": ["HDMI", "VGA"],
+    "cooling": ["PCH heatsink", "Fan headers"],
+    "rgb": false,
+    "features": ["Entry gaming board", "SafeSlot Core", "BIOS FlashBack"],
+    "description": "Affordable AM5 A620 board tailored for gamers on a budget, with PCIe 4.0 graphics support."
+  },
+  {
+    "model": "TUF-GAMING-B550M-E",
+    "price_inr": 20000,
+    "socket": "AM4",
+    "chipset": "AMD B550",
+    "form_factor": "micro-ATX",
+    "memory": {
+      "type": "DDR4",
+      "slots": 2,
+      "max_capacity": "64 GB",
+      "speeds": "up to DDR4‑4800+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 4.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 1 Gb",
+      "wifi": null,
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB 3.2 Gen1", "USB 2.0"],
+      "headers": ["USB 3.2 Gen1"]
+    },
+    "video_outputs": ["HDMI 2.1", "DVI‑D"],
+    "cooling": ["PCH heatsink", "Fan Xpert"],
+    "rgb": true,
+    "features": ["TUF armor", "SafeSlot Core+", "BIOS FlashBack"],
+    "description": "Solid AM4 micro‑ATX gaming board with PCIe 4.0, core TUF durability, and ROG styling."
+  },
+  {
+    "model": "TUFGAMINGB550PLUS",
+    "price_inr": 20900,
+    "socket": "AM4",
+    "chipset": "AMD B550",
+    "form_factor": "ATX",
+    "memory": {
+      "type": "DDR4",
+      "slots": 4,
+      "max_capacity": "128 GB",
+      "speeds": "up to DDR4‑5200+(OC)"
+    },
+    "storage": {
+      "m2_slots": ["1× PCIe 4.0 x4", "1× PCIe 3.0 x4"],
+      "sata_ports": 4
+    },
+    "expansion_slots": ["PCIe 4.0 x16", "PCIe 3.0 x16", "PCIe 3.0 x1"],
+    "networking": {
+      "ethernet": "Realtek 2.5 Gb",
+      "wifi": null,
+      "bluetooth": null
+    },
+    "usb": {
+      "rear": ["USB 3.2 Gen2", "USB 3.2 Gen1", "USB 2.0"],
+      "headers": ["USB 3.2 Gen1"]
+    },
+    "video_outputs": ["HDMI 2.1", "DisplayPort"],
+    "cooling": ["VRM heatsinks", "Fan Xpert"],
+    "rgb": true,
+    "features": ["TUF armor", "SafeSlot Core+", "BIOS FlashBack"],
+    "description": "ATX B550 board combining PCIe 4.0, 2.5 Gb LAN and TUF level build quality for mid-range gaming builds."
+  }
+]
+
+
+
+
+
+
+
+

@@ -17,12 +17,9 @@ const Shop: React.FC = () => {
 
   const categories = [
     { id: 'all', name: 'All Products' },
-    { id: 'laptops', name: 'Laptops' },
-    { id: 'desktops', name: 'Desktops' },
-    { id: 'components', name: 'Components' },
-    { id: 'accessories', name: 'Accessories' },
-    { id: 'monitors', name: 'Monitors' },
-    { id: 'networking', name: 'Networking' }
+    { id: 'ASUS Mouse', name: 'Mouse' },
+    { id: 'ASUS Keyboard', name: 'Keyboard' },
+    { id: 'ASUS Headset', name: 'Headset' }
   ];
 
   useEffect(() => {
