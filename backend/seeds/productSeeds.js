@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dU
 const products = [
   {
     name: 'TUF-GAMING-H3',
-    description: '',
+    description: 'Durable ASUS TUF Gaming H3 headset with immersive sound, lightweight comfort, and a 3.5mm connector for versatile compatibility.',
     price: 4750,
     category: 'ASUS Headset',
     brand: 'ASUS',
@@ -36,7 +36,7 @@ const products = [
   },
   {
     name: 'TUF-GAM-H3-SILVER',
-    description: '',
+    description: 'ASUS TUF Gaming H3 Silver edition headset delivers clear audio and robust build quality, perfect for long gaming sessions.',
     price: 4750,
     category: 'ASUS Headset',
     brand: 'ASUS',
@@ -61,7 +61,7 @@ const products = [
   },
   {
     name: 'ROG-FUSION-II-300',
-    description: '',
+    description: 'ASUS ROG Fusion II 300 gaming headset features USB-A/USB-C connectivity, AI noise-cancelling, and customizable Aura Sync lighting.',
     price: 19999,
     category: 'ASUS Headset',
     brand: 'ASUS',
@@ -88,7 +88,7 @@ const products = [
   },
   {
     name: 'ROG-FUSION-II-500',
-    description: '',
+    description: 'Premium ASUS ROG Fusion II 500 headset with advanced audio, USB-A/USB-C support, and immersive RGB lighting for gamers.',
     price: 22999,
     category: 'ASUS Headset',
     brand: 'ASUS',
@@ -116,7 +116,7 @@ const products = [
   },
   {
     name: 'ROG-DELTAS-ANIMATE',
-    description: '',
+    description: 'ASUS ROG Delta S Animate headset offers high-fidelity sound, customizable AniMe Matrix™ lighting, and USB connectivity for pro gamers.',
     price: 23999,
     category: 'ASUS Headset',
     brand: 'ASUS',

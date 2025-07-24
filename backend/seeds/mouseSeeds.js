@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dU
 const products = [
   {
     name: 'TUFGAMINGM3-GEN-II',
-    description: '',
+    description: 'Lightweight ASUS TUF Gaming M3 Gen II mouse with 8000 DPI sensor, 6 programmable buttons, and Aura Sync RGB for precision gaming.',
     price: 3499,
     category: 'ASUS Mouse',
     brand: 'ASUS',
@@ -38,7 +38,7 @@ const products = [
   },
   {
     name: 'STRIX-IMPACT-III',
-    description: '',
+    description: 'ASUS ROG Strix Impact III mouse features a 12,000 DPI sensor, ultra-light 59g design, and customizable RGB for fast-paced gaming.',
     price: 5999,
     category: 'ASUS Mouse',
     brand: 'ASUS',
@@ -64,7 +64,7 @@ const products = [
   },
   {
     name: 'TUF-GAMING-M4-AIR',
-    description: '',
+    description: 'ASUS TUF Gaming M4 Air is an ultralight 47g mouse with 16,000 DPI, paracord cable, and 6 programmable buttons for agile control.',
     price: 4499,
     category: 'ASUS Mouse',
     brand: 'ASUS',
@@ -90,7 +90,7 @@ const products = [
   },
   {
     name: 'ROG-KERIS-AIMPOINT',
-    description: '',
+    description: 'ASUS ROG Keris AimPoint mouse offers 36,000 DPI, wireless and Bluetooth connectivity, and ergonomic design for competitive play.',
     price: 8999,
     category: 'ASUS Mouse',
     brand: 'ASUS',
@@ -116,7 +116,7 @@ const products = [
   },
   {
     name: 'P306-TUF-G-M4-WL',
-    description: '',
+    description: 'ASUS TUF Gaming M4 Wireless mouse with dual wireless modes, 12,000 DPI sensor, and 6 programmable buttons for versatile gaming.',
     price: 6999,
     category: 'ASUS Mouse',
     brand: 'ASUS',
@@ -142,7 +142,7 @@ const products = [
   },
   {
     name: 'P713-ROG-HARPE-ACE',
-    description: '',
+    description: 'ASUS ROG Harpe Ace Aim Lab Edition mouse features 36,000 DPI, ultra-light 54g build, and wireless connectivity for esports performance.',
     price: 14999,
     category: 'ASUS Mouse',
     brand: 'ASUS',

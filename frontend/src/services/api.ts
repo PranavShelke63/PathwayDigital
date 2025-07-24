@@ -22,19 +22,7 @@ export interface Product {
   image: string;
   images: string[];
   stock: number;
-  specifications: {
-    processor?: string;
-    ram?: string;
-    storage?: string;
-    graphics?: string;
-    display?: string;
-    operatingSystem?: string;
-    connectivity?: string[];
-    ports?: string[];
-    battery?: string;
-    dimensions?: string;
-    weight?: string;
-  };
+  specifications: Record<string, any>;
   features: string[];
   warranty: string;
   ratings: number;

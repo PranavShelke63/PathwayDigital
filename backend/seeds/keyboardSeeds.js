@@ -11,7 +11,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dU
 const products = [
   {
     name: 'TUF-GAMING-K1',
-    description: '',
+    description: 'ASUS TUF Gaming K1 keyboard with 5-zone RGB, durable switches, and spill-resistant design for reliable gaming sessions.',
     price: 4400,
     category: 'ASUS Keyboard',
     brand: 'ASUS',
@@ -37,7 +37,7 @@ const products = [
   },
   {
     name: 'TUF-GAMING-K3',
-    description: '',
+    description: 'ASUS TUF Gaming K3 mechanical keyboard offers full-size layout, customizable RGB, and robust build for everyday gaming.',
     price: 0,
     category: 'ASUS Keyboard',
     brand: 'ASUS',
@@ -63,7 +63,7 @@ const products = [
   },
   {
     name: 'STRIXSCOPEII-RX-TW',
-    description: '',
+    description: 'ASUS ROG Strix Scope II RX keyboard with optical mechanical switches and per-key RGB for fast, responsive typing.',
     price: 0,
     category: 'ASUS Keyboard',
     brand: 'ASUS',
@@ -86,7 +86,7 @@ const products = [
   },
   {
     name: 'STRIX-SCOPE-NX-WL',
-    description: '',
+    description: 'ASUS ROG Strix Scope NX Wireless keyboard features per-key RGB, mechanical switches, and wireless connectivity for flexible gaming.',
     price: 0,
     category: 'ASUS Keyboard',
     brand: 'ASUS',
@@ -111,7 +111,7 @@ const products = [
   },
   {
     name: 'M603-FALCHION-RX',
-    description: '',
+    description: 'ASUS ROG Falchion RX compact 60% keyboard with low-profile switches, per-key RGB, and wireless support for portable gaming.',
     price: 0,
     category: 'ASUS Keyboard',
     brand: 'ASUS',
@@ -139,7 +139,7 @@ const products = [
   },
   {
     name: 'STRIXSCOPE-RX-T-WL',
-    description: '',
+    description: 'ASUS ROG Strix Scope RX TKL Wireless keyboard with optical mechanical switches, per-key RGB, and 80% layout for compact performance.',
     price: 0,
     category: 'ASUS Keyboard',
     brand: 'ASUS',
@@ -164,7 +164,7 @@ const products = [
   },
   {
     name: 'STRIX-SCOPE-TKL-ML',
-    description: '',
+    description: 'ASUS ROG Strix Scope TKL Moonlight keyboard offers TKL layout, detachable cable, and vibrant RGB for streamlined gaming setups.',
     price: 0,
     category: 'ASUS Keyboard',
     brand: 'ASUS',
@@ -189,7 +189,7 @@ const products = [
   },
   {
     name: 'ROGSTRIX-SCOPE-RX',
-    description: '',
+    description: 'ASUS ROG Strix Scope RX full-size keyboard with RX Red optical switches, per-key RGB, and USB passthrough for advanced gaming.',
     price: 13999,
     category: 'ASUS Keyboard',
     brand: 'ASUS',
@@ -215,7 +215,7 @@ const products = [
   },
   {
     name: 'M701-ROG-AZOTH',
-    description: '',
+    description: 'ASUS ROG Azoth 75% keyboard with NX mechanical switches, all-key RGB, and premium build for enthusiast gamers.',
     price: 9999,
     category: 'ASUS Keyboard',
     brand: 'ASUS',
@@ -244,7 +244,7 @@ const products = [
   },
   {
     name: 'ROG-CLAYMORE-II',
-    description: '',
+    description: 'ASUS ROG Claymore II modular keyboard with RX Red optical switches, per-key RGB, and detachable numpad for ultimate flexibility.',
     price: 24999,
     category: 'ASUS Keyboard',
     brand: 'ASUS',

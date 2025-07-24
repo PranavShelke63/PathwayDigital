@@ -182,7 +182,7 @@ const ProductDetails: React.FC = () => {
           </div>
           <div className="flex items-center justify-between mt-4 px-1">
             <h1 className="text-lg font-bold text-gray-900 truncate max-w-[60%]">{product.name}</h1>
-            <span className="text-lg font-bold text-contrast">₹{product.price.toFixed(2)}</span>
+            <span className="text-lg font-bold text-contrast">₹{product.price.toLocaleString('en-IN')}</span>
           </div>
           <div className="flex items-center gap-2 mt-3 px-1">
             <button
@@ -244,13 +244,31 @@ const ProductDetails: React.FC = () => {
           </div>
           {/* Truncated description for mobile */}
           <div className="mt-4 px-1 text-sm text-gray-700 line-clamp-3">
-            {product.description}
+            {product.description && product.description.trim() !== '' ? product.description : 'No description provided.'}
           </div>
+          {/* Specifications for mobile */}
+          {product && product.specifications && Object.keys(product.specifications).length > 0 && (
+            <div className="mt-6 px-1 block lg:hidden">
+              <h3 className="text-base font-semibold text-gray-900 mb-3">Specifications</h3>
+              <table className="min-w-full w-full text-sm text-gray-700 border border-gray-200 rounded-lg overflow-hidden">
+                <tbody>
+                  {(Object.entries(product.specifications) as [string, unknown][]).map(
+                    ([key, value], idx) => (
+                      <tr key={key} className={idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                        <td className="pl-4 pr-4 py-3 font-medium capitalize text-gray-600 w-1/3 text-left align-top">{key.replace(/([A-Z])/g, ' $1').replace(/^./, (str: string) => str.toUpperCase())}</td>
+                        <td className="py-3 text-gray-900 font-semibold text-left align-top">{Array.isArray(value) ? value.join(', ') : value?.toString()}</td>
+                      </tr>
+                    )
+                  )}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
         {/* Desktop layout */}
         <div className="hidden lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
           {/* Image gallery */}
-          <div className="flex flex-col items-center w-full">
+          <div className="flex flex-col items-center w-full sticky top-8 self-start">
             <div className="relative w-full max-w-lg aspect-square bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center">
               {product && product.images && product.images.length > 0 ? (
                 <>
@@ -310,7 +328,7 @@ const ProductDetails: React.FC = () => {
             )}
           </div>
           {/* Product info */}
-          <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
+          <div className="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0 overflow-y-auto max-h-[calc(100vh-4rem)]">
             <div className="flex justify-between items-center">
               <h1 className="text-3xl font-extrabold tracking-tight text-gray-900">{product.name}</h1>
               <button
@@ -326,12 +344,12 @@ const ProductDetails: React.FC = () => {
             </div>
             <div className="mt-3">
               <h2 className="sr-only">Product information</h2>
-              <p className="text-3xl text-gray-900">₹{product.price.toFixed(2)}</p>
+              <p className="text-3xl text-gray-900">₹{product.price.toLocaleString('en-IN')}</p>
             </div>
             <div className="mt-6">
               <h3 className="sr-only">Description</h3>
               <div className="text-base text-gray-700 space-y-6">
-                <p>{product.description}</p>
+                <p>{product.description && product.description.trim() !== '' ? product.description : 'No description provided.'}</p>
               </div>
             </div>
             <div className="mt-6">
@@ -389,18 +407,20 @@ const ProductDetails: React.FC = () => {
               </div>
             </div>
            
-            {/* Specifications section */}
-            {product.specifications && Object.keys(product.specifications).length > 0 && (
-              <div className="mt-8 border-t border-gray-200 pt-8">
-                <h3 className="text-sm font-medium text-gray-900 mb-2">Specifications</h3>
-                <table className="min-w-full text-sm text-gray-700">
+            {/* Specifications section for desktop */}
+            {product && product.specifications && Object.keys(product.specifications).length > 0 && (
+              <div className="mt-8 border-t border-gray-200 pt-8 hidden lg:block">
+                <h3 className="text-base font-semibold text-gray-900 mb-3">Specifications</h3>
+                <table className="min-w-full text-sm text-gray-700 border border-gray-200 rounded-lg overflow-hidden">
                   <tbody>
-                    {Object.entries(product.specifications).map(([key, value]) => (
-                      <tr key={key}>
-                        <td className="pr-4 py-3 font-semibold capitalize">{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</td>
-                        <td className="py-3">{Array.isArray(value) ? value.join(', ') : value?.toString()}</td>
-                      </tr>
-                    ))}
+                    {(Object.entries(product.specifications) as [string, unknown][]).map(
+                      ([key, value], idx) => (
+                        <tr key={key} className={idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                          <td className="pl-4 pr-6 py-4 font-medium capitalize text-gray-600 w-1/3 text-left align-top">{key.replace(/([A-Z])/g, ' $1').replace(/^./, (str: string) => str.toUpperCase())}</td>
+                          <td className="py-4 text-gray-900 font-semibold text-left align-top">{Array.isArray(value) ? value.join(', ') : value?.toString()}</td>
+                        </tr>
+                      )
+                    )}
                   </tbody>
                 </table>
               </div>

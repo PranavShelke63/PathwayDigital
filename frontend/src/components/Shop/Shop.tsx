@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Product, productsApi } from '../../services/api';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
-import { ShoppingCartIcon, HeartIcon } from '@heroicons/react/24/outline';
+import { ShoppingCartIcon, HeartIcon, FunnelIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import toast from 'react-hot-toast';
 
@@ -12,6 +12,11 @@ const Shop: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchQuery, setSearchQuery] = useState(''); // Actual filter term
+  const [sortOption, setSortOption] = useState('default');
+  const [inStockOnly, setInStockOnly] = useState(false);
+  const [showSortDropdown, setShowSortDropdown] = useState(false);
   const { addToCart, items: cartItems } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
@@ -39,9 +44,27 @@ const Shop: React.FC = () => {
     }
   };
 
-  const filteredProducts = selectedCategory === 'all'
-    ? products
-    : products.filter(product => product.category === selectedCategory);
+  let filteredProducts = products.filter(product => {
+    const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
+    const lowerSearch = searchQuery.toLowerCase();
+    const matchesSearch =
+      product.name.toLowerCase().includes(lowerSearch) ||
+      product.brand.toLowerCase().includes(lowerSearch) ||
+      product.category.toLowerCase().includes(lowerSearch);
+    const matchesStock = !inStockOnly || product.stock > 0;
+    return matchesCategory && (!searchQuery || matchesSearch) && matchesStock;
+  });
+
+  // Sorting
+  if (sortOption === 'priceLowHigh') {
+    filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
+  } else if (sortOption === 'priceHighLow') {
+    filteredProducts = [...filteredProducts].sort((a, b) => b.price - a.price);
+  } else if (sortOption === 'nameAZ') {
+    filteredProducts = [...filteredProducts].sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortOption === 'nameZA') {
+    filteredProducts = [...filteredProducts].sort((a, b) => b.name.localeCompare(a.name));
+  }
 
   const getItemInCart = (productId: string) => {
     return cartItems.find(item => item._id === productId);
@@ -83,10 +106,74 @@ const Shop: React.FC = () => {
     <div className="bg-background">
       <div className="max-w-2xl mx-auto pt-8 px-4 sm:pt-12 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="pb-8">
-          <h1 className="text-4xl font-extrabold tracking-tight text-contrast">Shop</h1>
-          <p className="mt-3 text-base text-gray-500">
-            Browse our collection of high-quality tech hardware and accessories.
-          </p>
+          <div className="flex flex-col gap-4">
+            <div>
+              <h1 className="text-4xl font-extrabold tracking-tight text-contrast">Shop</h1>
+              <p className="mt-3 text-base text-gray-500">
+                Browse our collection of high-quality tech hardware and accessories.
+              </p>
+            </div>
+            {/* Filter/Search Bar */}
+            <div className="w-full bg-white/80 border border-gray-200 rounded-lg px-4 py-3 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <form
+                className="flex flex-col sm:flex-row flex-1 gap-2 sm:gap-3 w-full"
+                onSubmit={e => {
+                  e.preventDefault();
+                  setSearchQuery(searchTerm);
+                }}
+              >
+                <input
+                  type="text"
+                  placeholder="Search by name, brand, or category..."
+                  value={searchTerm}
+                  onChange={e => setSearchTerm(e.target.value)}
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary min-w-[120px]"
+                />
+                <button
+                  type="submit"
+                  className="px-5 py-2 bg-primary text-white rounded-md shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary h-full"
+                  style={{ minWidth: '90px' }}
+                >
+                  Search
+                </button>
+                {/* Filter Icon/Button with Dropdown */}
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setShowSortDropdown(v => !v)}
+                    className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-md shadow-sm bg-white hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary"
+                  >
+                    <FunnelIcon className="h-5 w-5 text-gray-600" />
+                    <span className="hidden sm:inline text-sm font-medium">Filter</span>
+                  </button>
+                  {showSortDropdown && (
+                    <div className="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-20">
+                      <button
+                        className={`w-full text-left px-4 py-2 text-sm hover:bg-primary/10 ${sortOption === 'default' ? 'font-semibold text-primary' : ''}`}
+                        onClick={() => { setSortOption('default'); setShowSortDropdown(false); }}
+                      >Default</button>
+                      <button
+                        className={`w-full text-left px-4 py-2 text-sm hover:bg-primary/10 ${sortOption === 'priceLowHigh' ? 'font-semibold text-primary' : ''}`}
+                        onClick={() => { setSortOption('priceLowHigh'); setShowSortDropdown(false); }}
+                      >Price: Low to High</button>
+                      <button
+                        className={`w-full text-left px-4 py-2 text-sm hover:bg-primary/10 ${sortOption === 'priceHighLow' ? 'font-semibold text-primary' : ''}`}
+                        onClick={() => { setSortOption('priceHighLow'); setShowSortDropdown(false); }}
+                      >Price: High to Low</button>
+                      <button
+                        className={`w-full text-left px-4 py-2 text-sm hover:bg-primary/10 ${sortOption === 'nameAZ' ? 'font-semibold text-primary' : ''}`}
+                        onClick={() => { setSortOption('nameAZ'); setShowSortDropdown(false); }}
+                      >Name: A-Z</button>
+                      <button
+                        className={`w-full text-left px-4 py-2 text-sm hover:bg-primary/10 ${sortOption === 'nameZA' ? 'font-semibold text-primary' : ''}`}
+                        onClick={() => { setSortOption('nameZA'); setShowSortDropdown(false); }}
+                      >Name: Z-A</button>
+                    </div>
+                  )}
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
 
         {/* Categories */}
@@ -168,7 +255,7 @@ const Shop: React.FC = () => {
                         )}
                       </div>
                     </div>
-                    <p className="text-base font-bold text-contrast">₹{product.price.toFixed(2)}</p>
+                    <p className="text-base font-bold text-contrast">₹{product.price.toLocaleString('en-IN')}</p>
                   </div>
                   <button
                     type="button"

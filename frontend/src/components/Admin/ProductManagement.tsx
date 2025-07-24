@@ -6,30 +6,28 @@ import { FiEdit2, FiTrash2, FiPlus, FiX } from 'react-icons/fi';
 
 const ProductManagement: React.FC = () => {
   const { user } = useAuth();
+  // Move all useState calls to the top
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [customSpecKey, setCustomSpecKey] = useState('');
+  // Update formData to only include fields from backend Product.js
   const [formData, setFormData] = useState<Partial<Product>>({
     name: '',
     description: '',
-    price: 0,
-    category: 'laptops',
     brand: '',
+    category: 'ASUS MB 1&2',
+    price: 0,
+    image: '',
+    images: [],
     stock: 0,
     warranty: '',
-    specifications: {
-      processor: '',
-      ram: '',
-      storage: '',
-      graphics: '',
-      display: '',
-      operatingSystem: '',
-      connectivity: [],
-      ports: [],
-    },
+    specifications: {},
     features: [],
+    ratings: 0,
+    numReviews: 0,
   });
 
   useEffect(() => {
@@ -97,23 +95,18 @@ const ProductManagement: React.FC = () => {
       setSelectedProduct(null);
       setFormData({
         name: '',
-        description: '',
-        price: 0,
-        category: 'laptops',
+        description: 'No description provided.',
         brand: '',
+        category: 'ASUS MB 1&2',
+        price: 0,
+        image: '',
+        images: [],
         stock: 0,
         warranty: '',
-        specifications: {
-          processor: '',
-          ram: '',
-          storage: '',
-          graphics: '',
-          display: '',
-          operatingSystem: '',
-          connectivity: [],
-          ports: [],
-        },
+        specifications: {},
         features: [],
+        ratings: 0,
+        numReviews: 0,
       });
     } catch (err) {
       setError('Failed to save product');
@@ -122,7 +115,12 @@ const ProductManagement: React.FC = () => {
 
   const handleEdit = (product: Product) => {
     setSelectedProduct(product);
-    setFormData(product);
+    setFormData({
+      ...product,
+      description: product.description && product.description.trim() !== '' ? product.description : 'No description provided.',
+      specifications: { ...product.specifications },
+      images: product.images || [],
+    });
     setIsModalOpen(true);
   };
 
@@ -147,6 +145,24 @@ const ProductManagement: React.FC = () => {
   if (loading) return <div className="text-center py-8">Loading...</div>;
   if (error) return <div className="text-red-500 text-center py-8">{error}</div>;
 
+  // 1. Category dropdown: use backend enum values
+  const CATEGORY_OPTIONS = [
+    'ASUS MB 1&2',
+    'ASUS VGA',
+    'ASUS Headset',
+    'ASUS Keyboard',
+    'ASUS Mouse',
+    'ASUS Monitor',
+    'ASUS ODD',
+    'PSU Chasis',
+    'ASUS NUC',
+  ];
+
+  // 2. Main image and multiple images support
+  // 3. Specifications: match ProductDetails keys and allow editing
+  // Remove DEFAULT_SPEC_FIELDS and only use keys from formData.specifications
+  const allSpecKeys = Object.keys(formData.specifications || {});
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="flex justify-between items-center mb-8">
@@ -156,23 +172,18 @@ const ProductManagement: React.FC = () => {
             setSelectedProduct(null);
             setFormData({
               name: '',
-              description: '',
-              price: 0,
-              category: 'laptops',
+              description: 'No description provided.',
               brand: '',
+              category: 'ASUS MB 1&2',
+              price: 0,
+              image: '',
+              images: [],
               stock: 0,
               warranty: '',
-              specifications: {
-                processor: '',
-                ram: '',
-                storage: '',
-                graphics: '',
-                display: '',
-                operatingSystem: '',
-                connectivity: [],
-                ports: [],
-              },
+              specifications: {},
               features: [],
+              ratings: 0,
+              numReviews: 0,
             });
             setIsModalOpen(true);
           }}
@@ -291,12 +302,9 @@ const ProductManagement: React.FC = () => {
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                       required
                     >
-                      <option value="laptops">Laptops</option>
-                      <option value="desktops">Desktops</option>
-                      <option value="components">Components</option>
-                      <option value="accessories">Accessories</option>
-                      <option value="monitors">Monitors</option>
-                      <option value="networking">Networking</option>
+                      {CATEGORY_OPTIONS.map(option => (
+                        <option key={option} value={option}>{option}</option>
+                      ))}
                     </select>
                   </div>
 
@@ -342,90 +350,116 @@ const ProductManagement: React.FC = () => {
                 <div className="space-y-4">
                   <h3 className="text-lg font-medium text-contrast">Specifications</h3>
                   
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Processor</label>
+                  {allSpecKeys.map((key) => (
+                    <div key={key} className="flex items-center gap-2 mb-2">
+                      <input
+                        type="text"
+                        value={key}
+                        readOnly
+                        className="w-1/3 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary bg-gray-50"
+                      />
+                      <input
+                        type="text"
+                        name={`specifications.${key}`}
+                        value={Array.isArray((formData.specifications || {})[key]) ? (formData.specifications || {})[key].join(', ') : (formData.specifications || {})[key] || ''}
+                        onChange={e => {
+                          const value = e.target.value;
+                          setFormData(prev => ({
+                            ...prev,
+                            specifications: {
+                              ...prev.specifications,
+                              [key]: value.includes(',') ? value.split(',').map(s => s.trim()) : value,
+                            },
+                          }));
+                        }}
+                        className="w-2/3 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                      />
+                      <button type="button" onClick={() => {
+                        const { [key]: _, ...rest } = formData.specifications || {};
+                        setFormData(prev => ({ ...prev, specifications: rest }));
+                      }} className="btn-secondary text-xs">Remove</button>
+                    </div>
+                  ))}
+                  {/* Add custom spec field */}
+                  <div className="flex gap-2 mt-2">
                     <input
                       type="text"
-                      name="specifications.processor"
-                      value={formData.specifications?.processor || ''}
-                      onChange={handleInputChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                      placeholder="Custom spec key"
+                      value={customSpecKey}
+                      onChange={e => setCustomSpecKey(e.target.value)}
+                      className="w-1/3 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                     />
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (customSpecKey && !(formData.specifications && customSpecKey in formData.specifications)) {
+                          setFormData(prev => ({
+                            ...prev,
+                            specifications: { ...prev.specifications, [customSpecKey]: '' },
+                          }));
+                          setCustomSpecKey('');
+                        }
+                      }}
+                      className="btn-primary text-xs"
+                    >Add Spec Field</button>
                   </div>
 
+                  {/* Main Image */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">RAM</label>
+                    <label className="block text-sm font-medium text-gray-700">Main Image</label>
                     <input
-                      type="text"
-                      name="specifications.ram"
-                      value={formData.specifications?.ram || ''}
-                      onChange={handleInputChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="mt-1 block w-full"
                     />
+                    {formData.image && (
+                      <div className="flex items-center gap-2 mt-2">
+                        <img src={getImageUrl(formData.image)} alt="Preview" className="h-20 w-20 object-cover rounded" />
+                        <button type="button" onClick={() => setFormData(prev => ({ ...prev, image: '' }))} className="btn-secondary text-xs">Remove</button>
+                      </div>
+                    )}
                   </div>
 
+                  {/* Additional Images */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Storage</label>
+                    <label className="block text-sm font-medium text-gray-700">Additional Images</label>
                     <input
-                      type="text"
-                      name="specifications.storage"
-                      value={formData.specifications?.storage || ''}
-                      onChange={handleInputChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                      type="file"
+                      accept="image/*"
+                      multiple
+                      onChange={async (e) => {
+                        const files = Array.from(e.target.files || []);
+                        const uploadedUrls: string[] = [];
+                        for (const file of files) {
+                          try {
+                            const response = await productsApi.uploadImage(file);
+                            uploadedUrls.push(response.data.data.url);
+                          } catch {
+                            setError('Failed to upload one or more images');
+                          }
+                        }
+                        setFormData(prev => ({ ...prev, images: [...(prev.images || []), ...uploadedUrls] }));
+                      }}
+                      className="mt-1 block w-full"
                     />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Graphics</label>
-                    <input
-                      type="text"
-                      name="specifications.graphics"
-                      value={formData.specifications?.graphics || ''}
-                      onChange={handleInputChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Display</label>
-                    <input
-                      type="text"
-                      name="specifications.display"
-                      value={formData.specifications?.display || ''}
-                      onChange={handleInputChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Operating System</label>
-                    <input
-                      type="text"
-                      name="specifications.operatingSystem"
-                      value={formData.specifications?.operatingSystem || ''}
-                      onChange={handleInputChange}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Connectivity (comma-separated)</label>
-                    <input
-                      type="text"
-                      value={formData.specifications?.connectivity?.join(', ') || ''}
-                      onChange={(e) => handleArrayInputChange(e, 'specifications.connectivity')}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Ports (comma-separated)</label>
-                    <input
-                      type="text"
-                      value={formData.specifications?.ports?.join(', ') || ''}
-                      onChange={(e) => handleArrayInputChange(e, 'specifications.ports')}
-                      className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
-                    />
+                    {formData.images && formData.images.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {formData.images.map((img, idx) => (
+                          <div key={idx} className="relative group">
+                            <img src={getImageUrl(img)} alt={`Image ${idx + 1}`} className="h-16 w-16 object-cover rounded" />
+                            <button
+                              type="button"
+                              onClick={() => setFormData(prev => ({ ...prev, images: prev.images?.filter((_, i) => i !== idx) }))}
+                              className="absolute top-0 right-0 bg-white bg-opacity-80 rounded-full p-1 text-xs text-red-600 group-hover:block hidden"
+                              title="Remove image"
+                            >
+                              <FiX />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
 
                   <div>
@@ -436,19 +470,6 @@ const ProductManagement: React.FC = () => {
                       onChange={(e) => handleArrayInputChange(e, 'features')}
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                     />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Image</label>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImageUpload}
-                      className="mt-1 block w-full"
-                    />
-                    {formData.image && (
-                      <img src={getImageUrl(formData.image)} alt="Preview" className="mt-2 h-32 w-32 object-cover rounded" />
-                    )}
                   </div>
                 </div>
               </div>
