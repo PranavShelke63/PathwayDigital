@@ -1,12 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import { quotationsApi, Quotation } from '../../services/api';
 import { Link } from 'react-router-dom';
+import QuotationPreview from './QuotationPreview';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 // Extend Quotation type to match backend fields
-interface BackendQuotation extends Quotation {
+interface BackendQuotation {
+  _id?: string;
   quoteOwner: string;
   grandTotal: string;
   quoteStage: string;
+  subject: string;
+  team: string;
+  carrier: string;
+  dealName: string;
+  validUntil: string;
+  contactName: string;
+  accountName: string;
+  billing: { street: string; city: string; state: string; code: string; country: string };
+  shipping: { street: string; city: string; state: string; code: string; country: string };
+  items: Array<{
+    productName: string;
+    description: string;
+    quantity: string;
+    listPrice: string;
+    amount: string;
+    discount: string;
+    tax: string;
+    total: string;
+  }>;
+  terms: string;
+  description: string;
+  subTotal: string;
+  discount: string;
+  tax: string;
+  adjustment: string;
+  createdAt?: string;
 }
 
 // Helper to render address fields nicely
@@ -67,14 +97,39 @@ function renderItems(items: any[]) {
   return null;
 }
 
+const getPreviewQuotation = (q: BackendQuotation): any => ({
+  quoteOwner: q.quoteOwner || '',
+  subject: q.subject || '',
+  quoteStage: q.quoteStage || '',
+  team: (q as any).team || '',
+  carrier: (q as any).carrier || '',
+  dealName: (q as any).dealName || '',
+  validUntil: (q as any).validUntil || '',
+  contactName: (q as any).contactName || '',
+  accountName: (q as any).accountName || '',
+  billing: (q as any).billing || { street: '', city: '', state: '', code: '', country: '' },
+  shipping: (q as any).shipping || { street: '', city: '', state: '', code: '', country: '' },
+  items: (q as any).items || [],
+  terms: (q as any).terms || '',
+  description: (q as any).description || '',
+  subTotal: (q as any).subTotal || '',
+  discount: (q as any).discount || '',
+  tax: (q as any).tax || '',
+  adjustment: (q as any).adjustment || '',
+  grandTotal: q.grandTotal || '',
+});
+
 const AdminQuotationList: React.FC = () => {
   const [quotations, setQuotations] = useState<BackendQuotation[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedQuotationId, setExpandedQuotationId] = useState<string | null>(null);
+  const [previewQuotation, setPreviewQuotation] = useState<BackendQuotation | null>(null);
+  const [showPreview, setShowPreview] = useState(false);
 
   useEffect(() => {
     quotationsApi.getAll().then((res: any) => {
       const quotationsArr = res?.data?.data?.quotations;
+      console.log('Fetched quotations:', quotationsArr); // Log all fetched quotations
       setQuotations(Array.isArray(quotationsArr) ? quotationsArr as BackendQuotation[] : []);
       setLoading(false);
     });
@@ -96,6 +151,26 @@ const AdminQuotationList: React.FC = () => {
     }
   };
 
+  const handleDownloadPDF = async () => {
+    const input = document.getElementById('quotation-preview');
+    if (!input || !previewQuotation) return;
+    const canvas = await html2canvas(input, { scale: 2 });
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight);
+    // Use quoteOwner and createdAt (or today) in filename
+    const name = previewQuotation.quoteOwner ? previewQuotation.quoteOwner.replace(/\s+/g, '_') : 'Quotation';
+    let date = 'unknown_date';
+    if (previewQuotation.createdAt) {
+      date = new Date(previewQuotation.createdAt).toISOString().slice(0, 10);
+    } else {
+      date = new Date().toISOString().slice(0, 10);
+    }
+    pdf.save(`Quotation_${name}_${date}.pdf`);
+  };
+
   if (loading) return (
     <div className="flex justify-center items-center h-64">
       <svg className="animate-spin h-8 w-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -107,33 +182,33 @@ const AdminQuotationList: React.FC = () => {
   );
 
   return (
-    <div className="max-w-4xl mx-auto py-8">
-      <h2 className="text-2xl font-bold mb-4">All Quotations</h2>
-      <div className="bg-white shadow rounded-lg">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead>
+    <div className="max-w-6xl mx-auto py-8 px-2 sm:px-4">
+      <h2 className="text-3xl font-bold mb-6 text-center text-primary">All Quotations</h2>
+      <div className="bg-white shadow-lg rounded-xl overflow-x-auto border border-gray-200">
+        <table className="min-w-full divide-y divide-gray-200 text-sm">
+          <thead className="bg-gray-100 sticky top-0 z-10">
             <tr>
-              <th className="px-4 py-2 text-left">Sr No</th>
-              <th className="px-4 py-2 text-left">Customer</th>
-              <th className="px-4 py-2 text-left">Date</th>
-              <th className="px-4 py-2 text-left">Total</th>
-              <th className="px-4 py-2 text-left">Status</th>
-              <th className="px-4 py-2 text-left">Actions</th>
+              <th className="px-4 py-3 text-left font-semibold">Sr No</th>
+              <th className="px-4 py-3 text-left font-semibold">Customer</th>
+              <th className="px-4 py-3 text-left font-semibold">Date</th>
+              <th className="px-4 py-3 text-left font-semibold">Total (Rs)</th>
+              <th className="px-4 py-3 text-left font-semibold">Status</th>
+              <th className="px-4 py-3 text-left font-semibold">Actions</th>
             </tr>
           </thead>
           <tbody>
             {quotations.map((q, idx) => (
               <React.Fragment key={q._id}>
-                <tr className="hover:bg-gray-50">
-                  <td className="px-4 py-2">{idx + 1}</td>
-                  <td className="px-4 py-2">{q.quoteOwner}</td>
-                  <td className="px-4 py-2">{q.createdAt ? new Date(q.createdAt).toLocaleDateString() : '-'}</td>
-                  <td className="px-4 py-2">{q.grandTotal}</td>
-                  <td className="px-4 py-2 capitalize">{q.quoteStage}</td>
-                  <td className="px-4 py-2">
-                    <div className="flex items-center gap-3">
+                <tr className="hover:bg-blue-50 transition-colors group">
+                  <td className="px-4 py-3 whitespace-nowrap">{idx + 1}</td>
+                  <td className="px-4 py-3 whitespace-nowrap font-medium">{q.quoteOwner}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">{q.createdAt ? new Date(q.createdAt).toLocaleDateString() : '-'}</td>
+                  <td className="px-4 py-3 whitespace-nowrap font-semibold text-green-700">{q.grandTotal ? `Rs ${q.grandTotal}` : '-'}</td>
+                  <td className="px-4 py-3 whitespace-nowrap capitalize font-semibold text-blue-700">{q.quoteStage}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">
+                    <div className="flex items-center gap-2 sm:gap-3">
                       <button
-                        className="text-primary underline hover:text-blue-700 focus:outline-none transition-colors"
+                        className="text-primary underline hover:text-blue-700 focus:outline-none transition-colors font-semibold"
                         onClick={() => handleToggleDetails(q._id!)}
                         aria-label={expandedQuotationId === q._id ? 'Hide details' : 'View details'}
                         title={expandedQuotationId === q._id ? 'Hide details' : 'View details'}
@@ -141,13 +216,22 @@ const AdminQuotationList: React.FC = () => {
                         {expandedQuotationId === q._id ? 'Hide' : 'View'}
                       </button>
                       <button
-                        className="text-red-600 hover:text-red-800 focus:outline-none p-1 rounded-full transition-colors"
+                        className="text-blue-600 hover:text-blue-800 focus:outline-none p-1 rounded-full transition-colors bg-blue-50 hover:bg-blue-100"
+                        onClick={() => { setPreviewQuotation(getPreviewQuotation(q)); setShowPreview(true); }}
+                        aria-label="Download quotation"
+                        title="Download quotation"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V4" />
+                        </svg>
+                      </button>
+                      <button
+                        className="text-red-600 hover:text-red-800 focus:outline-none p-1 rounded-full transition-colors bg-red-50 hover:bg-red-100"
                         onClick={() => handleDelete(q._id!)}
                         aria-label="Delete quotation"
                         title="Delete quotation"
                       >
-                        {/* Heroicons solid trash bin icon */}
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 20 20">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
                           <path d="M6 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm4 0a1 1 0 012 0v6a1 1 0 11-2 0V8z" />
                           <path fillRule="evenodd" d="M4 6a1 1 0 011-1h10a1 1 0 011 1v10a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm2 0v10h8V6H6zm2-3a1 1 0 00-1 1v1h6V4a1 1 0 00-1-1H8z" clipRule="evenodd" />
                         </svg>
@@ -157,8 +241,8 @@ const AdminQuotationList: React.FC = () => {
                 </tr>
                 {expandedQuotationId === q._id && (
                   <tr>
-                    <td colSpan={4} className="bg-gray-50 px-4 py-6">
-                      <div className="max-w-2xl mx-auto bg-white rounded-lg shadow p-6 border border-gray-200">
+                    <td colSpan={6} className="bg-gray-50 px-2 sm:px-6 py-6">
+                      <div className="max-w-3xl mx-auto bg-white rounded-lg shadow p-6 border border-gray-200">
                         <h3 className="text-lg font-semibold mb-4 text-primary">Quotation Details</h3>
                         <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
                           {Object.entries(q).map(([key, value]) => (
@@ -192,7 +276,7 @@ const AdminQuotationList: React.FC = () => {
             ))}
             {quotations.length === 0 && (
               <tr>
-                <td colSpan={4} className="px-4 py-4 text-center text-gray-500">
+                <td colSpan={6} className="px-4 py-8 text-center text-gray-500 text-lg">
                   No quotations found.
                 </td>
               </tr>
@@ -200,6 +284,23 @@ const AdminQuotationList: React.FC = () => {
           </tbody>
         </table>
       </div>
+      {showPreview && previewQuotation && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.4)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <div style={{ background: '#fff', borderRadius: 8, padding: 24, maxHeight: '90vh', overflow: 'auto', position: 'relative' }}>
+            <button
+              style={{ position: 'absolute', top: 12, right: 12, fontSize: 20, background: 'none', border: 'none', cursor: 'pointer' }}
+              onClick={() => setShowPreview(false)}
+              title="Close"
+            >✕</button>
+            <QuotationPreview data={previewQuotation} />
+            <div style={{ textAlign: 'right', marginTop: 16 }}>
+              <button className="btn-primary" onClick={handleDownloadPDF}>Download PDF</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

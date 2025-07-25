@@ -149,7 +149,10 @@ const QuotationForm: React.FC<QuotationFormProps> = ({ onClose }) => {
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
     pdf.addImage(imgData, 'PNG', 0, 0, pageWidth, pageHeight);
-    pdf.save('quotation.pdf');
+    // Use quoteOwner and today's date in filename
+    const name = form.quoteOwner ? form.quoteOwner.replace(/\s+/g, '_') : 'Quotation';
+    const date = new Date().toISOString().slice(0, 10);
+    pdf.save(`Quotation_${name}_${date}.pdf`);
   };
 
   // On submit, validate all number fields
@@ -196,18 +199,18 @@ const QuotationForm: React.FC<QuotationFormProps> = ({ onClose }) => {
         })),
         terms: form.terms,
         description: form.description,
-        subTotal: form.subTotal,
+        subTotal: subTotal.toFixed(2), // FIX: use calculated value
         discount: form.discount,
         tax: form.tax,
         adjustment: form.adjustment,
-        grandTotal: form.grandTotal,
+        grandTotal: grandTotal.toFixed(2), // FIX: use calculated value
         // Quotation interface fields
         customerName: form.contactName || form.accountName || '',
         customerPhone: '', // Add if available in form
         customerEmail: '', // Add if available in form
-        subtotal: Number(form.subTotal) || 0,
+        subtotal: Number(subTotal) || 0, // FIX: use calculated value
         taxes: Number(form.tax) || 0,
-        totalAmount: Number(form.grandTotal) || 0,
+        totalAmount: Number(grandTotal) || 0, // FIX: use calculated value
         status: "pending" as import('../../services/api').Quotation["status"],
         notes: form.terms || '',
       };
@@ -321,11 +324,11 @@ const QuotationForm: React.FC<QuotationFormProps> = ({ onClose }) => {
                   <th className="border px-2 py-2">S.NO</th>
                   <th className="border px-2 py-2">Product Name</th>
                   <th className="border px-2 py-2">Quantity</th>
-                  <th className="border px-2 py-2">List Price($)</th>
-                  <th className="border px-2 py-2">Amount($)</th>
-                  <th className="border px-2 py-2">Discount($)</th>
-                  <th className="border px-2 py-2">Tax($)</th>
-                  <th className="border px-2 py-2">Total($)</th>
+                  <th className="border px-2 py-2">List Price(Rs)</th>
+                  <th className="border px-2 py-2">Amount(Rs)</th>
+                  <th className="border px-2 py-2">Discount(Rs)</th>
+                  <th className="border px-2 py-2">Tax(Rs)</th>
+                  <th className="border px-2 py-2">Total(Rs)</th>
                   <th className="border px-2 py-2">Action</th>
                 </tr>
               </thead>
@@ -394,18 +397,18 @@ const QuotationForm: React.FC<QuotationFormProps> = ({ onClose }) => {
             <textarea className="input" name="description" value={form.description} onChange={handleChange} />
           </div>
           <div className="space-y-2">
-            <label className="block font-semibold">Sub Total ($)</label>
+            <label className="block font-semibold">Sub Total (Rs)</label>
             <input className="input bg-gray-100" name="subTotal" value={subTotal.toFixed(2)} readOnly />
-            <label className="block font-semibold">Discount ($)</label>
+            <label className="block font-semibold">Discount (Rs)</label>
             <input className="input" name="discount" value={form.discount} onChange={handleChange} />
             {errors.discount && <div className="text-red-500 text-xs">{errors.discount}</div>}
-            <label className="block font-semibold">Tax ($)</label>
+            <label className="block font-semibold">Tax (Rs)</label>
             <input className="input" name="tax" value={form.tax} onChange={handleChange} />
             {errors.tax && <div className="text-red-500 text-xs">{errors.tax}</div>}
-            <label className="block font-semibold">Adjustment ($)</label>
+            <label className="block font-semibold">Adjustment (Rs)</label>
             <input className="input" name="adjustment" value={form.adjustment} onChange={handleChange} />
             {errors.adjustment && <div className="text-red-500 text-xs">{errors.adjustment}</div>}
-            <label className="block font-semibold">Grand Total ($)</label>
+            <label className="block font-semibold">Grand Total (Rs)</label>
             <input className="input bg-gray-100" name="grandTotal" value={grandTotal.toFixed(2)} readOnly />
           </div>
         </div>

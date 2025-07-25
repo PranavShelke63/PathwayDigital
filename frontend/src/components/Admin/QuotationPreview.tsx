@@ -37,110 +37,103 @@ const QuotationPreview: React.FC<QuotationPreviewProps> = ({ data }) => {
   return (
     <div
       id="quotation-preview"
-      style={{
-        width: 800,
-        margin: '0 auto',
-        background: '#fff',
-        padding: 32,
-        fontFamily: 'Arial, sans-serif',
-        color: '#222',
-        borderRadius: 8,
-        boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
-      }}
+      className="max-w-3xl w-full mx-auto bg-white p-6 sm:p-10 rounded-xl shadow-lg text-gray-900 font-sans"
     >
-      <h2 style={{ textAlign: 'center', fontWeight: 700, fontSize: 28, marginBottom: 24 }}>Quotation</h2>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 24 }}>
-        <div>
-          <div><strong>Quote Owner:</strong> {data.quoteOwner}</div>
-          <div><strong>Subject:</strong> {data.subject}</div>
-          <div><strong>Stage:</strong> {data.quoteStage}</div>
-          <div><strong>Team:</strong> {data.team}</div>
-          <div><strong>Carrier:</strong> {data.carrier}</div>
+      <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-primary">Quotation</h2>
+      <div className="flex flex-col sm:flex-row justify-between gap-6 mb-8">
+        <div className="space-y-1">
+          <div><span className="font-semibold">Quote Owner:</span> {data.quoteOwner}</div>
+          <div><span className="font-semibold">Subject:</span> {data.subject}</div>
+          <div><span className="font-semibold">Stage:</span> {data.quoteStage}</div>
+          <div><span className="font-semibold">Team:</span> {data.team}</div>
+          <div><span className="font-semibold">Carrier:</span> {data.carrier}</div>
         </div>
-        <div>
-          <div><strong>Deal Name:</strong> {data.dealName}</div>
-          <div><strong>Valid Until:</strong> {data.validUntil}</div>
-          <div><strong>Contact Name:</strong> {data.contactName}</div>
-          <div><strong>Account Name:</strong> {data.accountName}</div>
+        <div className="space-y-1">
+          <div><span className="font-semibold">Deal Name:</span> {data.dealName}</div>
+          <div><span className="font-semibold">Valid Until:</span> {data.validUntil}</div>
+          <div><span className="font-semibold">Contact Name:</span> {data.contactName}</div>
+          <div><span className="font-semibold">Account Name:</span> {data.accountName}</div>
         </div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 24 }}>
+      <div className="flex flex-col sm:flex-row justify-between gap-6 mb-8">
         <div>
-          <strong>Billing Address</strong>
+          <div className="font-semibold mb-1">Billing Address</div>
           <div>{data.billing.street}</div>
           <div>{data.billing.city}, {data.billing.state} {data.billing.code}</div>
           <div>{data.billing.country}</div>
         </div>
         <div>
-          <strong>Shipping Address</strong>
+          <div className="font-semibold mb-1">Shipping Address</div>
           <div>{data.shipping.street}</div>
           <div>{data.shipping.city}, {data.shipping.state} {data.shipping.code}</div>
           <div>{data.shipping.country}</div>
         </div>
       </div>
-      <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: 24 }}>
-        <thead>
-          <tr style={{ background: '#f3f3f3' }}>
-            <th style={{ border: '1px solid #ccc', padding: 8 }}>S.NO</th>
-            <th style={{ border: '1px solid #ccc', padding: 8 }}>Product Name</th>
-            <th style={{ border: '1px solid #ccc', padding: 8 }}>Quantity</th>
-            <th style={{ border: '1px solid #ccc', padding: 8 }}>List Price($)</th>
-            <th style={{ border: '1px solid #ccc', padding: 8 }}>Amount($)</th>
-            <th style={{ border: '1px solid #ccc', padding: 8 }}>Discount($)</th>
-            <th style={{ border: '1px solid #ccc', padding: 8 }}>Tax($)</th>
-            <th style={{ border: '1px solid #ccc', padding: 8 }}>Total($)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.items.map((item, idx) => (
-            <tr key={idx}>
-              <td style={{ border: '1px solid #ccc', padding: 8, textAlign: 'center' }}>{idx + 1}</td>
-              <td style={{ border: '1px solid #ccc', padding: 8 }}>
-                <div style={{ fontWeight: 600 }}>{item.productName}</div>
-                <div style={{ fontSize: 12, color: '#555' }}>{item.description}</div>
-              </td>
-              <td style={{ border: '1px solid #ccc', padding: 8, textAlign: 'center' }}>{item.quantity}</td>
-              <td style={{ border: '1px solid #ccc', padding: 8, textAlign: 'right' }}>{item.listPrice}</td>
-              <td style={{ border: '1px solid #ccc', padding: 8, textAlign: 'right' }}>{item.amount}</td>
-              <td style={{ border: '1px solid #ccc', padding: 8, textAlign: 'right' }}>{item.discount}</td>
-              <td style={{ border: '1px solid #ccc', padding: 8, textAlign: 'right' }}>{item.tax}</td>
-              <td style={{ border: '1px solid #ccc', padding: 8, textAlign: 'right' }}>{item.total}</td>
+      <div className="overflow-x-auto mb-8">
+        <table className="min-w-full border border-gray-200 rounded-lg text-xs sm:text-sm bg-gray-50">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="border px-2 py-2">S.NO</th>
+              <th className="border px-2 py-2">Product Name</th>
+              <th className="border px-2 py-2">Quantity</th>
+              <th className="border px-2 py-2">List Price(Rs)</th>
+              <th className="border px-2 py-2">Amount(Rs)</th>
+              <th className="border px-2 py-2">Discount(Rs)</th>
+              <th className="border px-2 py-2">Tax(Rs)</th>
+              <th className="border px-2 py-2">Total(Rs)</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: 24 }}>
-        <table style={{ minWidth: 320 }}>
+          </thead>
+          <tbody>
+            {data.items.map((item, idx) => (
+              <tr key={idx} className="bg-white hover:bg-gray-50 transition-all">
+                <td className="border px-2 py-1 text-center">{idx + 1}</td>
+                <td className="border px-2 py-1 min-w-[180px]">
+                  <div className="font-semibold">{item.productName}</div>
+                  <div className="text-xs text-gray-500">{item.description}</div>
+                </td>
+                <td className="border px-2 py-1 text-center">{item.quantity}</td>
+                <td className="border px-2 py-1 text-right">{item.listPrice}</td>
+                <td className="border px-2 py-1 text-right">{item.amount}</td>
+                <td className="border px-2 py-1 text-right">{item.discount}</td>
+                <td className="border px-2 py-1 text-right">{item.tax}</td>
+                <td className="border px-2 py-1 text-right">{item.total}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div className="flex justify-end mb-8">
+        <table className="min-w-[260px] text-sm">
           <tbody>
             <tr>
-              <td style={{ padding: 4, textAlign: 'right' }}>Sub Total ($):</td>
-              <td style={{ padding: 4, textAlign: 'right' }}>{data.subTotal}</td>
+              <td className="py-1 pr-2 text-right font-semibold">Sub Total (Rs):</td>
+              <td className="py-1 text-right">{data.subTotal}</td>
             </tr>
             <tr>
-              <td style={{ padding: 4, textAlign: 'right' }}>Discount ($):</td>
-              <td style={{ padding: 4, textAlign: 'right' }}>{data.discount}</td>
+              <td className="py-1 pr-2 text-right font-semibold">Discount (Rs):</td>
+              <td className="py-1 text-right">{data.discount}</td>
             </tr>
             <tr>
-              <td style={{ padding: 4, textAlign: 'right' }}>Tax ($):</td>
-              <td style={{ padding: 4, textAlign: 'right' }}>{data.tax}</td>
+              <td className="py-1 pr-2 text-right font-semibold">Tax (Rs):</td>
+              <td className="py-1 text-right">{data.tax}</td>
             </tr>
             <tr>
-              <td style={{ padding: 4, textAlign: 'right' }}>Adjustment ($):</td>
-              <td style={{ padding: 4, textAlign: 'right' }}>{data.adjustment}</td>
+              <td className="py-1 pr-2 text-right font-semibold">Adjustment (Rs):</td>
+              <td className="py-1 text-right">{data.adjustment}</td>
             </tr>
-            <tr style={{ fontWeight: 700 }}>
-              <td style={{ padding: 4, textAlign: 'right' }}>Grand Total ($):</td>
-              <td style={{ padding: 4, textAlign: 'right' }}>{data.grandTotal}</td>
+            <tr className="font-bold text-lg">
+              <td className="py-2 pr-2 text-right">Grand Total (Rs):</td>
+              <td className="py-2 text-right">{data.grandTotal}</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <div style={{ marginBottom: 16 }}>
-        <strong>Terms and Conditions:</strong>
+      <div className="mb-4">
+        <div className="font-semibold">Terms and Conditions:</div>
         <div>{data.terms}</div>
       </div>
       <div>
-        <strong>Description:</strong>
+        <div className="font-semibold">Description:</div>
         <div>{data.description}</div>
       </div>
     </div>
