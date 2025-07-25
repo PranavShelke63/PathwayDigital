@@ -39,7 +39,7 @@ const Services: React.FC = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="p-6 rounded-lg shadow-md bg-white border border-gray-200 flex flex-col items-center"
+              className="p-6 rounded-lg shadow-md bg-white border border-gray-200 flex flex-col items-center transition-transform transition-shadow duration-200 hover:shadow-lg hover:-translate-y-1 hover:border-primary cursor-pointer"
             >
               <span className="uppercase text-xs font-bold text-primary mb-2 tracking-widest">{service.label}</span>
               <div className="mb-4 flex justify-center">
@@ -60,7 +60,7 @@ const Services: React.FC = () => {
         </div>
         <div className="flex justify-center">
           <button
-            onClick={() => navigate('/contact')}
+            onClick={() => navigate('/contact?scroll=message')}
             className="btn-primary px-8 py-3 text-lg font-semibold rounded shadow transition-colors duration-200 hover:bg-accent"
           >
             Contact Us

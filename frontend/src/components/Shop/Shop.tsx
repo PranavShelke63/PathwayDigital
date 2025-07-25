@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Product, productsApi } from '../../services/api';
+import { Product, productsApi, categoriesApi, Category } from '../../services/api';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { ShoppingCartIcon, HeartIcon, FunnelIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import toast from 'react-hot-toast';
 
+const SCROLL_KEY = 'shopScrollPosition';
+
 const Shop: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -20,16 +23,31 @@ const Shop: React.FC = () => {
   const { addToCart, items: cartItems } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
-  const categories = [
-    { id: 'all', name: 'All Products' },
-    { id: 'ASUS Mouse', name: 'Mouse' },
-    { id: 'ASUS Keyboard', name: 'Keyboard' },
-    { id: 'ASUS Headset', name: 'Headset' }
-  ];
-
   useEffect(() => {
     fetchProducts();
+    fetchCategories();
   }, []);
+
+  useEffect(() => {
+    // Save scroll position on unmount
+    return () => {
+      sessionStorage.setItem(SCROLL_KEY, window.scrollY.toString());
+    };
+  }, []);
+
+  useEffect(() => {
+    // Restore scroll position after products are loaded and rendered
+    if (!loading && products.length > 0) {
+      const savedScroll = sessionStorage.getItem(SCROLL_KEY);
+      if (savedScroll) {
+        requestAnimationFrame(() => {
+          window.scrollTo(0, parseInt(savedScroll, 10));
+        });
+        // Optionally clear after restoring
+        // sessionStorage.removeItem(SCROLL_KEY);
+      }
+    }
+  }, [loading, products]);
 
   const fetchProducts = async () => {
     try {
@@ -44,13 +62,23 @@ const Shop: React.FC = () => {
     }
   };
 
+  const fetchCategories = async () => {
+    try {
+      const res = await categoriesApi.getAll();
+      setCategories(res.data.data.categories);
+    } catch (err) {
+      setCategories([]);
+    }
+  };
+
   let filteredProducts = products.filter(product => {
-    const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
+    const productCategoryId = typeof product.category === 'string' ? product.category : product.category?._id;
+    const matchesCategory = selectedCategory === 'all' || productCategoryId === selectedCategory;
     const lowerSearch = searchQuery.toLowerCase();
     const matchesSearch =
       product.name.toLowerCase().includes(lowerSearch) ||
       product.brand.toLowerCase().includes(lowerSearch) ||
-      product.category.toLowerCase().includes(lowerSearch);
+      (typeof product.category === 'object' && product.category?.name?.toLowerCase().includes(lowerSearch));
     const matchesStock = !inStockOnly || product.stock > 0;
     return matchesCategory && (!searchQuery || matchesSearch) && matchesStock;
   });
@@ -178,12 +206,23 @@ const Shop: React.FC = () => {
 
         {/* Categories */}
         <div className="flex flex-nowrap gap-2 mb-8 overflow-x-auto scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
+          <button
+            key="all"
+            onClick={() => setSelectedCategory('all')}
+            className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 shadow-sm ${
+              selectedCategory === 'all'
+                ? 'bg-primary text-white'
+                : 'bg-background text-contrast hover:bg-accent'
+            }`}
+          >
+            All Products
+          </button>
           {categories.map((category) => (
             <button
-              key={category.id}
-              onClick={() => setSelectedCategory(category.id)}
+              key={category._id}
+              onClick={() => setSelectedCategory(category._id)}
               className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 shadow-sm ${
-                selectedCategory === category.id
+                selectedCategory === category._id
                   ? 'bg-primary text-white'
                   : 'bg-background text-contrast hover:bg-accent'
               }`}
@@ -215,13 +254,13 @@ const Shop: React.FC = () => {
                 <Link
                   to={`/product/${product._id}`}
                   key={product._id}
-                  className="card group relative block rounded-lg shadow-md bg-white overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow duration-200"
+                  className="card group relative block rounded-lg shadow-md bg-white overflow-hidden border border-gray-100 hover:shadow-xl hover:scale-[1.03] transition-all duration-200"
                 >
                   <div className="flex items-center justify-center w-full aspect-square bg-gray-100 overflow-hidden">
                     <img
                       src={imageUrl}
                       alt={product.name}
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                   {/* Wishlist button */}
@@ -232,7 +271,7 @@ const Shop: React.FC = () => {
                       e.stopPropagation();
                       handleWishlistToggle(product);
                     }}
-                    className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 transition-colors duration-200 z-10 w-10 h-10 flex items-center justify-center"
+                    className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-gray-100 hover:scale-110 transition-all duration-200 z-10 w-10 h-10 flex items-center justify-center"
                   >
                     {inWishlist ? (
                       <HeartSolidIcon className="h-6 w-6 text-red-500" />
@@ -264,12 +303,12 @@ const Shop: React.FC = () => {
                       e.stopPropagation();
                       handleAddToCart(product);
                     }}
-                    className={`mt-4 w-full flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+                    className={`mt-4 w-full flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 ${
                       remainingStock === 0
                         ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
                         : isInCart
-                        ? 'bg-green-500 text-white hover:bg-green-600'
-                        : 'bg-primary text-white hover:bg-primary/90'
+                        ? 'bg-green-500 text-white hover:bg-green-600 hover:shadow-lg'
+                        : 'bg-primary text-white hover:bg-primary/80 hover:shadow-lg'
                     }`}
                     disabled={remainingStock === 0}
                   >

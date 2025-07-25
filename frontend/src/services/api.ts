@@ -17,7 +17,7 @@ export interface Product {
   name: string;
   description: string;
   price: number;
-  category: string;
+  category: string | Category; // Allow both string and Category object
   brand: string;
   image: string;
   images: string[];
@@ -236,3 +236,16 @@ api.interceptors.response.use(
 );
 
 export default api; 
+
+export interface Category {
+  _id: string;
+  name: string;
+  description?: string;
+}
+
+export const categoriesApi = {
+  getAll: () => api.get<{ status: string; data: { categories: Category[] } }>('/categories'),
+  create: (category: Omit<Category, '_id'>) => api.post<{ status: string; data: { category: Category } }>('/categories', category),
+  update: (id: string, category: Partial<Category>) => api.put<{ status: string; data: { category: Category } }>(`/categories/${id}`, category),
+  delete: (id: string) => api.delete<{ status: string; data: null }>(`/categories/${id}`),
+}; 

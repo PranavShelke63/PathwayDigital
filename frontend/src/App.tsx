@@ -28,6 +28,7 @@ import './styles/globals.css';
 import { Toaster } from 'react-hot-toast';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import ManageCategories from './components/Admin/ManageCategories';
 
 function App() {
   return (
@@ -145,6 +146,14 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <QuotationBillPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/categories"
+                  element={
+                    <ProtectedRoute>
+                      <ManageCategories />
                     </ProtectedRoute>
                   }
                 />

@@ -16,11 +16,11 @@ const Hero: React.FC = () => {
               Explore our wide range of laptops, PCs, and accessories. Get the best deals on premium tech products.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link to="/products" className="btn-secondary text-white">
+              <Link to="/shop" className="btn-secondary text-white">
                 Shop Now
               </Link>
-              <Link to="/deals" className="btn-secondary text-white">
-                View Deals
+              <Link to="/services" className="btn-secondary text-white">
+                Services We Offer
               </Link>
             </div>
             <div className="grid grid-cols-3 gap-4 mt-12">

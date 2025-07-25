@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Product, productsApi } from '../../services/api';
+import { Product, productsApi, categoriesApi, Category } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import { Navigate } from 'react-router-dom';
 import { FiEdit2, FiTrash2, FiPlus, FiX } from 'react-icons/fi';
@@ -13,6 +13,7 @@ const ProductManagement: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [customSpecKey, setCustomSpecKey] = useState('');
+  const [categories, setCategories] = useState<Category[]>([]);
   // Update formData to only include fields from backend Product.js
   const [formData, setFormData] = useState<Partial<Product>>({
     name: '',
@@ -32,7 +33,17 @@ const ProductManagement: React.FC = () => {
 
   useEffect(() => {
     fetchProducts();
+    fetchCategories();
   }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const res = await categoriesApi.getAll();
+      setCategories(res.data.data.categories);
+    } catch (err) {
+      setCategories([]);
+    }
+  };
 
   if (!user || user.email !== 'pranavopshelke@gmail.com') {
     return <Navigate to="/" replace />;
@@ -146,17 +157,17 @@ const ProductManagement: React.FC = () => {
   if (error) return <div className="text-red-500 text-center py-8">{error}</div>;
 
   // 1. Category dropdown: use backend enum values
-  const CATEGORY_OPTIONS = [
-    'ASUS MB 1&2',
-    'ASUS VGA',
-    'ASUS Headset',
-    'ASUS Keyboard',
-    'ASUS Mouse',
-    'ASUS Monitor',
-    'ASUS ODD',
-    'PSU Chasis',
-    'ASUS NUC',
-  ];
+  // const CATEGORY_OPTIONS = [
+  //   'ASUS MB 1&2',
+  //   'ASUS VGA',
+  //   'ASUS Headset',
+  //   'ASUS Keyboard',
+  //   'ASUS Mouse',
+  //   'ASUS Monitor',
+  //   'ASUS ODD',
+  //   'PSU Chasis',
+  //   'ASUS NUC',
+  // ];
 
   // 2. Main image and multiple images support
   // 3. Specifications: match ProductDetails keys and allow editing
@@ -195,66 +206,69 @@ const ProductManagement: React.FC = () => {
 
       {/* Products Table */}
       <div className="bg-white shadow-sm rounded-lg overflow-hidden">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {products.map((product) => (
-              <tr key={product._id}>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <img src={getImageUrl(product.image)} alt={product.name} className="h-12 w-12 object-cover rounded" />
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">{product.name}</td>
-                <td className="px-6 py-4 whitespace-nowrap">${product.price}</td>
-                <td className="px-6 py-4 whitespace-nowrap capitalize">{product.category}</td>
-                <td className="px-6 py-4 whitespace-nowrap">{product.stock}</td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="flex gap-4">
-                    <button
-                      onClick={() => handleEdit(product)}
-                      className="text-blue-600 hover:text-blue-800"
-                    >
-                      <FiEdit2 className="h-5 w-5" />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(product._id)}
-                      className="text-red-600 hover:text-red-800"
-                    >
-                      <FiTrash2 className="h-5 w-5" />
-                    </button>
-                  </div>
-                </td>
+        {/* Responsive table wrapper */}
+        <div className="w-full overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200 text-sm sm:text-base">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Image</th>
+                <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Name</th>
+                <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Price</th>
+                <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Category</th>
+                <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Stock</th>
+                <th className="px-2 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {products.map((product) => (
+                <tr key={product._id}>
+                  <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                    <img src={getImageUrl(product.image)} alt={product.name} className="h-10 w-10 sm:h-12 sm:w-12 object-cover rounded" />
+                  </td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-nowrap">{product.name}</td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-nowrap">${product.price}</td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-nowrap capitalize">{typeof product.category === 'object' && product.category !== null ? product.category.name : product.category || ''}</td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-nowrap">{product.stock}</td>
+                  <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
+                    <div className="flex gap-2 sm:gap-4">
+                      <button
+                        onClick={() => handleEdit(product)}
+                        className="text-blue-600 hover:text-blue-800 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+                        aria-label="Edit"
+                      >
+                        <FiEdit2 className="h-5 w-5" />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(product._id)}
+                        className="text-red-600 hover:text-red-800 p-2 rounded focus:outline-none focus:ring-2 focus:ring-red-400"
+                        aria-label="Delete"
+                      >
+                        <FiTrash2 className="h-5 w-5" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-
       {/* Add/Edit Product Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-contrast">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-2 sm:p-4 z-50">
+          <div className="bg-white rounded-lg w-full max-w-lg sm:max-w-4xl max-h-[95vh] overflow-y-auto p-2 sm:p-6">
+            <div className="flex justify-between items-center mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold text-contrast">
                 {selectedProduct ? 'Edit Product' : 'Add New Product'}
               </h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-gray-500 hover:text-gray-700">
+              <button onClick={() => setIsModalOpen(false)} className="text-gray-500 hover:text-gray-700 p-2 rounded focus:outline-none focus:ring-2 focus:ring-gray-400">
                 <FiX className="h-6 w-6" />
               </button>
             </div>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
                 {/* Basic Information */}
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700">Name</label>
                     <input
@@ -297,13 +311,14 @@ const ProductManagement: React.FC = () => {
                     <label className="block text-sm font-medium text-gray-700">Category</label>
                     <select
                       name="category"
-                      value={formData.category}
+                      value={typeof formData.category === 'object' && formData.category !== null ? formData.category._id : formData.category || ''}
                       onChange={handleInputChange}
                       className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                       required
                     >
-                      {CATEGORY_OPTIONS.map(option => (
-                        <option key={option} value={option}>{option}</option>
+                      <option value="">Select a category</option>
+                      {categories.map(option => (
+                        <option key={option._id} value={option._id}>{option.name}</option>
                       ))}
                     </select>
                   </div>
@@ -347,7 +362,7 @@ const ProductManagement: React.FC = () => {
                 </div>
 
                 {/* Specifications */}
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <h3 className="text-lg font-medium text-contrast">Specifications</h3>
                   
                   {allSpecKeys.map((key) => (
@@ -381,13 +396,13 @@ const ProductManagement: React.FC = () => {
                     </div>
                   ))}
                   {/* Add custom spec field */}
-                  <div className="flex gap-2 mt-2">
+                  <div className="flex flex-col sm:flex-row gap-2 mt-2">
                     <input
                       type="text"
                       placeholder="Custom spec key"
                       value={customSpecKey}
                       onChange={e => setCustomSpecKey(e.target.value)}
-                      className="w-1/3 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
+                      className="w-full sm:w-1/3 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary"
                     />
                     <button
                       type="button"
@@ -474,15 +489,15 @@ const ProductManagement: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex justify-end gap-4">
+              <div className="flex flex-col sm:flex-row justify-end gap-2 sm:gap-4">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="btn-secondary"
+                  className="btn-secondary w-full sm:w-auto"
                 >
                   Cancel
                 </button>
-                <button type="submit" className="btn-primary">
+                <button type="submit" className="btn-primary w-full sm:w-auto">
                   {selectedProduct ? 'Update Product' : 'Add Product'}
                 </button>
               </div>

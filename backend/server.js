@@ -15,6 +15,7 @@ const userRoutes = require('./routes/userRoutes');
 const queryRoutes = require('./routes/queryRoutes');
 const repairJobRoutes = require('./routes/repairJobRoutes');
 const quotationRoutes = require('./routes/quotationRoutes');
+const categoryRoutes = require('./routes/categoryRoutes');
 const path = require('path');
 
 const app = express();
@@ -73,6 +74,7 @@ app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/queries', queryRoutes);
 app.use('/api/v1/repairs', repairJobRoutes);
 app.use('/api/v1/quotations', quotationRoutes);
+app.use('/api/v1/categories', categoryRoutes);
 
 // Error handling
 app.use(errorHandler);

@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import api from '../../services/api';
 
 interface QueryFormData {
@@ -20,6 +21,16 @@ const Contact: React.FC = () => {
     type: 'success' | 'error' | null;
     message: string;
   }>({ type: null, message: '' });
+
+  const location = useLocation();
+  const messageFormRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('scroll') === 'message' && messageFormRef.current) {
+      messageFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [location]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -114,7 +125,7 @@ const Contact: React.FC = () => {
         </div>
 
         {/* Contact Form */}
-        <div className="mt-16">
+        <div className="mt-16" ref={messageFormRef}>
           <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl p-8">
             <h2 className="text-3xl font-bold text-center text-contrast mb-8">Send Us a Message</h2>
             

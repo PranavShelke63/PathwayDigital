@@ -18,22 +18,9 @@ const productSchema = new mongoose.Schema({
     trim: true
   },
   category: {
-    type: String,
-    required: [true, 'A product must belong to a category'],
-    enum: {
-      values: [
-        'ASUS MB 1&2',
-        'ASUS VGA',
-        'ASUS Headset',
-        'ASUS Keyboard',
-        'ASUS Mouse',
-        'ASUS Monitor',
-        'ASUS ODD',
-        'PSU Chasis',
-        'ASUS NUC'
-      ],
-      message: 'Category must be one of the allowed values'
-    }
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
+    required: [true, 'A product must belong to a category']
   },
   price: {
     type: Number,

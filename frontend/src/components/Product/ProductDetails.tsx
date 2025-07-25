@@ -237,7 +237,7 @@ const ProductDetails: React.FC = () => {
           {/* Labeled product info */}
           <div className="flex flex-wrap gap-x-4 gap-y-1 mt-4 px-1 text-xs text-gray-700">
             <span><span className="font-semibold">Brand:</span> <span className="font-medium text-gray-900">{product.brand}</span></span>
-            <span><span className="font-semibold">Category:</span> <span className="font-medium text-gray-900">{product.category}</span></span>
+            <span><span className="font-semibold">Category:</span> <span className="font-medium text-gray-900">{typeof product.category === 'object' && product.category !== null ? product.category.name : product.category || ''}</span></span>
           </div>
           <div className={`mt-2 px-1 text-xs font-medium ${remainingStock > 0 ? 'text-green-600' : 'text-red-600'}`}> 
             <span className="font-semibold">Availability:</span> {remainingStock > 0 ? `${remainingStock} in stock` : 'Out of stock'}
@@ -359,7 +359,7 @@ const ProductDetails: React.FC = () => {
               </div>
               <div className="mt-2 flex items-center">
                 <div className="text-sm text-gray-500">Category</div>
-                <div className="ml-2 text-sm font-medium text-gray-900">{product.category}</div>
+                <div className="ml-2 text-sm font-medium text-gray-900">{typeof product.category === 'object' && product.category !== null ? product.category.name : product.category || ''}</div>
               </div>
               <div className="mt-2 flex items-center">
                 <div className="text-sm text-gray-500">Availability</div>

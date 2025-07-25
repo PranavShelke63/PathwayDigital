@@ -3,7 +3,7 @@ const Product = require('../models/Product');
 // Get all products
 exports.getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find().populate('category');
     res.status(200).json({
       status: 'success',
       data: {
@@ -21,7 +21,7 @@ exports.getAllProducts = async (req, res) => {
 // Get single product
 exports.getProduct = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await Product.findById(req.params.id).populate('category');
     if (!product) {
       return res.status(404).json({
         status: 'error',
@@ -46,10 +46,11 @@ exports.getProduct = async (req, res) => {
 exports.createProduct = async (req, res) => {
   try {
     const product = await Product.create(req.body);
+    const populatedProduct = await Product.findById(product._id).populate('category');
     res.status(201).json({
       status: 'success',
       data: {
-        data: product
+        data: populatedProduct
       }
     });
   } catch (error) {
@@ -66,7 +67,7 @@ exports.updateProduct = async (req, res) => {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true
-    });
+    }).populate('category');
     if (!product) {
       return res.status(404).json({
         status: 'error',

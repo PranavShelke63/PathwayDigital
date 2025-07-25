@@ -71,7 +71,9 @@ const AdminDashboard: React.FC = () => {
               Manage Products
             </Link>
             <button className="btn-secondary w-full">View Analytics</button>
-            <button className="btn-secondary w-full">Manage Categories</button>
+            <Link to="/admin/categories" className="btn-secondary w-full block text-center">
+              Manage Categories
+            </Link>
           </div>
         </div>
 
