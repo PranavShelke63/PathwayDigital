@@ -29,7 +29,7 @@ const productSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    required: [true, 'A product must have an image']
+    // required: [true, 'A product must have an image'] // Made optional for two-step creation
   },
   images: [{
     type: String

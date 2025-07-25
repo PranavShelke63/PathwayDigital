@@ -72,6 +72,21 @@ interface ApiDataResponse<T> {
   data: T;
 }
 
+export const uploadImage = (file: File, brand: string, category: string, productName: string) => {
+  const formData = new FormData();
+  formData.append('image', file);
+  formData.append('brand', brand);
+  formData.append('category', category);
+  formData.append('productName', productName);
+  return api.post<{ data: { url: string } }>('/upload/image', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+};
+
+export const deleteImage = (imagePath: string) => {
+  return api.delete<{ message: string }>('/upload/image', { data: { imagePath } });
+};
+
 // Products API
 export const productsApi = {
   getAll: () => api.get<ApiResponse<ApiDataResponse<Product[]>>>('/products'),
@@ -81,15 +96,7 @@ export const productsApi = {
   create: (product: Omit<Product, '_id'>) => api.post<ApiResponse<ApiDataResponse<Product>>>('/products', product),
   update: (id: string, product: Partial<Product>) => api.patch<ApiResponse<ApiDataResponse<Product>>>(`/products/${id}`, product),
   delete: (id: string) => api.delete<ApiResponse<null>>(`/products/${id}`),
-  uploadImage: (file: File) => {
-    const formData = new FormData();
-    formData.append('image', file);
-    return api.post<{ status: string; data: { url: string } }>('/products/upload-image', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  }
+  uploadImage: (file: File, brand: string, category: string, productName: string) => uploadImage(file, brand, category, productName),
 };
 
 // Users API
