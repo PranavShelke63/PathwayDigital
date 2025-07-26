@@ -1,0 +1,71 @@
+PATHWAY DIGITAL - Technical Overview
+===================================
+
+Project Structure:
+------------------
+- **Frontend:** React (TypeScript), located in `frontend/`
+- **Backend:** Node.js with Express, located in `backend/`
+
+Frontend Details:
+-----------------
+- **Framework:** React (with TypeScript)
+- **Styling:** Tailwind CSS
+- **Routing:** react-router-dom
+- **State Management:** React Context API (for Auth, Cart, Wishlist)
+- **HTTP Requests:** axios
+- **PDF Generation:** jsPDF, jspdf-autotable
+- **UI Libraries:** @headlessui/react, @heroicons/react, react-icons, react-hot-toast
+- **Testing:** @testing-library/react, jest
+- **Build Tool:** Create React App
+
+Frontend Logic:
+- User authentication (login, register, profile management)
+- Product browsing, filtering, and searching
+- Cart and wishlist management
+- Checkout flow
+- Quotation request and PDF download
+- Repair job request and tracking
+- Contact form for customer queries
+- Admin dashboard for managing products, categories, users, queries, repairs, and quotations
+
+Backend Details:
+----------------
+- **Runtime:** Node.js
+- **Framework:** Express.js
+- **Database:** MongoDB (via mongoose)
+- **Authentication:** JWT (jsonwebtoken), bcryptjs for password hashing
+- **Security:** helmet, express-mongo-sanitize, xss-clean, express-rate-limit, cors
+- **File Uploads:** multer
+- **Email:** nodemailer
+- **Logging:** winston, morgan
+- **Validation:** express-validator
+- **Environment Variables:** dotenv
+
+Backend Logic:
+- RESTful API endpoints for products, categories, users, orders, queries, quotations, repairs, and uploads
+- User authentication and authorization (JWT-based)
+- Admin-only routes for management features
+- Product and category CRUD operations
+- Repair job management and status tracking
+- Quotation generation and management
+- Customer query handling
+- Image upload and management
+- Email notifications for certain actions
+- Data validation and error handling
+
+How It Works:
+-------------
+- The frontend communicates with the backend via REST API endpoints.
+- Users can browse products, register/login, manage their cart/wishlist, request repairs or quotations, and contact support.
+- Admin users have access to a dashboard for managing all key resources.
+- All sensitive operations are protected by authentication and role-based authorization.
+
+Main Libraries Used:
+--------------------
+Frontend:
+- react, react-dom, react-router-dom, axios, tailwindcss, jsPDF, react-hot-toast, @headlessui/react, @heroicons/react, react-icons
+
+Backend:
+- express, mongoose, jsonwebtoken, bcryptjs, multer, nodemailer, helmet, cors, winston, morgan, express-validator, dotenv, express-mongo-sanitize, xss-clean, express-rate-limit
+
+This structure ensures a modern, secure, and scalable web application for both customers and administrators. 

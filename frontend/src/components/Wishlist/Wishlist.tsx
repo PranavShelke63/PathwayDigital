@@ -68,7 +68,7 @@ const Wishlist: React.FC = () => {
               </button>
             </div>
             <div className="mt-3 flex justify-between items-center">
-              <p className="text-sm font-medium text-gray-900">${product.price.toFixed(2)}</p>
+                                  <p className="text-sm font-medium text-gray-900">₹{product.price.toFixed(2)}</p>
               <button
                 onClick={() => addToCart(product)}
                 disabled={isInCart(product._id)}

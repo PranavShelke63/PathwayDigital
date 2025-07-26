@@ -76,11 +76,11 @@ const QuotationPreview: React.FC<QuotationPreviewProps> = ({ data }) => {
               <th className="border px-2 py-2">S.NO</th>
               <th className="border px-2 py-2">Product Name</th>
               <th className="border px-2 py-2">Quantity</th>
-              <th className="border px-2 py-2">List Price(Rs)</th>
-              <th className="border px-2 py-2">Amount(Rs)</th>
-              <th className="border px-2 py-2">Discount(Rs)</th>
-              <th className="border px-2 py-2">Tax(Rs)</th>
-              <th className="border px-2 py-2">Total(Rs)</th>
+              <th className="border px-2 py-2">List Price(₹)</th>
+              <th className="border px-2 py-2">Amount(₹)</th>
+              <th className="border px-2 py-2">Discount(₹)</th>
+              <th className="border px-2 py-2">Tax(₹)</th>
+              <th className="border px-2 py-2">Total(₹)</th>
             </tr>
           </thead>
           <tbody>
@@ -106,23 +106,23 @@ const QuotationPreview: React.FC<QuotationPreviewProps> = ({ data }) => {
         <table className="min-w-[260px] text-sm">
           <tbody>
             <tr>
-              <td className="py-1 pr-2 text-right font-semibold">Sub Total (Rs):</td>
+              <td className="py-1 pr-2 text-right font-semibold">Sub Total (₹):</td>
               <td className="py-1 text-right">{data.subTotal}</td>
             </tr>
             <tr>
-              <td className="py-1 pr-2 text-right font-semibold">Discount (Rs):</td>
+              <td className="py-1 pr-2 text-right font-semibold">Discount (₹):</td>
               <td className="py-1 text-right">{data.discount}</td>
             </tr>
             <tr>
-              <td className="py-1 pr-2 text-right font-semibold">Tax (Rs):</td>
+              <td className="py-1 pr-2 text-right font-semibold">Tax (₹):</td>
               <td className="py-1 text-right">{data.tax}</td>
             </tr>
             <tr>
-              <td className="py-1 pr-2 text-right font-semibold">Adjustment (Rs):</td>
+              <td className="py-1 pr-2 text-right font-semibold">Adjustment (₹):</td>
               <td className="py-1 text-right">{data.adjustment}</td>
             </tr>
             <tr className="font-bold text-lg">
-              <td className="py-2 pr-2 text-right">Grand Total (Rs):</td>
+              <td className="py-2 pr-2 text-right">Grand Total (₹):</td>
               <td className="py-2 text-right">{data.grandTotal}</td>
             </tr>
           </tbody>

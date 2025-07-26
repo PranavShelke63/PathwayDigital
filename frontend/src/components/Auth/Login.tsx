@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 const Login: React.FC = () => {
@@ -9,6 +9,7 @@ const Login: React.FC = () => {
   const [error, setError] = useState('');
   
   const navigate = useNavigate();
+  const location = useLocation();
   const { login } = useAuth();
 
   const validateForm = () => {
@@ -39,10 +40,16 @@ const Login: React.FC = () => {
 
     try {
       await login(email, password);
+      
+      // Check if there's a redirect location from ProtectedRoute
+      const from = location.state?.from?.pathname;
+      
       if (email === 'pranavopshelke@gmail.com') {
-        navigate('/admin');
+        // Admin user - redirect to admin dashboard or the intended page
+        navigate(from || '/admin');
       } else {
-        navigate('/');
+        // Regular user - redirect to intended page or home
+        navigate(from || '/');
       }
     } catch (err: any) {
       const errorMessage = err.response?.data?.message || 'An error occurred during login';
@@ -61,7 +68,11 @@ const Login: React.FC = () => {
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{' '}
-            <Link to="/register" className="font-medium text-primary hover:text-primary/80">
+            <Link 
+              to="/register" 
+              state={{ from: location.state?.from }}
+              className="font-medium text-primary hover:text-primary/80"
+            >
               create a new account
             </Link>
           </p>

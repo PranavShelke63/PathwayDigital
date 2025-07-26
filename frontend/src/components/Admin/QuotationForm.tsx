@@ -324,11 +324,11 @@ const QuotationForm: React.FC<QuotationFormProps> = ({ onClose }) => {
                   <th className="border px-2 py-2">S.NO</th>
                   <th className="border px-2 py-2">Product Name</th>
                   <th className="border px-2 py-2">Quantity</th>
-                  <th className="border px-2 py-2">List Price(Rs)</th>
-                  <th className="border px-2 py-2">Amount(Rs)</th>
-                  <th className="border px-2 py-2">Discount(Rs)</th>
-                  <th className="border px-2 py-2">Tax(Rs)</th>
-                  <th className="border px-2 py-2">Total(Rs)</th>
+                                  <th className="border px-2 py-2">List Price(₹)</th>
+                <th className="border px-2 py-2">Amount(₹)</th>
+                <th className="border px-2 py-2">Discount(₹)</th>
+                <th className="border px-2 py-2">Tax(₹)</th>
+                <th className="border px-2 py-2">Total(₹)</th>
                   <th className="border px-2 py-2">Action</th>
                 </tr>
               </thead>
@@ -397,18 +397,18 @@ const QuotationForm: React.FC<QuotationFormProps> = ({ onClose }) => {
             <textarea className="input" name="description" value={form.description} onChange={handleChange} />
           </div>
           <div className="space-y-2">
-            <label className="block font-semibold">Sub Total (Rs)</label>
+            <label className="block font-semibold">Sub Total (₹)</label>
             <input className="input bg-gray-100" name="subTotal" value={subTotal.toFixed(2)} readOnly />
-            <label className="block font-semibold">Discount (Rs)</label>
+            <label className="block font-semibold">Discount (₹)</label>
             <input className="input" name="discount" value={form.discount} onChange={handleChange} />
             {errors.discount && <div className="text-red-500 text-xs">{errors.discount}</div>}
-            <label className="block font-semibold">Tax (Rs)</label>
+            <label className="block font-semibold">Tax (₹)</label>
             <input className="input" name="tax" value={form.tax} onChange={handleChange} />
             {errors.tax && <div className="text-red-500 text-xs">{errors.tax}</div>}
-            <label className="block font-semibold">Adjustment (Rs)</label>
+            <label className="block font-semibold">Adjustment (₹)</label>
             <input className="input" name="adjustment" value={form.adjustment} onChange={handleChange} />
             {errors.adjustment && <div className="text-red-500 text-xs">{errors.adjustment}</div>}
-            <label className="block font-semibold">Grand Total (Rs)</label>
+            <label className="block font-semibold">Grand Total (₹)</label>
             <input className="input bg-gray-100" name="grandTotal" value={grandTotal.toFixed(2)} readOnly />
           </div>
         </div>

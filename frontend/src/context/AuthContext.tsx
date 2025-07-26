@@ -165,22 +165,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const logout = async () => {
     try {
+      console.log('Starting logout process...');
+      
       // Attempt to call the logout endpoint
       try {
-        await axios.get(`${API_URL}/auth/logout`, { 
+        console.log('Calling logout API endpoint...');
+        const response = await axios.get(`${API_URL}/auth/logout`, { 
           withCredentials: true,
           timeout: 5000 // 5 second timeout
         });
+        console.log('Logout API response:', response.data);
       } catch (apiError: any) {
         // If it's a network error or timeout, we'll still proceed with local cleanup
         if (!apiError.response || apiError.code === 'ECONNABORTED') {
           console.warn('Logout API call failed, proceeding with local cleanup:', apiError);
         } else {
+          console.error('Logout API error:', apiError.response?.data);
           throw apiError; // Re-throw other API errors
         }
       }
       
-      // Clear user data
+      // Clear user data first
       setUser(null);
       setError(null);
       
@@ -189,9 +194,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         localStorage.removeItem('user');
         sessionStorage.removeItem('user');
         
-        // Clear any other app-specific storage
+        // Clear app-specific storage
         localStorage.removeItem('cart');
         localStorage.removeItem('wishlist');
+        
+        // Clear all session storage
         sessionStorage.clear();
       } catch (storageError) {
         console.warn('Storage cleanup error:', storageError);

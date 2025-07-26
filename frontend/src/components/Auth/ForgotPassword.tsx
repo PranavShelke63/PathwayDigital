@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 const ForgotPassword: React.FC = () => {
@@ -8,6 +8,7 @@ const ForgotPassword: React.FC = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
 
+  const location = useLocation();
   const { forgotPassword } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -80,7 +81,11 @@ const ForgotPassword: React.FC = () => {
           </div>
 
           <div className="text-center">
-            <Link to="/login" className="font-medium text-primary hover:text-primary/80">
+            <Link 
+              to="/login" 
+              state={{ from: location.state?.from }}
+              className="font-medium text-primary hover:text-primary/80"
+            >
               Back to login
             </Link>
           </div>

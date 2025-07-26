@@ -34,7 +34,7 @@ const Cart: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
             <div className="flex-1 flex flex-col mt-2 sm:mt-0 sm:ml-4">
               <div className="flex flex-col sm:flex-row sm:justify-between text-base font-medium text-contrast">
                 <h3 className="truncate max-w-[80vw]">{item.name}</h3>
-                <p className="mt-1 sm:mt-0 sm:ml-4">${(item.price * item.quantity).toFixed(2)}</p>
+                <p className="mt-1 sm:mt-0 sm:ml-4">₹{(item.price * item.quantity).toFixed(2)}</p>
               </div>
               <div className="flex items-center justify-between mt-2 gap-2">
                 <div className="flex items-center border rounded">
@@ -72,7 +72,7 @@ const Cart: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
       <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 py-4 px-4 sm:static sm:py-4 sm:mt-4 z-20">
         <div className="flex justify-between text-base font-medium text-contrast">
           <p>Subtotal</p>
-          <p>${totalPrice.toFixed(2)}</p>
+                          <p>₹{totalPrice.toFixed(2)}</p>
         </div>
         <div className="mt-4">
           <Link

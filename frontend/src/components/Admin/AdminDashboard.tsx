@@ -46,7 +46,7 @@ const AdminDashboard: React.FC = () => {
             </div>
             <div>
               <p className="text-gray-500">Total Revenue</p>
-              <p className="text-2xl font-bold text-primary">$12,450</p>
+                              <p className="text-2xl font-bold text-primary">₹12,450</p>
             </div>
             <Link to="/admin/users" className="block">
               <div className="cursor-pointer hover:bg-gray-100 p-2 -mx-2 rounded transition-colors">

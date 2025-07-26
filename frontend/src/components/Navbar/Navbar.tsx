@@ -12,8 +12,8 @@ import Cart from '../Cart/Cart';
 
 const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
-  const { items, totalItems, totalPrice, updateQuantity, removeFromCart } = useCart();
-  const { items: wishlistItems, totalItems: wishlistTotalItems } = useWishlist();
+  const { items, totalItems, totalPrice, updateQuantity, removeFromCart, clearCart } = useCart();
+  const { items: wishlistItems, totalItems: wishlistTotalItems, clearWishlist } = useWishlist();
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
@@ -47,26 +47,25 @@ const Navbar: React.FC = () => {
         return;
       }
 
+      console.log('Starting logout process from Navbar...');
       setIsLoggingOut(true);
       
       try {
         // First attempt the API logout
+        console.log('Calling logout from AuthContext...');
         await logout();
+        console.log('Logout successful, clearing context states...');
         
-        // Only clear storage and navigate after successful API logout
+        // Clear context states
+        clearCart();
+        clearWishlist();
+        
+        // Close dropdowns
         setIsProfileOpen(false);
         setIsMenuOpen(false);
         
-        // Clear storage after successful logout
-        try {
-          localStorage.clear();
-          sessionStorage.clear();
-        } catch (storageError) {
-          console.error('Storage cleanup error:', storageError);
-          // Continue with logout even if storage cleanup fails
-        }
-        
-        // Navigate last
+        console.log('Navigating to login page...');
+        // Navigate to login page
         navigate('/login', { replace: true });
       } catch (logoutError: any) {
         console.error('Logout error details:', {

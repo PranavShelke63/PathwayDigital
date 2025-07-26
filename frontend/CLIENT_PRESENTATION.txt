@@ -1,0 +1,31 @@
+PATHWAY DIGITAL - Website Overview (Client Presentation)
+========================================================
+
+Welcome to PATHWAY DIGITAL! Here’s what our website offers and how you can use it:
+
+What Our Website Does:
+----------------------
+- **Online Shopping:** Browse and purchase laptops, computer peripherals, and accessories directly from our online shop. Enjoy fast delivery and competitive prices.
+- **Refurbished Devices:** Contact us to buy high-quality refurbished laptops and devices at great value.
+- **Device Repair:** Request expert repair services for laptops, computers, and accessories. Submit your repair job and track its status online.
+- **Quotations:** Request and receive detailed quotations for products or services. Download or print your quotation as a PDF.
+- **Customer Support:** Reach out to us with any questions or issues using our easy contact form. We’re here to help!
+- **Wishlist:** Save your favorite products to your wishlist for easy access later.
+- **Cart & Checkout:** Add products to your cart and proceed to a simple, secure checkout process.
+- **User Accounts:** Register and log in to manage your orders, profile, and more. Update your personal information anytime.
+- **Admin Dashboard:** (For staff) Manage products, categories, customer queries, repair jobs, and quotations from a dedicated admin area.
+
+How to Use the Website:
+-----------------------
+1. **Browse Products:** Visit the Shop page to explore our range of products. Use filters and search to find what you need.
+2. **Add to Cart or Wishlist:** Click on any product to see details. Add items to your cart for purchase, or to your wishlist to save for later.
+3. **Register or Log In:** Create an account or log in for a personalized experience. You can manage your profile and view your order history.
+4. **Checkout:** When ready, go to your cart and proceed to checkout. Enter your details and complete your purchase securely.
+5. **Request Repairs or Quotations:** Use the Services or Contact pages to request device repairs or ask for a quotation. We’ll respond promptly.
+6. **Contact Us:** For any questions, use the Contact page to send us a message. Our team will get back to you as soon as possible.
+
+Our Mission:
+------------
+PATHWAY DIGITAL is committed to empowering your digital journey by providing quality tech hardware, reliable repair services, and exceptional customer support.
+
+Thank you for choosing PATHWAY DIGITAL! 

@@ -191,7 +191,7 @@ const AdminQuotationList: React.FC = () => {
               <th className="px-4 py-3 text-left font-semibold">Sr No</th>
               <th className="px-4 py-3 text-left font-semibold">Customer</th>
               <th className="px-4 py-3 text-left font-semibold">Date</th>
-              <th className="px-4 py-3 text-left font-semibold">Total (Rs)</th>
+                              <th className="px-4 py-3 text-left font-semibold">Total (₹)</th>
               <th className="px-4 py-3 text-left font-semibold">Status</th>
               <th className="px-4 py-3 text-left font-semibold">Actions</th>
             </tr>
@@ -203,7 +203,7 @@ const AdminQuotationList: React.FC = () => {
                   <td className="px-4 py-3 whitespace-nowrap">{idx + 1}</td>
                   <td className="px-4 py-3 whitespace-nowrap font-medium">{q.quoteOwner}</td>
                   <td className="px-4 py-3 whitespace-nowrap">{q.createdAt ? new Date(q.createdAt).toLocaleDateString() : '-'}</td>
-                  <td className="px-4 py-3 whitespace-nowrap font-semibold text-green-700">{q.grandTotal ? `Rs ${q.grandTotal}` : '-'}</td>
+                  <td className="px-4 py-3 whitespace-nowrap font-semibold text-green-700">{q.grandTotal ? `₹${q.grandTotal}` : '-'}</td>
                   <td className="px-4 py-3 whitespace-nowrap capitalize font-semibold text-blue-700">{q.quoteStage}</td>
                   <td className="px-4 py-3 whitespace-nowrap">
                     <div className="flex items-center gap-2 sm:gap-3">

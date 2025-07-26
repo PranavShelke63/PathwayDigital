@@ -4,6 +4,7 @@ import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import { WishlistProvider } from './context/WishlistContext';
 import ProtectedRoute from './components/ProtectedRoute';
+import PublicRoute from './components/PublicRoute';
 import Navbar from './components/Navbar/Navbar';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
@@ -11,6 +12,7 @@ import ForgotPassword from './components/Auth/ForgotPassword';
 import Profile from './components/Profile/Profile';
 import Shop from './components/Shop/Shop';
 import Wishlist from './components/Wishlist/Wishlist';
+import Cart from './components/Cart/Cart';
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import Contact from './components/Contact/Contact';
@@ -29,6 +31,7 @@ import { Toaster } from 'react-hot-toast';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import ManageCategories from './components/Admin/ManageCategories';
+import NavigationTest from './components/NavigationTest';
 
 function App() {
   return (
@@ -47,9 +50,31 @@ function App() {
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/services" element={<Services />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/test-navigation" element={<NavigationTest />} />
+                <Route 
+                  path="/login" 
+                  element={
+                    <PublicRoute>
+                      <Login />
+                    </PublicRoute>
+                  } 
+                />
+                <Route 
+                  path="/register" 
+                  element={
+                    <PublicRoute>
+                      <Register />
+                    </PublicRoute>
+                  } 
+                />
+                <Route 
+                  path="/forgot-password" 
+                  element={
+                    <PublicRoute>
+                      <ForgotPassword />
+                    </PublicRoute>
+                  } 
+                />
 
                 {/* Protected routes */}
                 <Route
@@ -65,6 +90,14 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <Wishlist />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/cart"
+                  element={
+                    <ProtectedRoute>
+                      <Cart />
                     </ProtectedRoute>
                   }
                 />

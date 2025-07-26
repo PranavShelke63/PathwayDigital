@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 interface CountryData {
@@ -91,6 +91,7 @@ const Register: React.FC = () => {
   const [availableStates, setAvailableStates] = useState<string[]>([]);
 
   const navigate = useNavigate();
+  const location = useLocation();
   const { register } = useAuth();
 
   useEffect(() => {
@@ -224,7 +225,12 @@ const Register: React.FC = () => {
       };
 
       await register(registrationData);
-      navigate('/');
+      
+      // Check if there's a redirect location from ProtectedRoute
+      const from = location.state?.from?.pathname;
+      
+      // Redirect to intended page or home
+      navigate(from || '/');
     } catch (err: any) {
       const serverErrors = err.response?.data?.errors || {};
       setErrors(serverErrors);
@@ -252,7 +258,11 @@ const Register: React.FC = () => {
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{' '}
-            <Link to="/login" className="font-medium text-primary hover:text-primary/80">
+            <Link 
+              to="/login" 
+              state={{ from: location.state?.from }}
+              className="font-medium text-primary hover:text-primary/80"
+            >
               sign in to your account
             </Link>
           </p>
