@@ -250,9 +250,49 @@ export interface Category {
   description?: string;
 }
 
+// Order interfaces
+export interface OrderItem {
+  product: string | Product;
+  quantity: number;
+  price: number;
+}
+
+export interface ShippingAddress {
+  street: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  country: string;
+}
+
+export interface Order {
+  _id?: string;
+  user: string | User;
+  items: OrderItem[];
+  totalAmount: number;
+  status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+  shippingAddress: ShippingAddress;
+  paymentMethod: 'credit_card' | 'debit_card' | 'paypal' | 'cash_on_delivery';
+  paymentStatus: 'pending' | 'completed' | 'failed' | 'refunded';
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export const categoriesApi = {
   getAll: () => api.get<{ status: string; data: { categories: Category[] } }>('/categories'),
   create: (category: Omit<Category, '_id'>) => api.post<{ status: string; data: { category: Category } }>('/categories', category),
   update: (id: string, category: Partial<Category>) => api.put<{ status: string; data: { category: Category } }>(`/categories/${id}`, category),
   delete: (id: string) => api.delete<{ status: string; data: null }>(`/categories/${id}`),
+};
+
+// Orders API
+export const ordersApi = {
+  create: (order: Omit<Order, '_id' | 'user' | 'status' | 'paymentStatus' | 'createdAt' | 'updatedAt'>) => 
+    api.post<{ status: string; data: { order: Order } }>('/orders', order),
+  getUserOrders: () => api.get<{ status: string; data: { orders: Order[] } }>('/orders/my-orders'),
+  getById: (id: string) => api.get<{ status: string; data: { order: Order } }>(`/orders/${id}`),
+  updateStatus: (id: string, status: Partial<Order>) => 
+    api.patch<{ status: string; data: { order: Order } }>(`/orders/${id}`, status),
+  getAll: () => api.get<{ status: string; data: { orders: Order[] } }>('/orders'),
+  delete: (id: string) => api.delete<{ status: string; data: null }>(`/orders/${id}`),
 }; 

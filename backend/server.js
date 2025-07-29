@@ -18,6 +18,7 @@ const quotationRoutes = require('./routes/quotationRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const cartRoutes = require('./routes/cartRoutes');
+const orderRoutes = require('./routes/orderRoutes');
 const path = require('path');
 
 const app = express();
@@ -79,6 +80,7 @@ app.use('/api/v1/quotations', quotationRoutes);
 app.use('/api/v1/categories', categoryRoutes);
 app.use('/api/v1/upload', uploadRoutes);
 app.use('/api/v1/cart', cartRoutes);
+app.use('/api/v1/orders', orderRoutes);
 
 // Error handling
 app.use(errorHandler);

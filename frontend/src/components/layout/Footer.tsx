@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-primary text-white py-8 mt-8">
+    <footer className="bg-primary text-white py-8">
       <div className="max-w-7xl mx-auto px-4 flex flex-col items-center justify-center text-center">
         <div className="mb-2 text-lg font-semibold tracking-wide">
           Pathway Digital

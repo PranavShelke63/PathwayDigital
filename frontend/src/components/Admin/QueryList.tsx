@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Navigate } from 'react-router-dom';
 import { Query, queriesApi } from '../../services/api';
+import LoadingSpinner from '../LoadingSpinner';
 
 const QueryList: React.FC = () => {
   const { user } = useAuth();
@@ -61,11 +62,7 @@ const QueryList: React.FC = () => {
   }
 
   if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-      </div>
-    );
+    return <LoadingSpinner message="Loading queries..." fullScreen={true} />;
   }
 
   if (error) {

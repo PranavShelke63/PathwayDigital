@@ -4,7 +4,6 @@ import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 import { HeartIcon, XMarkIcon, ShoppingCartIcon } from '@heroicons/react/24/outline';
-import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import { Product } from '../../services/api';
 
 // WishlistItems component for scrollable content

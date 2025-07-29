@@ -8,6 +8,7 @@ import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../context/AuthContext';
 import { useLocation } from 'react-router-dom';
+import LoadingSpinner from '../LoadingSpinner';
 
 const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -115,7 +116,7 @@ const ProductDetails: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-full flex items-center justify-center">
         <div className="text-xl text-gray-600">Loading product details...</div>
       </div>
     );
@@ -123,7 +124,7 @@ const ProductDetails: React.FC = () => {
 
   if (error || !product) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
+      <div className="min-h-full flex flex-col items-center justify-center">
         <div className="text-xl text-red-600 mb-4">{error || 'Product not found'}</div>
         <button
           onClick={() => navigate(-1)}
@@ -137,7 +138,7 @@ const ProductDetails: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background py-6 sm:py-12">
+    <div className="bg-background py-6 sm:py-12">
       <div className="max-w-2xl sm:max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
         {/* Mobile layout */}
         <div className="block lg:hidden">
@@ -275,14 +276,16 @@ const ProductDetails: React.FC = () => {
                       ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
                   : isInCart 
                     ? 'bg-green-600 text-white hover:bg-green-700'
-                    : 'bg-primary text-white hover:bg-primary/90'
+                  : 'bg-primary text-white hover:bg-primary/90'
               }`}
             >
                   {addingToCart ? (
-                    <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                      {isInCart ? 'Updating...' : 'Adding...'}
-                    </>
+                    <LoadingSpinner 
+                      size="sm" 
+                      color="white" 
+                      inline={true} 
+                      message={isInCart ? 'Updating...' : 'Adding...'} 
+                    />
                   ) : (
                     <>
                       <ShoppingCartIcon className="h-5 w-5 mr-2" />

@@ -1,22 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { ShoppingCartIcon, UserIcon, Bars3Icon as MenuIcon, MagnifyingGlassIcon as SearchIcon, ArrowRightOnRectangleIcon, XMarkIcon, PlusIcon, MinusIcon, HeartIcon } from '@heroicons/react/24/outline';
+import { ShoppingCartIcon, Bars3Icon as MenuIcon, ArrowRightOnRectangleIcon, XMarkIcon, PlusIcon, MinusIcon, HeartIcon, CalendarIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import { Transition } from '@headlessui/react';
 import { useAuth } from '../../context/AuthContext';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import logo from '../../assets/bgLOGO.png';
-import axios from 'axios';
 import WishlistDropdown, { WishlistItems, WishlistSummary } from '../Wishlist/WishlistDropdown';
 
 const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
   const { totalItems } = useCart();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { items: wishlistItems, totalItems: wishlistTotalItems, clearWishlist } = useWishlist();
   const navigate = useNavigate();
   const location = useLocation();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isOpen, setIsOpen] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchQuery, setSearchQuery] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -198,6 +200,17 @@ const Navbar: React.FC = () => {
                 </span>
               )}
             </Link>
+
+            {/* Orders Button */}
+            {user && (
+              <Link
+                to="/orders"
+                className="p-2 text-contrast hover:text-primary hover:bg-background rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              >
+                <span className="sr-only">View orders</span>
+                <CalendarIcon className="h-6 w-6" />
+              </Link>
+            )}
 
             <div className="hidden sm:ml-6 sm:flex sm:items-center">
               {user ? (

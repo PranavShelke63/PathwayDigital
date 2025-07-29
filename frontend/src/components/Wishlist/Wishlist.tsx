@@ -3,8 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
-import { HeartIcon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
+import { HeartIcon, ShoppingCartIcon, XMarkIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { Product } from '../../services/api';
 
 const Wishlist: React.FC = () => {
@@ -56,22 +55,40 @@ const Wishlist: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-        My Wishlist
-      </h1>
+      {/* Header with Back Button */}
+      <div className="flex items-center mb-8">
+        <button
+          onClick={() => navigate(-1)}
+          className="mr-6 p-2 text-gray-400 hover:text-gray-600 transition-colors"
+        >
+          <ArrowLeftIcon className="h-6 w-6" />
+        </button>
+        <div>
+          <h1 className="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+            My Wishlist
+          </h1>
+          <p className="text-sm text-gray-500 mt-1">Manage your saved items</p>
+        </div>
+      </div>
+
       <div className="mt-8 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 xl:gap-x-8">
         {items.map((product) => (
           <div key={product._id} className="relative">
-            <div className="relative w-full h-72 rounded-lg overflow-hidden">
-              <img
-                src={getImageUrl(product.image)}
-                alt={product.name}
-                className="w-full h-full object-center object-cover"
-              />
-            </div>
+            <Link to={`/product/${product._id}`} className="block">
+              <div className="relative w-full h-72 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer">
+                <img
+                  src={getImageUrl(product.image)}
+                  alt={product.name}
+                  className="w-full h-full object-center object-cover"
+                />
+              </div>
+            </Link>
             <div className="relative mt-4">
-              <h3 className="text-sm font-medium text-gray-900">{product.name}</h3>
+              <Link to={`/product/${product._id}`} className="block hover:text-primary transition-colors">
+                <h3 className="text-sm font-medium text-gray-900 hover:text-primary">{product.name}</h3>
+              
               <p className="mt-1 text-sm text-gray-500">{product.description}</p>
+              </Link>
             </div>
             <div className="absolute top-0 right-0 mt-2 mr-2">
               <button

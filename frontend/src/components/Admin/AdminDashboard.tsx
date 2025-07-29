@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { Navigate, Link } from 'react-router-dom';
-import { usersApi } from '../../services/api';
+import { usersApi, ordersApi } from '../../services/api';
 
 const AdminDashboard: React.FC = () => {
   const { user } = useAuth();
   const [userCount, setUserCount] = useState<number>(0);
+  const [orderCount, setOrderCount] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchUserCount = async () => {
+    const fetchData = async () => {
       try {
-        const response = await usersApi.getAll();
-        setUserCount(response.data.data.users.length);
+        // Fetch user count
+        const userResponse = await usersApi.getAll();
+        setUserCount(userResponse.data.data.users.length);
+        
+        // Fetch order count
+        const orderResponse = await ordersApi.getAll();
+        setOrderCount(orderResponse.data.data.orders.length);
       } catch (error) {
-        console.error('Failed to fetch user count:', error);
+        console.error('Failed to fetch data:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchUserCount();
+    fetchData();
   }, []);
 
   // Redirect if not admin
@@ -40,10 +46,18 @@ const AdminDashboard: React.FC = () => {
         <div className="card flex flex-col justify-between min-h-[260px]">
           <h3 className="text-lg font-semibold text-contrast mb-4">Analytics Overview</h3>
           <div className="space-y-4">
-            <div>
-              <p className="text-gray-500">Total Orders</p>
-              <p className="text-2xl font-bold text-contrast">125</p>
-            </div>
+            <Link to="/admin/orders" className="block">
+              <div className="cursor-pointer hover:bg-gray-100 p-2 -mx-2 rounded transition-colors">
+                <p className="text-gray-500">Total Orders</p>
+                <p className="text-2xl font-bold text-contrast">
+                  {loading ? (
+                    <span className="inline-block w-8 h-8 border-t-2 border-contrast rounded-full animate-spin"></span>
+                  ) : (
+                    orderCount
+                  )}
+                </p>
+              </div>
+            </Link>
             <div>
               <p className="text-gray-500">Total Revenue</p>
                               <p className="text-2xl font-bold text-primary">₹12,450</p>
@@ -66,6 +80,7 @@ const AdminDashboard: React.FC = () => {
         {/* Products Card */}
         <div className="card flex flex-col justify-between min-h-[260px]">
           <h3 className="text-lg font-semibold text-contrast mb-4">Product Management</h3>
+          <p className="text-sm text-gray-600 mb-4">Add, edit, and organize your product catalog with categories and inventory tracking.</p>
           <div className="space-y-4">
             <Link to="/admin/products" className="btn-primary w-full block text-center">
               Manage Products
@@ -80,6 +95,7 @@ const AdminDashboard: React.FC = () => {
         {/* Customer Support Card */}
         <div className="card flex flex-col justify-between min-h-[260px]">
           <h3 className="text-lg font-semibold text-contrast mb-4">Customer Support</h3>
+          <p className="text-sm text-gray-600 mb-4">Handle customer inquiries, respond to queries, and provide support assistance.</p>
           <div className="space-y-4">
             <Link to="/admin/queries" className="btn-primary w-full block text-center">
               View Customer Queries
@@ -92,9 +108,12 @@ const AdminDashboard: React.FC = () => {
           </div>
         </div>
 
+
+
         {/* Repair CRM Card */}
         <div className="card flex flex-col justify-between min-h-[260px]">
           <h3 className="text-lg font-semibold text-contrast mb-4">Repair CRM</h3>
+          <p className="text-sm text-gray-600 mb-4">Manage repair services, track repair jobs, and handle customer repair requests.</p>
           <div className="space-y-4">
             <Link to="/admin/repairs/new" className="btn-primary w-full block text-center">
               New Repair Entry
@@ -108,6 +127,7 @@ const AdminDashboard: React.FC = () => {
         {/* Quotation Bills Card */}
         <div className="card flex flex-col justify-between min-h-[260px]">
           <h3 className="text-lg font-semibold text-contrast mb-4">Quotation Bills</h3>
+          <p className="text-sm text-gray-600 mb-4">Create and manage quotation bills for customers with detailed pricing and terms.</p>
           <div className="space-y-4">
             <Link to="/admin/quotation/new" className="btn-primary w-full block text-center">
               Create Quotation Bill

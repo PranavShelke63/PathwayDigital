@@ -3,11 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 import { PlusIcon, MinusIcon, TrashIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
-import toast from 'react-hot-toast';
 import logo from '../../assets/bgLOGO.png';
+import LoadingSpinner from '../LoadingSpinner';
 
 const CartPage: React.FC = () => {
   const { items, totalPrice, totalItems, updateQuantity, removeFromCart, loading, error } = useCart();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { user } = useAuth();
   const navigate = useNavigate();
   
@@ -19,19 +20,12 @@ const CartPage: React.FC = () => {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="text-gray-500 mt-4">Loading cart...</p>
-        </div>
-      </div>
-    );
+    return <LoadingSpinner message="Loading cart..." fullScreen={true} />;
   }
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-full flex items-center justify-center">
         <div className="text-center">
           <p className="text-red-500 mb-4">{error}</p>
           <button 
@@ -47,7 +41,7 @@ const CartPage: React.FC = () => {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
+      <div className="bg-gray-50 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="mb-8">
@@ -75,7 +69,7 @@ const CartPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
@@ -114,28 +108,33 @@ const CartPage: React.FC = () => {
                     <div className="flex items-start space-x-4">
                       {/* Product Image */}
                       <div className="flex-shrink-0">
-                        <div className="w-24 h-24 rounded-lg overflow-hidden border border-gray-200 shadow-sm">
-                          <img
-                            src={getImageUrl(item.image)}
-                            alt={item.name}
-                            className="w-full h-full object-cover object-center"
-                          />
-                        </div>
+                        <Link to={`/product/${item._id}`} className="block">
+                          <div className="w-24 h-24 rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                            <img
+                              src={getImageUrl(item.image)}
+                              alt={item.name}
+                              className="w-full h-full object-cover object-center"
+                            />
+                          </div>
+                        </Link>
                       </div>
 
                       {/* Product Details */}
                       <div className="flex-1 min-w-0">
                         <div className="flex justify-between items-start">
                           <div className="flex-1 min-w-0">
-                            <h3 className="text-lg font-semibold text-gray-900 truncate">
-                              {item.name}
-                            </h3>
+                            <Link to={`/product/${item._id}`} className="block hover:text-primary transition-colors">
+                              <h3 className="text-lg font-semibold text-gray-900 truncate hover:text-primary">
+                                {item.name}
+                              </h3>
+                            
                             <p className="text-sm text-gray-500 mt-1">
                               Brand: {item.brand}
                             </p>
                             <p className="text-xl font-bold text-primary mt-2">
                               ₹{item.price.toFixed(2)}
                             </p>
+                            </Link>
                           </div>
                           
                           {/* Remove Button */}

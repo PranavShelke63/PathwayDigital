@@ -89,7 +89,7 @@ orderSchema.pre(/^find/, function(next) {
     select: 'name email'
   }).populate({
     path: 'items.product',
-    select: 'name price'
+    select: 'name price image'
   });
   next();
 });

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import Hero from '../Hero/Hero';
 
 const Home: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { user } = useAuth();
 
   const features = [
@@ -37,7 +37,7 @@ const Home: React.FC = () => {
   ];
 
   return (
-    <div className="bg-background">
+    <div className="bg-background min-h-full">
       <Hero />
 
       {/* Features Section */}

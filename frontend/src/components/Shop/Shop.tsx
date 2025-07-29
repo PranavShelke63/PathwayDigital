@@ -7,6 +7,7 @@ import { ShoppingCartIcon, HeartIcon, FunnelIcon } from '@heroicons/react/24/out
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../context/AuthContext';
+import LoadingSpinner from '../LoadingSpinner';
 
 const SCROLL_KEY = 'shopScrollPosition';
 
@@ -19,6 +20,7 @@ const Shop: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchQuery, setSearchQuery] = useState(''); // Actual filter term
   const [sortOption, setSortOption] = useState('default');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [inStockOnly, setInStockOnly] = useState(false);
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const { addToCart, items: cartItems } = useCart();
@@ -127,14 +129,10 @@ const Shop: React.FC = () => {
     }
   };
 
-  if (loading) return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-xl text-gray-600">Loading products...</div>
-    </div>
-  );
+  if (loading) return <LoadingSpinner message="Loading products..." fullScreen={true} />;
 
   if (error) return (
-    <div className="min-h-screen flex items-center justify-center">
+          <div className="min-h-full flex items-center justify-center">
       <div className="text-xl text-red-600">{error}</div>
     </div>
   );

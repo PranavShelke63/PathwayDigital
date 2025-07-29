@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Product, productsApi, categoriesApi, Category, uploadImage, deleteImage } from '../../services/api';
+import { Product, productsApi, categoriesApi, Category, deleteImage } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import { Navigate } from 'react-router-dom';
 import { FiEdit2, FiTrash2, FiPlus, FiX } from 'react-icons/fi';
+import LoadingSpinner from '../LoadingSpinner';
 
 const ProductManagement: React.FC = () => {
   const { user } = useAuth();
@@ -78,6 +79,7 @@ const ProductManagement: React.FC = () => {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleArrayInputChange = (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
     const value = e.target.value.split(',').map(item => item.trim());
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -240,7 +242,7 @@ const ProductManagement: React.FC = () => {
   // Helper to format price with commas and rupee symbol
   const formatPrice = (price: number) => `₹ ${price.toLocaleString('en-IN')}`;
 
-  if (loading) return <div className="text-center py-8">Loading...</div>;
+  if (loading) return <LoadingSpinner message="Loading products..." />;
   if (error) return <div className="text-red-500 text-center py-8">{error}</div>;
 
   // 1. Category dropdown: use backend enum values
@@ -548,7 +550,7 @@ const ProductManagement: React.FC = () => {
                     <div className="flex flex-wrap gap-2 mt-2">
                       {formData.images.map((img, idx) => (
                         <div key={idx} className="relative group">
-                          <img src={getImageUrl(img)} alt={`Image ${idx + 1}`} className="h-16 w-16 object-cover rounded" />
+                          <img src={getImageUrl(img)} alt={`Product ${idx + 1}`} className="h-16 w-16 object-cover rounded" />
                           {img && (
                             <button
                               type="button"

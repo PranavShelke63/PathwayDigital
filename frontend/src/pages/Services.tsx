@@ -26,7 +26,7 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background py-12 px-4 sm:px-6 lg:px-8">
+    <div className="bg-background py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-contrast mb-4">Our Services</h1>

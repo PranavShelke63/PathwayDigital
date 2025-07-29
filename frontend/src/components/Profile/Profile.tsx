@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 
 interface FormData {
   firstName: string;
@@ -25,6 +27,7 @@ interface Field {
 
 const Profile: React.FC = () => {
   const { user, updateProfile, updatePassword } = useAuth();
+  const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [showPasswordForm, setShowPasswordForm] = useState(false);
   const [formData, setFormData] = useState<FormData>({
@@ -198,13 +201,22 @@ const Profile: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Profile Header */}
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-contrast mb-2">My Profile</h1>
-        <p className="text-accent">Manage your account settings and preferences.</p>
-        {error && <p className="mt-2 text-red-600">{error}</p>}
-        {success && <p className="mt-2 text-green-600">{success}</p>}
+      {/* Header with Back Button */}
+      <div className="flex items-center mb-8">
+        <button
+          onClick={() => navigate(-1)}
+          className="mr-6 p-2 text-gray-400 hover:text-gray-600 transition-colors"
+        >
+          <ArrowLeftIcon className="h-6 w-6" />
+        </button>
+        <div>
+          <h1 className="text-4xl font-bold text-contrast">My Profile</h1>
+          <p className="text-accent">Manage your account settings and preferences.</p>
+        </div>
       </div>
+
+      {error && <p className="mt-2 text-red-600 mb-4">{error}</p>}
+      {success && <p className="mt-2 text-green-600 mb-4">{success}</p>}
 
       <div className="bg-white shadow-lg rounded-lg overflow-hidden">
         {/* Profile Banner */}
