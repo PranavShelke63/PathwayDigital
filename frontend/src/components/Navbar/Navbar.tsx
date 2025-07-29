@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { ShoppingCartIcon, UserIcon, Bars3Icon as MenuIcon, MagnifyingGlassIcon as SearchIcon, ArrowRightOnRectangleIcon, XMarkIcon, PlusIcon, MinusIcon, HeartIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
@@ -8,11 +8,11 @@ import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import logo from '../../assets/bgLOGO.png';
 import axios from 'axios';
-import Cart from '../Cart/Cart';
+import WishlistDropdown, { WishlistItems, WishlistSummary } from '../Wishlist/WishlistDropdown';
 
 const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
-  const { items, totalItems, totalPrice, updateQuantity, removeFromCart, clearCart } = useCart();
+  const { totalItems } = useCart();
   const { items: wishlistItems, totalItems: wishlistTotalItems, clearWishlist } = useWishlist();
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,18 +20,18 @@ const Navbar: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
-  const cartRef = useRef<HTMLDivElement>(null);
+  const wishlistRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
         setIsProfileOpen(false);
       }
-      if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
-        setIsCartOpen(false);
+      if (wishlistRef.current && !wishlistRef.current.contains(event.target as Node)) {
+        setIsWishlistOpen(false);
       }
     }
 
@@ -57,7 +57,6 @@ const Navbar: React.FC = () => {
         console.log('Logout successful, clearing context states...');
         
         // Clear context states
-        clearCart();
         clearWishlist();
         
         // Close dropdowns
@@ -133,41 +132,27 @@ const Navbar: React.FC = () => {
 
           <div className="hidden sm:ml-6 sm:flex sm:items-center space-x-4">
             {/* Wishlist Button */}
-            <Link
-              to="/wishlist"
-              className="relative p-2 text-contrast hover:text-primary hover:bg-background rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-            >
-              <span className="sr-only">View wishlist</span>
-              {location.pathname === '/wishlist' ? (
-                <HeartSolidIcon className="h-6 w-6 text-primary" />
-              ) : (
-                <HeartIcon className="h-6 w-6" />
-              )}
-              {wishlistTotalItems > 0 && (
-                <span className="absolute -top-1 -right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full">
-                  {wishlistTotalItems}
-                </span>
-              )}
-            </Link>
-
-            {/* Cart Button */}
-            <div className="relative" ref={cartRef}>
+            <div className="relative" ref={wishlistRef}>
               <button
-                onClick={() => setIsCartOpen(!isCartOpen)}
+                onClick={() => setIsWishlistOpen(!isWishlistOpen)}
                 className="relative p-2 text-contrast hover:text-primary hover:bg-background rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
               >
-                <span className="sr-only">View cart</span>
-                <ShoppingCartIcon className="h-6 w-6" />
-                {totalItems > 0 && (
-                  <span className="absolute -top-1 -right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-primary rounded-full">
-                    {totalItems}
+                <span className="sr-only">View wishlist</span>
+                {location.pathname === '/wishlist' ? (
+                  <HeartSolidIcon className="h-6 w-6 text-primary" />
+                ) : (
+                  <HeartIcon className="h-6 w-6" />
+                )}
+                {wishlistTotalItems > 0 && (
+                  <span className="absolute -top-1 -right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full">
+                    {wishlistTotalItems}
                   </span>
                 )}
               </button>
 
-              {/* Cart Dropdown */}
+              {/* Wishlist Dropdown */}
               <Transition
-                show={isCartOpen}
+                show={isWishlistOpen}
                 enter="transition ease-out duration-200"
                 enterFrom="transform opacity-0 scale-95"
                 enterTo="transform opacity-100 scale-100"
@@ -175,22 +160,44 @@ const Navbar: React.FC = () => {
                 leaveFrom="transform opacity-100 scale-100"
                 leaveTo="transform opacity-0 scale-95"
               >
-                <div className="absolute right-0 mt-3 w-96 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 z-50">
-                  <div className="p-4">
-                    <div className="flex justify-between items-center mb-4">
-                      <h3 className="text-lg font-medium text-contrast">Shopping Cart</h3>
-                      <button
-                        onClick={() => setIsCartOpen(false)}
-                        className="text-gray-400 hover:text-gray-500"
-                      >
-                        <XMarkIcon className="h-5 w-5" />
-                      </button>
-                    </div>
-                    <Cart onClose={() => setIsCartOpen(false)} />
+                <div className="absolute right-0 mt-3 w-96 bg-white rounded-lg shadow-xl ring-1 ring-black ring-opacity-5 z-50 max-h-[80vh] flex flex-col">
+                  {/* Header */}
+                  <div className="flex justify-between items-center p-4 border-b border-gray-200 flex-shrink-0">
+                    <h3 className="text-lg font-medium text-gray-900">Wishlist</h3>
+                    <button
+                      onClick={() => setIsWishlistOpen(false)}
+                      className="text-gray-400 hover:text-gray-500 transition-colors"
+                    >
+                      <XMarkIcon className="h-5 w-5" />
+                    </button>
+                  </div>
+                  
+                  {/* Scrollable Content */}
+                  <div className="flex-1 overflow-y-auto custom-scrollbar">
+                    <WishlistItems onClose={() => setIsWishlistOpen(false)} />
+                  </div>
+                  
+                  {/* Footer */}
+                  <div className="border-t border-gray-200 px-4 py-6 bg-gray-50 flex-shrink-0">
+                    <WishlistSummary onClose={() => setIsWishlistOpen(false)} />
                   </div>
                 </div>
               </Transition>
             </div>
+
+            {/* Cart Button */}
+            <Link
+              to="/cart"
+              className="relative p-2 text-contrast hover:text-primary hover:bg-background rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+            >
+              <span className="sr-only">View cart</span>
+              <ShoppingCartIcon className="h-6 w-6" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-primary rounded-full">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
 
             <div className="hidden sm:ml-6 sm:flex sm:items-center">
               {user ? (
@@ -351,6 +358,19 @@ const Navbar: React.FC = () => {
               {wishlistTotalItems > 0 && (
                 <span className="ml-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-500 rounded-full">
                   {wishlistTotalItems}
+                </span>
+              )}
+            </Link>
+            <Link
+              to="/cart"
+              className="flex items-center px-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <ShoppingCartIcon className="h-5 w-5 mr-2" />
+              Cart
+              {totalItems > 0 && (
+                <span className="ml-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-primary rounded-full">
+                  {totalItems}
                 </span>
               )}
             </Link>

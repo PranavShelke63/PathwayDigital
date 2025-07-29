@@ -30,23 +30,11 @@ const cartSchema = new mongoose.Schema({
   toObject: { virtuals: true }
 });
 
-// Virtual populate total price
-cartSchema.virtual('totalPrice').get(async function() {
-  let total = 0;
-  for (const item of this.items) {
-    const product = await mongoose.model('Product').findById(item.product);
-    if (product) {
-      total += product.price * item.quantity;
-    }
-  }
-  return total;
-});
-
 // Populate product details when querying
 cartSchema.pre(/^find/, function(next) {
   this.populate({
     path: 'items.product',
-    select: 'name price image'
+    select: 'name price image brand category stock'
   });
   next();
 });

@@ -106,14 +106,14 @@ export const usersApi = {
 
 // Cart API
 export const cartApi = {
-  get: () => api.get<{ data: Cart }>('/cart'),
+  get: () => api.get<{ status: string; data: { cart: Cart } }>('/cart'),
   addItem: (productId: string, quantity: number) => 
-    api.post<{ data: Cart }>('/cart/items', { productId, quantity }),
+    api.post<{ status: string; data: { cart: Cart } }>('/cart/items', { productId, quantity }),
   updateItem: (productId: string, quantity: number) => 
-    api.patch<{ data: Cart }>('/cart/items', { productId, quantity }),
+    api.patch<{ status: string; data: { cart: Cart } }>('/cart/items', { productId, quantity }),
   removeItem: (productId: string) => 
-    api.delete(`/cart/items/${productId}`),
-  clear: () => api.delete('/cart')
+    api.delete<{ status: string; data: { cart: Cart } }>(`/cart/items/${productId}`),
+  clear: () => api.delete<{ status: string; data: { cart: Cart } }>('/cart')
 };
 
 // Queries API

@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Product, productsApi, categoriesApi, Category } from '../../services/api';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
 import { ShoppingCartIcon, HeartIcon, FunnelIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import toast from 'react-hot-toast';
+import { useAuth } from '../../context/AuthContext';
 
 const SCROLL_KEY = 'shopScrollPosition';
 
@@ -22,6 +23,9 @@ const Shop: React.FC = () => {
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const { addToCart, items: cartItems } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
+  const { user } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchProducts();
@@ -109,6 +113,11 @@ const Shop: React.FC = () => {
   };
 
   const handleAddToCart = (product: Product) => {
+    if (!user) {
+      toast.error('Please log in to add items to cart.');
+      navigate('/login', { state: { from: location }, replace: true });
+      return;
+    }
     try {
       addToCart(product);
       toast.success('Added to cart');

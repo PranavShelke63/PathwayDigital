@@ -1,13 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useWishlist } from '../../context/WishlistContext';
 import { useCart } from '../../context/CartContext';
+import { useAuth } from '../../context/AuthContext';
 import { HeartIcon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
+import { Product } from '../../services/api';
 
 const Wishlist: React.FC = () => {
   const { items, removeFromWishlist } = useWishlist();
   const { addToCart, items: cartItems } = useCart();
+  const { user } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const isInCart = (productId: string) => {
     return cartItems.some(item => item._id === productId);
@@ -18,6 +23,15 @@ const Wishlist: React.FC = () => {
   const getImageUrl = (image: string | undefined) => {
     if (!image) return '';
     return image.startsWith('http') ? image : `${backendBase}/${image}`;
+  };
+
+  const handleAddToCart = (product: Product) => {
+    if (!user) {
+      alert('Please log in to add items to cart.');
+      navigate('/login', { state: { from: location }, replace: true });
+      return;
+    }
+    addToCart(product);
   };
 
   if (items.length === 0) {
@@ -70,7 +84,7 @@ const Wishlist: React.FC = () => {
             <div className="mt-3 flex justify-between items-center">
                                   <p className="text-sm font-medium text-gray-900">₹{product.price.toFixed(2)}</p>
               <button
-                onClick={() => addToCart(product)}
+                onClick={() => handleAddToCart(product)}
                 disabled={isInCart(product._id)}
                 className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white ${
                   isInCart(product._id)

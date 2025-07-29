@@ -12,7 +12,7 @@ import ForgotPassword from './components/Auth/ForgotPassword';
 import Profile from './components/Profile/Profile';
 import Shop from './components/Shop/Shop';
 import Wishlist from './components/Wishlist/Wishlist';
-import Cart from './components/Cart/Cart';
+import CartPage from './components/Cart/CartPage';
 import Home from './components/Home/Home';
 import About from './components/About/About';
 import Contact from './components/Contact/Contact';
@@ -87,17 +87,13 @@ function App() {
                 />
                 <Route
                   path="/wishlist"
-                  element={
-                    <ProtectedRoute>
-                      <Wishlist />
-                    </ProtectedRoute>
-                  }
+                  element={<Wishlist />}
                 />
                 <Route
                   path="/cart"
                   element={
                     <ProtectedRoute>
-                      <Cart />
+                      <CartPage />
                     </ProtectedRoute>
                   }
                 />
