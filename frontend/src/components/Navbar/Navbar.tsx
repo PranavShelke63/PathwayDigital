@@ -37,11 +37,21 @@ const Navbar: React.FC = () => {
       }
     }
 
+    // Handle escape key for mobile menu
+    function handleEscapeKey(event: KeyboardEvent) {
+      if (event.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    }
+
     document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscapeKey);
+    
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscapeKey);
     };
-  }, []);
+  }, [isMenuOpen]);
 
   const handleLogout = async () => {
     try {
@@ -318,95 +328,152 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
-      {isMenuOpen && (
-        <div className="sm:hidden">
-          <div className="pt-2 pb-3 space-y-1">
+      {/* Mobile menu overlay and sidebar */}
+      <Transition
+        show={isMenuOpen}
+        enter="transition ease-out duration-300"
+        enterFrom="opacity-0"
+        enterTo="opacity-100"
+        leave="transition ease-in duration-200"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+      >
+        {/* Backdrop */}
+        <div 
+          className="sm:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
+          onClick={() => setIsMenuOpen(false)}
+        />
+      </Transition>
+      
+      <Transition
+        show={isMenuOpen}
+        enter="transition ease-out duration-300"
+        enterFrom="opacity-0 translate-x-full"
+        enterTo="opacity-100 translate-x-0"
+        leave="transition ease-in duration-200"
+        leaveFrom="opacity-100 translate-x-0"
+        leaveTo="opacity-0 translate-x-full"
+      >
+        <div className="sm:hidden fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 overflow-y-auto">
+          {/* Header with close button */}
+          <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200">
+            <h2 className="text-lg font-semibold text-contrast">Menu</h2>
+            <button
+              onClick={() => setIsMenuOpen(false)}
+              className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <XMarkIcon className="h-6 w-6" />
+            </button>
+          </div>
+          
+          {/* Navigation Links */}
+          <div className="px-4 py-2 space-y-1">
             <Link
               to="/"
-              className="block pl-3 pr-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
+              className="flex items-center px-3 py-3 text-base font-medium text-contrast hover:text-primary hover:bg-background rounded-md transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Home
             </Link>
             <Link
               to="/shop"
-              className="block pl-3 pr-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
+              className="flex items-center px-3 py-3 text-base font-medium text-contrast hover:text-primary hover:bg-background rounded-md transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Shop
             </Link>
             <Link
               to="/about"
-              className="block pl-3 pr-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
+              className="flex items-center px-3 py-3 text-base font-medium text-contrast hover:text-primary hover:bg-background rounded-md transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               About
             </Link>
             <Link
               to="/contact"
-              className="block pl-3 pr-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
+              className="flex items-center px-3 py-3 text-base font-medium text-contrast hover:text-primary hover:bg-background rounded-md transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
             </Link>
             <Link
               to="/services"
-              className="block pl-3 pr-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
+              className="flex items-center px-3 py-3 text-base font-medium text-contrast hover:text-primary hover:bg-background rounded-md transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Services
             </Link>
-            <Link
-              to="/wishlist"
-              className="flex items-center px-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {location.pathname === '/wishlist' ? (
-                <HeartSolidIcon className="h-5 w-5 mr-2 text-primary" />
-              ) : (
-                <HeartIcon className="h-5 w-5 mr-2" />
-              )}
-              Wishlist
-              {wishlistTotalItems > 0 && (
-                <span className="ml-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-500 rounded-full">
-                  {wishlistTotalItems}
-                </span>
-              )}
-            </Link>
-            <Link
-              to="/cart"
-              className="flex items-center px-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <ShoppingCartIcon className="h-5 w-5 mr-2" />
-              Cart
-              {totalItems > 0 && (
-                <span className="ml-2 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-primary rounded-full">
-                  {totalItems}
-                </span>
-              )}
-            </Link>
           </div>
-          <div className="pt-4 pb-3 border-t border-gray-200">
+
+          {/* Quick Actions */}
+          <div className="px-4 py-2 border-t border-gray-200">
+            <div className="space-y-1">
+              <Link
+                to="/wishlist"
+                className="flex items-center px-3 py-3 text-base font-medium text-contrast hover:text-primary hover:bg-background rounded-md transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {location.pathname === '/wishlist' ? (
+                  <HeartSolidIcon className="h-5 w-5 mr-3 text-primary" />
+                ) : (
+                  <HeartIcon className="h-5 w-5 mr-3" />
+                )}
+                Wishlist
+                {wishlistTotalItems > 0 && (
+                  <span className="ml-auto inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-red-500 rounded-full">
+                    {wishlistTotalItems}
+                  </span>
+                )}
+              </Link>
+              <Link
+                to="/cart"
+                className="flex items-center px-3 py-3 text-base font-medium text-contrast hover:text-primary hover:bg-background rounded-md transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <ShoppingCartIcon className="h-5 w-5 mr-3" />
+                Cart
+                {totalItems > 0 && (
+                  <span className="ml-auto inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white bg-primary rounded-full">
+                    {totalItems}
+                  </span>
+                )}
+              </Link>
+              {user && (
+                <Link
+                  to="/orders"
+                  className="flex items-center px-3 py-3 text-base font-medium text-contrast hover:text-primary hover:bg-background rounded-md transition-colors"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <CalendarIcon className="h-5 w-5 mr-3" />
+                  Orders
+                </Link>
+              )}
+            </div>
+          </div>
+
+          {/* User Section */}
+          <div className="px-4 py-3 border-t border-gray-200">
             {user ? (
-              <>
-                <div className="flex items-center px-4">
+              <div className="space-y-3">
+                {/* User Info */}
+                <div className="flex items-center px-3 py-2">
                   <div className="flex-shrink-0">
-                    <div className="h-8 w-8 rounded-full bg-primary text-white flex items-center justify-center">
+                    <div className="h-10 w-10 rounded-full bg-primary text-white flex items-center justify-center text-lg font-medium">
                       {user.name.charAt(0).toUpperCase()}
                     </div>
                   </div>
-                  <div className="ml-3">
+                  <div className="ml-3 flex-1">
                     <div className="text-base font-medium text-contrast">{user.name}</div>
-                    <div className="text-sm font-medium text-gray-500">{user.email}</div>
+                    <div className="text-sm text-gray-500">{user.email}</div>
                   </div>
                 </div>
-                <div className="mt-3 space-y-1">
+
+                {/* User Actions */}
+                <div className="space-y-1">
                   {user.email === 'pranavopshelke@gmail.com' && (
                     <Link
                       to="/admin"
-                      className="block px-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
+                      className="flex items-center px-3 py-3 text-base font-medium text-contrast hover:text-primary hover:bg-background rounded-md transition-colors"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Admin Dashboard
@@ -414,21 +481,21 @@ const Navbar: React.FC = () => {
                   )}
                   <Link
                     to="/profile"
-                    className="block px-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
+                    className="flex items-center px-3 py-3 text-base font-medium text-contrast hover:text-primary hover:bg-background rounded-md transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Your Profile
                   </Link>
                   <Link
                     to="/orders"
-                    className="block px-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
+                    className="flex items-center px-3 py-3 text-base font-medium text-contrast hover:text-primary hover:bg-background rounded-md transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Orders
                   </Link>
                   <Link
                     to="/wishlist"
-                    className="block px-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
+                    className="flex items-center px-3 py-3 text-base font-medium text-contrast hover:text-primary hover:bg-background rounded-md transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Wishlist
@@ -436,25 +503,25 @@ const Navbar: React.FC = () => {
                   <button
                     onClick={handleLogout}
                     disabled={isLoggingOut}
-                    className="block w-full text-left px-4 py-2 text-base font-medium text-red-600 hover:bg-red-50 group flex items-center justify-between disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex items-center justify-between w-full px-3 py-3 text-base font-medium text-red-600 hover:bg-red-50 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <span>{isLoggingOut ? 'Signing out...' : 'Sign out'}</span>
-                    <ArrowRightOnRectangleIcon className="h-5 w-5 text-red-500 group-hover:text-red-600" />
+                    <ArrowRightOnRectangleIcon className="h-5 w-5 text-red-500" />
                   </button>
                 </div>
-              </>
+              </div>
             ) : (
-              <div className="mt-3 space-y-1">
+              <div className="space-y-2">
                 <Link
                   to="/login"
-                  className="block px-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
+                  className="flex items-center justify-center w-full px-4 py-3 text-base font-medium text-primary border border-primary rounded-md hover:bg-primary hover:text-white transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Sign in
                 </Link>
                 <Link
                   to="/register"
-                  className="block px-4 py-2 text-base font-medium text-contrast hover:text-primary hover:bg-background"
+                  className="flex items-center justify-center w-full px-4 py-3 text-base font-medium text-white bg-primary rounded-md hover:bg-primary/90 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Sign up
@@ -463,7 +530,7 @@ const Navbar: React.FC = () => {
             )}
           </div>
         </div>
-      )}
+      </Transition>
     </nav>
   );
 };

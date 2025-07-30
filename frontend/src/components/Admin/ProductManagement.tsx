@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Product, productsApi, categoriesApi, Category, deleteImage } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
-import { Navigate } from 'react-router-dom';
-import { FiEdit2, FiTrash2, FiPlus, FiX } from 'react-icons/fi';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { FiEdit2, FiTrash2, FiPlus, FiX, FiArrowLeft, FiSearch } from 'react-icons/fi';
 import LoadingSpinner from '../LoadingSpinner';
 
 const ProductManagement: React.FC = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   // Move all useState calls to the top
   const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [customSpecKey, setCustomSpecKey] = useState('');
   const [categories, setCategories] = useState<Category[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState('');
   // Update formData to only include fields from backend Product.js
   const [formData, setFormData] = useState<Partial<Product>>({
     name: '',
@@ -38,6 +42,32 @@ const ProductManagement: React.FC = () => {
     fetchProducts();
     fetchCategories();
   }, []);
+
+  // Filter products based on search term and category
+  useEffect(() => {
+    let filtered = products;
+    
+    // Filter by search term
+    if (searchTerm) {
+      filtered = filtered.filter(product =>
+        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.brand.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.description.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+    
+    // Filter by category
+    if (selectedCategoryFilter) {
+      filtered = filtered.filter(product => {
+        if (typeof product.category === 'object' && product.category !== null) {
+          return product.category._id === selectedCategoryFilter;
+        }
+        return product.category === selectedCategoryFilter;
+      });
+    }
+    
+    setFilteredProducts(filtered);
+  }, [products, searchTerm, selectedCategoryFilter]);
 
   const fetchCategories = async () => {
     try {
@@ -266,7 +296,15 @@ const ProductManagement: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-contrast">Product Management</h1>
+        <div className="flex items-center gap-4">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center gap-2 text-gray-600 hover:text-gray-800 transition-colors"
+          >
+            <FiArrowLeft className="h-5 w-5" />
+          </button>
+          <h1 className="text-3xl font-bold text-contrast">Product Management</h1>
+        </div>
         <button
           onClick={() => {
             setSelectedProduct(null);
@@ -293,6 +331,59 @@ const ProductManagement: React.FC = () => {
         </button>
       </div>
 
+      {/* Search and Filter Section */}
+      <div className="bg-white shadow-sm rounded-lg p-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Search Input */}
+          <div className="relative">
+            <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+            />
+          </div>
+
+          {/* Category Filter */}
+          <div>
+            <select
+              value={selectedCategoryFilter}
+              onChange={(e) => setSelectedCategoryFilter(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary focus:border-primary"
+            >
+              <option value="">All Categories</option>
+              {categories.map(category => (
+                <option key={category._id} value={category._id}>
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Results Count */}
+          <div className="flex items-center justify-end text-sm text-gray-600">
+            Showing {filteredProducts.length} of {products.length} products
+          </div>
+        </div>
+
+        {/* Clear Filters Button */}
+        {(searchTerm || selectedCategoryFilter) && (
+          <div className="mt-4 flex justify-end">
+            <button
+              onClick={() => {
+                setSearchTerm('');
+                setSelectedCategoryFilter('');
+              }}
+              className="text-sm text-gray-600 hover:text-gray-800 underline"
+            >
+              Clear all filters
+            </button>
+          </div>
+        )}
+      </div>
+
       {/* Products Table */}
       <div className="bg-white shadow-sm rounded-lg overflow-hidden">
         {/* Responsive table wrapper */}
@@ -309,7 +400,7 @@ const ProductManagement: React.FC = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {products.map((product) => (
+              {filteredProducts.map((product) => (
                 <tr key={product._id}>
                   <td className="px-2 sm:px-6 py-4 whitespace-nowrap">
                     <img src={getImageUrl(product.image)} alt={product.name} className="h-10 w-10 sm:h-12 sm:w-12 object-cover rounded" />
@@ -341,6 +432,23 @@ const ProductManagement: React.FC = () => {
             </tbody>
           </table>
         </div>
+
+        {/* No Results Message */}
+        {filteredProducts.length === 0 && (
+          <div className="text-center py-8 text-gray-500">
+            {searchTerm || selectedCategoryFilter ? (
+              <div>
+                <p className="text-lg font-medium mb-2">No products found</p>
+                <p className="text-sm">Try adjusting your search or filter criteria</p>
+              </div>
+            ) : (
+              <div>
+                <p className="text-lg font-medium mb-2">No products available</p>
+                <p className="text-sm">Add your first product to get started</p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
       {/* Add/Edit Product Modal */}
       {isModalOpen && (

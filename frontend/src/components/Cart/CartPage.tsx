@@ -25,7 +25,7 @@ const CartPage: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-full flex items-center justify-center">
+      <div className="min-h-full flex items-center justify-center px-4">
         <div className="text-center">
           <p className="text-red-500 mb-4">{error}</p>
           <button 
@@ -41,75 +41,65 @@ const CartPage: React.FC = () => {
 
   if (items.length === 0) {
     return (
-      <div className="bg-gray-50 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="mb-8">
-              <img src={logo} alt="PATHWAY DIGITAL" className="h-20 w-auto mx-auto mb-6" />
-            </div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Your cart is empty</h2>
-            <p className="text-lg text-gray-600 mb-8 max-w-md mx-auto">
-              Looks like you haven't added any items to your cart yet. Start exploring our products!
-            </p>
-            <div className="space-y-4">
-              <Link
-                to="/shop"
-                className="inline-flex items-center px-8 py-4 border border-transparent rounded-lg shadow-lg text-lg font-semibold text-white bg-primary hover:bg-primary/90 transition-all duration-200 transform hover:scale-105"
-              >
-                Start Shopping
-              </Link>
-              <div className="text-sm text-gray-500">
-                <p>Discover amazing products at great prices</p>
-              </div>
-            </div>
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+        <div className="text-center max-w-md mx-auto">
+          <div className="mb-6">
+            <img src={logo} alt="PATHWAY DIGITAL" className="h-16 w-auto mx-auto mb-4" />
           </div>
+          <h2 className="text-2xl font-bold text-gray-900 mb-3">Your cart is empty</h2>
+          <p className="text-gray-600 mb-6">
+            Looks like you haven't added any items to your cart yet. Start exploring our products!
+          </p>
+          <Link
+            to="/shop"
+            className="inline-flex items-center px-6 py-3 border border-transparent rounded-lg shadow-lg text-base font-semibold text-white bg-primary hover:bg-primary/90 transition-colors"
+          >
+            Start Shopping
+          </Link>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* Header */}
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-6 sm:mb-8">
           <div className="flex items-center">
             <button
               onClick={() => navigate(-1)}
-              className="mr-6 p-2 text-gray-400 hover:text-gray-600 transition-colors"
+              className="mr-4 p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-lg hover:bg-gray-100"
             >
               <ArrowLeftIcon className="h-6 w-6" />
             </button>
-            <div className="flex items-center space-x-4">
-             
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900">Shopping Cart</h1>
-                <p className="text-sm text-gray-500">Manage your items</p>
-              </div>
+            <div>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Shopping Cart</h1>
+              <p className="text-sm text-gray-500">Manage your items</p>
             </div>
           </div>
           <div className="text-right">
             <div className="text-sm text-gray-500">Total Items</div>
-            <div className="text-2xl font-bold text-primary">{totalItems}</div>
+            <div className="text-xl sm:text-2xl font-bold text-primary">{totalItems}</div>
           </div>
         </div>
 
-        <div className="lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:items-start">
           {/* Cart Items */}
-          <div className="lg:col-span-8">
-            <div className="bg-white rounded-xl shadow-lg border border-gray-100">
-              <div className="px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-xl">
+          <div className="lg:col-span-8 mb-6 lg:mb-0">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200">
+              <div className="px-4 sm:px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-xl">
                 <h2 className="text-lg font-semibold text-gray-900">Cart Items</h2>
                 <p className="text-sm text-gray-500">Review and manage your selections</p>
               </div>
               <div className="divide-y divide-gray-100">
                 {items.map((item) => (
-                  <div key={item._id} className="p-6 hover:bg-gray-50 transition-colors">
-                    <div className="flex items-start space-x-4">
+                  <div key={item._id} className="p-4 sm:p-6 hover:bg-gray-50 transition-colors">
+                    <div className="flex items-start space-x-3 sm:space-x-4">
                       {/* Product Image */}
                       <div className="flex-shrink-0">
                         <Link to={`/product/${item._id}`} className="block">
-                          <div className="w-24 h-24 rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+                          <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
                             <img
                               src={getImageUrl(item.image)}
                               alt={item.name}
@@ -124,16 +114,15 @@ const CartPage: React.FC = () => {
                         <div className="flex justify-between items-start">
                           <div className="flex-1 min-w-0">
                             <Link to={`/product/${item._id}`} className="block hover:text-primary transition-colors">
-                              <h3 className="text-lg font-semibold text-gray-900 truncate hover:text-primary">
+                              <h3 className="text-base sm:text-lg font-semibold text-gray-900 truncate hover:text-primary">
                                 {item.name}
                               </h3>
-                            
-                            <p className="text-sm text-gray-500 mt-1">
-                              Brand: {item.brand}
-                            </p>
-                            <p className="text-xl font-bold text-primary mt-2">
-                              ₹{item.price.toFixed(2)}
-                            </p>
+                              <p className="text-sm text-gray-500 mt-1">
+                                Brand: {item.brand}
+                              </p>
+                              <p className="text-lg sm:text-xl font-bold text-primary mt-2">
+                                ₹{item.price.toFixed(2)}
+                              </p>
                             </Link>
                           </div>
                           
@@ -149,7 +138,7 @@ const CartPage: React.FC = () => {
                         </div>
 
                         {/* Quantity Controls */}
-                        <div className="flex items-center justify-between mt-4">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-4 space-y-3 sm:space-y-0">
                           <div className="flex items-center space-x-3">
                             <label className="text-sm font-medium text-gray-700">Quantity:</label>
                             <div className="flex items-center border border-gray-300 rounded-lg shadow-sm">
@@ -161,7 +150,7 @@ const CartPage: React.FC = () => {
                               >
                                 <MinusIcon className="h-4 w-4" />
                               </button>
-                              <span className="px-4 py-2 text-sm font-semibold text-gray-900 min-w-[3rem] text-center bg-white">
+                              <span className="px-3 sm:px-4 py-2 text-sm font-semibold text-gray-900 min-w-[2.5rem] sm:min-w-[3rem] text-center bg-white">
                                 {item.quantity}
                               </span>
                               <button
@@ -173,7 +162,7 @@ const CartPage: React.FC = () => {
                                 <PlusIcon className="h-4 w-4" />
                               </button>
                             </div>
-                            <span className="text-sm text-gray-500">
+                            <span className="text-xs sm:text-sm text-gray-500">
                               {item.stock} available
                             </span>
                           </div>
@@ -181,7 +170,7 @@ const CartPage: React.FC = () => {
                           {/* Item Total */}
                           <div className="text-right">
                             <p className="text-sm text-gray-500">Item Total</p>
-                            <p className="text-xl font-bold text-primary">
+                            <p className="text-lg sm:text-xl font-bold text-primary">
                               ₹{(item.price * item.quantity).toFixed(2)}
                             </p>
                           </div>
@@ -202,13 +191,13 @@ const CartPage: React.FC = () => {
           </div>
 
           {/* Order Summary */}
-          <div className="lg:col-span-4 mt-8 lg:mt-0">
-            <div className="bg-white rounded-xl shadow-lg border border-gray-100 sticky top-4">
-              <div className="px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-xl">
+          <div className="lg:col-span-4">
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 lg:sticky lg:top-4">
+              <div className="px-4 sm:px-6 py-4 border-b border-gray-200 bg-gray-50 rounded-t-xl">
                 <h2 className="text-lg font-semibold text-gray-900">Order Summary</h2>
                 <p className="text-sm text-gray-500">Review your order details</p>
               </div>
-              <div className="p-6 space-y-4">
+              <div className="p-4 sm:p-6 space-y-4">
                 {/* Subtotal */}
                 <div className="flex justify-between text-base font-medium text-gray-900">
                   <span>Subtotal ({totalItems} items)</span>
@@ -238,7 +227,7 @@ const CartPage: React.FC = () => {
                 {/* Checkout Button */}
                 <Link
                   to="/checkout"
-                  className="w-full flex justify-center items-center px-6 py-4 border border-transparent rounded-lg shadow-lg text-lg font-semibold text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-200 transform hover:scale-105"
+                  className="w-full flex justify-center items-center px-6 py-4 border border-transparent rounded-lg shadow-lg text-base font-semibold text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors"
                 >
                   Proceed to Checkout
                 </Link>
