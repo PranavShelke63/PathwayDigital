@@ -63,25 +63,23 @@ const Wishlist: React.FC = () => {
             <ArrowLeftIcon className="h-6 w-6" />
           </button>
           <div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
-              My Wishlist
-            </h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">My Wishlist</h1>
             <p className="text-sm text-gray-500 mt-1">Manage your saved items</p>
           </div>
         </div>
 
-        {/* Mobile Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        {/* Mobile Grid - Following Shop page pattern */}
+        <div className="grid grid-cols-2 gap-y-6 gap-x-4 lg:grid-cols-3 xl:gap-x-8">
           {items.map((product) => (
-            <div key={product._id} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
-              {/* Product Image Container */}
+            <div key={product._id} className="card group relative block rounded-lg shadow-md bg-white overflow-hidden border border-gray-100 hover:shadow-xl hover:scale-[1.03] transition-all duration-200">
+              {/* Product Image */}
               <div className="relative">
                 <Link to={`/product/${product._id}`} className="block">
-                  <div className="relative w-full h-48 sm:h-56 rounded-t-xl overflow-hidden">
+                  <div className="flex items-center justify-center w-full aspect-square bg-gray-100 overflow-hidden">
                     <img
                       src={getImageUrl(product.image)}
                       alt={product.name}
-                      className="w-full h-full object-center object-cover"
+                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                 </Link>
@@ -89,42 +87,48 @@ const Wishlist: React.FC = () => {
                 {/* Remove Button */}
                 <button
                   onClick={() => removeFromWishlist(product._id)}
-                  className="absolute top-2 right-2 p-2 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full shadow-sm text-red-600 hover:text-red-700 hover:bg-red-50 transition-colors"
+                  className="absolute top-2 right-2 p-2 rounded-full bg-white shadow-md hover:bg-red-50 hover:scale-110 transition-all duration-200 z-10 w-10 h-10 flex items-center justify-center"
                 >
-                  <XMarkIcon className="h-4 w-4" aria-hidden="true" />
+                  <XMarkIcon className="h-5 w-5 text-red-500" aria-hidden="true" />
                 </button>
               </div>
 
               {/* Product Details */}
-              <div className="p-4">
-                <Link to={`/product/${product._id}`} className="block hover:text-primary transition-colors">
-                  <h3 className="text-sm sm:text-base font-semibold text-gray-900 line-clamp-2 mb-2 hover:text-primary">
-                    {product.name}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-gray-500 line-clamp-2 mb-3">
-                    {product.description}
-                  </p>
-                </Link>
-
-                {/* Price and Add to Cart */}
-                <div className="flex items-center justify-between">
-                  <p className="text-lg font-bold text-primary">
-                    ₹{product.price.toFixed(2)}
-                  </p>
-                  <button
-                    onClick={() => handleAddToCart(product)}
-                    disabled={isInCart(product._id)}
-                    className={`flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
-                      isInCart(product._id)
-                        ? 'bg-green-100 text-green-700 hover:bg-green-200'
-                        : 'bg-primary text-white hover:bg-primary/90'
-                    }`}
-                  >
-                    <ShoppingCartIcon className="h-4 w-4 mr-1" />
-                    {isInCart(product._id) ? 'In Cart' : 'Add'}
-                  </button>
+              <div className="mt-4 flex flex-col sm:flex-row sm:justify-between gap-2 px-3">
+                <div>
+                  <Link to={`/product/${product._id}`} className="block hover:text-primary transition-colors">
+                    <h3 className="text-base font-semibold text-contrast group-hover:text-primary truncate">
+                      {product.name}
+                    </h3>
+                    <p className="mt-1 text-xs text-gray-500 line-clamp-2">
+                      {product.description}
+                    </p>
+                    <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1">
+                      <span className="text-xs text-gray-500">Brand: {product.brand}</span>
+                      {product.stock > 0 ? (
+                        <span className="text-xs text-green-600">In Stock: {product.stock}</span>
+                      ) : (
+                        <span className="text-xs text-red-600">Out of Stock</span>
+                      )}
+                    </div>
+                  </Link>
                 </div>
+                <p className="text-base font-bold text-contrast">₹{product.price.toFixed(2)}</p>
               </div>
+
+              {/* Add to Cart Button */}
+              <button
+                onClick={() => handleAddToCart(product)}
+                disabled={isInCart(product._id)}
+                className={`mt-4 w-full flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+                  isInCart(product._id)
+                    ? 'bg-green-500 text-white hover:bg-green-600 hover:shadow-lg'
+                    : 'bg-primary text-white hover:bg-primary/80 hover:shadow-lg'
+                }`}
+              >
+                <ShoppingCartIcon className="h-5 w-5 mr-2" />
+                {isInCart(product._id) ? 'In Cart' : 'Add to Cart'}
+              </button>
             </div>
           ))}
         </div>

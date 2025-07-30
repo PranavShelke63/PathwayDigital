@@ -354,18 +354,7 @@ const Navbar: React.FC = () => {
         leaveFrom="opacity-100 translate-x-0"
         leaveTo="opacity-0 translate-x-full"
       >
-        <div className="sm:hidden fixed top-0 right-0 h-full w-80 bg-white shadow-xl z-50 overflow-y-auto">
-          {/* Header with close button */}
-          <div className="flex items-center justify-between px-4 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-contrast">Menu</h2>
-            <button
-              onClick={() => setIsMenuOpen(false)}
-              className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-colors"
-            >
-              <XMarkIcon className="h-6 w-6" />
-            </button>
-          </div>
-          
+        <div className="sm:hidden fixed top-16 right-0 max-h-[calc(100vh-4rem)] w-80 bg-white shadow-xl z-50 overflow-y-auto">
           {/* Navigation Links */}
           <div className="px-4 py-2 space-y-1">
             <Link
