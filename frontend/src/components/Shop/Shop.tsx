@@ -7,6 +7,7 @@ import { ShoppingCartIcon, HeartIcon, FunnelIcon } from '@heroicons/react/24/out
 import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../context/AuthContext';
+import { getImageUrl } from '../../utils/imageUtils';
 import LoadingSpinner from '../LoadingSpinner';
 
 const SCROLL_KEY = 'shopScrollPosition';
@@ -252,10 +253,7 @@ const Shop: React.FC = () => {
               const inWishlist = isInWishlist(product._id);
 
               // Compute image URL
-              const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
-              const imageUrl = product.image.startsWith('http')
-                ? product.image
-                : `${backendBase}/${product.image}`;
+              const imageUrl = getImageUrl(product.image);
 
               return (
                 <Link

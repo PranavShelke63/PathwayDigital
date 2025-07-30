@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeftIcon, EyeIcon, CalendarIcon, TruckIcon, CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftIcon, EyeIcon, CalendarIcon } from '@heroicons/react/24/outline';
 import { ordersApi, Order } from '../../services/api';
+import { getImageUrl } from '../../utils/imageUtils';
 import LoadingSpinner from '../LoadingSpinner';
 
 const UserOrders: React.FC = () => {
@@ -11,14 +12,7 @@ const UserOrders: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
 
-  const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
-  
-  const getImageUrl = (image: string | undefined) => {
-    if (!image) return '/placeholder-product.png';
-    const url = image.startsWith('http') ? image : `${backendBase}/${image}`;
-    console.log('Image URL:', url, 'for image:', image);
-    return url;
-  };
+
 
   useEffect(() => {
     fetchOrders();

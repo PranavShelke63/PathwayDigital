@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import { ArrowLeftIcon, CreditCardIcon, BanknotesIcon } from '@heroicons/react/24/outline';
 import LoadingSpinner from '../LoadingSpinner';
 import { ordersApi } from '../../services/api';
+import { getImageUrl } from '../../utils/imageUtils';
 
 interface ShippingAddress {
   street: string;
@@ -25,7 +26,6 @@ const Checkout: React.FC = () => {
   const { items, totalPrice, totalItems, clearCart } = useCart();
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
-  const [step, setStep] = useState(1);
 
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
     street: user?.address?.street || '',
@@ -60,12 +60,7 @@ const Checkout: React.FC = () => {
     }
   ];
 
-  const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
-  
-  const getImageUrl = (image: string | undefined) => {
-    if (!image) return '';
-    return image.startsWith('http') ? image : `${backendBase}/${image}`;
-  };
+
 
   const handleAddressChange = (field: keyof ShippingAddress, value: string) => {
     setShippingAddress(prev => ({

@@ -5,6 +5,7 @@ import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 import { HeartIcon, ShoppingCartIcon, XMarkIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
 import { Product } from '../../services/api';
+import { getImageUrl } from '../../utils/imageUtils';
 
 const Wishlist: React.FC = () => {
   const { items, removeFromWishlist } = useWishlist();
@@ -17,12 +18,7 @@ const Wishlist: React.FC = () => {
     return cartItems.some(item => item._id === productId);
   };
 
-  // Helper to get image URL
-  const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
-  const getImageUrl = (image: string | undefined) => {
-    if (!image) return '';
-    return image.startsWith('http') ? image : `${backendBase}/${image}`;
-  };
+
 
   const handleAddToCart = (product: Product) => {
     if (!user) {

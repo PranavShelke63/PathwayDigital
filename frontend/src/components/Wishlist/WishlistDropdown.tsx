@@ -5,6 +5,7 @@ import { useCart } from '../../context/CartContext';
 import { useAuth } from '../../context/AuthContext';
 import { HeartIcon, XMarkIcon, ShoppingCartIcon } from '@heroicons/react/24/outline';
 import { Product } from '../../services/api';
+import { getImageUrl } from '../../utils/imageUtils';
 
 // WishlistItems component for scrollable content
 export const WishlistItems: React.FC<{ onClose?: () => void }> = ({ onClose }) => {
@@ -12,12 +13,7 @@ export const WishlistItems: React.FC<{ onClose?: () => void }> = ({ onClose }) =
   const { addToCart, items: cartItems } = useCart();
   const { user } = useAuth();
   
-  const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
-  
-  const getImageUrl = (image: string | undefined) => {
-    if (!image) return '';
-    return image.startsWith('http') ? image : `${backendBase}/${image}`;
-  };
+
 
   const isInCart = (productId: string) => {
     return cartItems.some(item => item._id === productId);

@@ -8,6 +8,7 @@ import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../context/AuthContext';
 import { useLocation } from 'react-router-dom';
+import { getImageUrl } from '../../utils/imageUtils';
 import LoadingSpinner from '../LoadingSpinner';
 
 const ProductDetails: React.FC = () => {
@@ -96,11 +97,7 @@ const ProductDetails: React.FC = () => {
     }
   };
 
-  // Helper to get image URL
-  const getImageUrl = (img: string) => {
-    const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
-    return img.startsWith('http') ? img : `${backendBase}/${img}`;
-  };
+
 
   const handlePrevImage = () => {
     if (!product?.images) return;

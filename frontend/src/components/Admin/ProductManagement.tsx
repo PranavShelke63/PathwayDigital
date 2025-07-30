@@ -3,6 +3,7 @@ import { Product, productsApi, categoriesApi, Category, deleteImage } from '../.
 import { useAuth } from '../../context/AuthContext';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { FiEdit2, FiTrash2, FiPlus, FiX, FiArrowLeft, FiSearch } from 'react-icons/fi';
+import { getImageUrl } from '../../utils/imageUtils';
 import LoadingSpinner from '../LoadingSpinner';
 
 const ProductManagement: React.FC = () => {
@@ -262,12 +263,7 @@ const ProductManagement: React.FC = () => {
     }
   };
 
-  // Helper to get image URL
-  const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
-  const getImageUrl = (image: string | undefined) => {
-    if (!image) return '';
-    return image.startsWith('http') ? image : `${backendBase}/${image}`;
-  };
+
 
   // Helper to format price with commas and rupee symbol
   const formatPrice = (price: number) => `₹ ${price.toLocaleString('en-IN')}`;

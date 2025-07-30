@@ -1,5 +1,6 @@
 import React from 'react';
 import { RepairJob } from '../../services/api';
+import { getImageUrl } from '../../utils/imageUtils';
 import logo from '../../assets/bgLOGO.png';
 
 interface InvoiceViewProps {
@@ -7,13 +8,7 @@ interface InvoiceViewProps {
   onClose: () => void;
 }
 
-const getImageUrl = (img: string) => {
-  // Always prepend localhost:5000 for local dev if path starts with /uploads
-  if (img.startsWith('/uploads')) {
-    return 'http://localhost:5000' + img;
-  }
-  return img;
-};
+
 
 const InvoiceView: React.FC<InvoiceViewProps> = ({ job, onClose }) => {
   if (!job) return null;

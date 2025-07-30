@@ -28,7 +28,7 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      imgSrc: ["'self'", "http://localhost:3000", "http://localhost:5000", "data:"],
+      imgSrc: ["'self'", "http://localhost:3000", "http://localhost:5000", "http://192.168.0.102:3000", "http://192.168.0.102:5000", "data:"],
       baseUri: ["'self'"],
       fontSrc: ["'self'", "https:", "data:"],
       formAction: ["'self'"],
@@ -44,7 +44,14 @@ app.use(helmet({
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: [
+    process.env.FRONTEND_URL || 'http://localhost:3000',
+    'http://192.168.0.102:3000', // Your network IP
+    'http://192.168.1.100:3000', // Common alternative network IP
+    'http://192.168.1.101:3000', // Another common alternative
+    'http://10.0.0.100:3000',    // Another common network range
+    'http://10.0.0.101:3000'     // Another common network range
+  ],
   credentials: true
 }));
 
@@ -65,7 +72,19 @@ app.use(morganMiddleware);
 
 // Serve uploads directory as static files with CORS and CORP headers for images
 app.use('/uploads', (req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', process.env.FRONTEND_URL || 'http://localhost:3000');
+  const allowedOrigins = [
+    process.env.FRONTEND_URL || 'http://localhost:3000',
+    'http://192.168.0.102:3000',
+    'http://192.168.1.100:3000',
+    'http://192.168.1.101:3000',
+    'http://10.0.0.100:3000',
+    'http://10.0.0.101:3000'
+  ];
+  
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
   next();
 }, express.static(path.join(__dirname, 'uploads')));
@@ -99,6 +118,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dU
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   logger.info(`Server is running on port ${PORT}`);
+  logger.info(`Server accessible at: http://0.0.0.0:${PORT}`);
 });

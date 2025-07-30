@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { ordersApi, Order } from '../../services/api';
+import { getImageUrl } from '../../utils/imageUtils';
 import { 
   ArrowLeftIcon, 
   EyeIcon, 
@@ -24,14 +25,7 @@ const OrderManagement: React.FC = () => {
   const [statusFilter, setStatusFilter] = useState('all');
   const [paymentStatusFilter, setPaymentStatusFilter] = useState('all');
 
-  const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
-  
-  const getImageUrl = (image: string | undefined) => {
-    if (!image) return '/placeholder-product.png';
-    const url = image.startsWith('http') ? image : `${backendBase}/${image}`;
-    console.log('Image URL:', url, 'for image:', image);
-    return url;
-  };
+
 
   useEffect(() => {
     if (!user || user.email !== 'pranavopshelke@gmail.com') {

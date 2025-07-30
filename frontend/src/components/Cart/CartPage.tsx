@@ -5,6 +5,7 @@ import { useAuth } from '../../context/AuthContext';
 import { PlusIcon, MinusIcon, TrashIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
 import logo from '../../assets/bgLOGO.png';
 import LoadingSpinner from '../LoadingSpinner';
+import { getImageUrl } from '../../utils/imageUtils';
 
 const CartPage: React.FC = () => {
   const { items, totalPrice, totalItems, updateQuantity, removeFromCart, loading, error } = useCart();
@@ -12,12 +13,7 @@ const CartPage: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   
-  const backendBase = (process.env.REACT_APP_API_URL?.replace('/api/v1', '') || 'http://localhost:5000');
-  
-  const getImageUrl = (image: string | undefined) => {
-    if (!image) return '';
-    return image.startsWith('http') ? image : `${backendBase}/${image}`;
-  };
+
 
   if (loading) {
     return <LoadingSpinner message="Loading cart..." fullScreen={true} />;
