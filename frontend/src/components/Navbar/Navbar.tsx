@@ -79,31 +79,51 @@ const Navbar: React.FC = () => {
           <div className="hidden lg:flex lg:space-x-8">
             <Link
               to="/"
-              className="inline-flex items-center px-3 py-2 text-sm font-medium text-contrast border-b-2 border-transparent hover:border-primary transition-colors"
+              className={`inline-flex items-center px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
+                location.pathname === '/' 
+                  ? 'text-primary border-primary' 
+                  : 'text-contrast border-transparent hover:border-primary hover:text-primary'
+              }`}
             >
               Home
             </Link>
             <Link
               to="/shop"
-              className="inline-flex items-center px-3 py-2 text-sm font-medium text-contrast border-b-2 border-transparent hover:border-primary transition-colors"
+              className={`inline-flex items-center px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
+                location.pathname === '/shop' 
+                  ? 'text-primary border-primary' 
+                  : 'text-contrast border-transparent hover:border-primary hover:text-primary'
+              }`}
             >
               Shop
             </Link>
             <Link
               to="/about"
-              className="inline-flex items-center px-3 py-2 text-sm font-medium text-contrast border-b-2 border-transparent hover:border-primary transition-colors"
+              className={`inline-flex items-center px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
+                location.pathname === '/about' 
+                  ? 'text-primary border-primary' 
+                  : 'text-contrast border-transparent hover:border-primary hover:text-primary'
+              }`}
             >
               About
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center px-3 py-2 text-sm font-medium text-contrast border-b-2 border-transparent hover:border-primary transition-colors"
+              className={`inline-flex items-center px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
+                location.pathname === '/contact' 
+                  ? 'text-primary border-primary' 
+                  : 'text-contrast border-transparent hover:border-primary hover:text-primary'
+              }`}
             >
               Contact
             </Link>
             <Link
               to="/services"
-              className="inline-flex items-center px-3 py-2 text-sm font-medium text-contrast border-b-2 border-transparent hover:border-primary transition-colors"
+              className={`inline-flex items-center px-3 py-2 text-sm font-medium border-b-2 transition-colors ${
+                location.pathname === '/services' 
+                  ? 'text-primary border-primary' 
+                  : 'text-contrast border-transparent hover:border-primary hover:text-primary'
+              }`}
             >
               Services
             </Link>
@@ -174,9 +194,10 @@ const Navbar: React.FC = () => {
                 <button
                   onClick={handleLogout}
                   disabled={isLoggingOut}
-                  className="px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-md transition-colors disabled:opacity-50"
+                  className="p-2 text-red-600 hover:bg-red-50 rounded-md transition-colors disabled:opacity-50"
+                  title={isLoggingOut ? 'Signing out...' : 'Sign out'}
                 >
-                  {isLoggingOut ? 'Signing out...' : 'Sign out'}
+                  <ArrowRightOnRectangleIcon className="h-5 w-5" />
                 </button>
               </div>
             ) : (
@@ -321,15 +342,6 @@ const Navbar: React.FC = () => {
                   {/* User Actions */}
                   <div className="space-y-2">
                     <Link
-                      to="/profile"
-                      className="flex items-center px-4 py-3 text-base font-medium text-contrast hover:text-primary hover:bg-gray-50 rounded-lg transition-colors"
-                      onClick={closeMenu}
-                    >
-                      <UserIcon className="h-5 w-5 mr-3" />
-                      Your Profile
-                    </Link>
-                    
-                    <Link
                       to="/orders"
                       className="flex items-center px-4 py-3 text-base font-medium text-contrast hover:text-primary hover:bg-gray-50 rounded-lg transition-colors"
                       onClick={closeMenu}
@@ -338,8 +350,6 @@ const Navbar: React.FC = () => {
                       Orders
                     </Link>
                     
-
-
                     {user.email === 'pranavopshelke@gmail.com' && (
                       <Link
                         to="/admin"
@@ -351,16 +361,15 @@ const Navbar: React.FC = () => {
                       </Link>
                     )}
 
-                    {/* Sign Out Button - Prominent and Easy to Reach */}
+                    {/* Sign Out Button */}
                     <button
                       onClick={handleLogout}
                       disabled={isLoggingOut}
-                      className="flex items-center justify-between w-full px-4 py-3 text-base font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="flex items-center px-4 py-3 w-full text-base font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      title={isLoggingOut ? 'Signing out...' : 'Sign out'}
                     >
-                      <div className="flex items-center">
-                        <ArrowRightOnRectangleIcon className="h-5 w-5 mr-3" />
-                        <span>{isLoggingOut ? 'Signing out...' : 'Sign out'}</span>
-                      </div>
+                      <ArrowRightOnRectangleIcon className="h-5 w-5 mr-3" />
+                      {isLoggingOut ? 'Signing out...' : 'Sign out'}
                     </button>
                   </div>
                 </div>

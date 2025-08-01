@@ -21,6 +21,9 @@ import Home from './components/Home/Home';
 import About from './components/About/About';
 import Contact from './components/Contact/Contact';
 import Services from './pages/Services';
+import Terms from './pages/Terms';
+import EmailVerification from './components/Auth/EmailVerification';
+import PasswordReset from './components/Auth/PasswordReset';
 import AdminDashboard from './components/Admin/AdminDashboard';
 import ProductManagement from './components/Admin/ProductManagement';
 import UserList from './components/Admin/UserList';
@@ -36,6 +39,7 @@ import Footer from './components/layout/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import ManageCategories from './components/Admin/ManageCategories';
 import NavigationTest from './components/NavigationTest';
+import AIAssistant from './components/AIAssistant/AIAssistant';
 
 function App() {
   return (
@@ -47,6 +51,7 @@ function App() {
               <Toaster position="top-right" />
               <Navbar />
               <ScrollToTop />
+              <AIAssistant />
               <main className="flex-1">
                 <Routes>
                   {/* Public routes */}
@@ -55,6 +60,9 @@ function App() {
                   <Route path="/about" element={<About />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/services" element={<Services />} />
+                  <Route path="/terms" element={<Terms />} />
+                  <Route path="/email-verification" element={<EmailVerification />} />
+                  <Route path="/password-reset" element={<PasswordReset />} />
                   <Route path="/test-navigation" element={<NavigationTest />} />
                   <Route 
                     path="/login" 

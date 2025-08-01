@@ -84,8 +84,7 @@ const Register: React.FC = () => {
     city: '',
     state: '',
     zipCode: '',
-    password: '',
-    confirmPassword: ''
+
   });
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<ValidationErrors>({});
@@ -187,14 +186,7 @@ const Register: React.FC = () => {
       newErrors.address = addressErrors;
     }
 
-    // Password validation
-    if (!formData.password) {
-      newErrors.password = 'Password is required';
-    } else if (formData.password.length < 8) {
-      newErrors.password = 'Password must be at least 8 characters long';
-    } else if (formData.password !== formData.confirmPassword) {
-      newErrors.password = 'Passwords do not match';
-    }
+
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -221,17 +213,22 @@ const Register: React.FC = () => {
         street: formData.street.trim(),
         city: formData.city.trim(),
         state: formData.state,
-        zipCode: formData.zipCode.trim(),
-        password: formData.password
+        zipCode: formData.zipCode.trim()
       };
 
-      await register(registrationData);
+      const response = await register(registrationData);
       
-      // Check if there's a redirect location from ProtectedRoute
-      const from = location.state?.from?.pathname;
+      // Show success message and redirect to email verification page
+      setLoading(false);
+      setErrors({});
       
-      // Redirect to intended page or home
-      navigate(from || '/');
+      // Redirect to email verification page
+      navigate('/email-verification', { 
+        state: { 
+          email: formData.email.trim().toLowerCase(),
+          from: location.state?.from 
+        } 
+      });
     } catch (err: any) {
       const serverErrors = err.response?.data?.errors || {};
       setErrors(serverErrors);
@@ -468,41 +465,7 @@ const Register: React.FC = () => {
               )}
             </div>
 
-            {/* Password Fields */}
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password *
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="new-password"
-                required
-                className={getInputClassName('password')}
-                value={formData.password}
-                onChange={handleInputChange}
-              />
-              {errors.password && (
-                <p className="mt-1 text-sm text-red-600">{errors.password}</p>
-              )}
-            </div>
 
-            <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-                Confirm Password *
-              </label>
-              <input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                autoComplete="new-password"
-                required
-                className={getInputClassName('confirmPassword')}
-                value={formData.confirmPassword}
-                onChange={handleInputChange}
-              />
-            </div>
           </div>
 
           <div>
@@ -516,10 +479,10 @@ const Register: React.FC = () => {
                   size="sm" 
                   color="white" 
                   inline={true} 
-                  message="Creating account..." 
+                  message="Sending verification email..." 
                 />
               ) : (
-                'Sign Up'
+                'Send Verification Email'
               )}
             </button>
           </div>

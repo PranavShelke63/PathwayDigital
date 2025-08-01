@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -50,7 +51,8 @@ app.use(cors({
     'http://192.168.1.100:3000', // Common alternative network IP
     'http://192.168.1.101:3000', // Another common alternative
     'http://10.0.0.100:3000',    // Another common network range
-    'http://10.0.0.101:3000'     // Another common network range
+    'http://10.0.0.101:3000',    // Another common network range
+    'http://192.168.184.65:3000' // Additional network IP
   ],
   credentials: true
 }));
@@ -89,6 +91,22 @@ app.use('/uploads', (req, res, next) => {
   next();
 }, express.static(path.join(__dirname, 'uploads')));
 
+// Test email endpoint
+app.get('/api/v1/test-email', async (req, res) => {
+  try {
+    const sendEmail = require('./utils/email');
+    await sendEmail({
+      email: 'test@example.com',
+      subject: 'Test Email',
+      message: 'This is a test email to verify configuration.'
+    });
+    res.json({ success: true, message: 'Test email sent successfully' });
+  } catch (error) {
+    console.error('Test email error:', error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
 // Routes
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/products', productRoutes);
@@ -116,6 +134,37 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dU
   logger.error('Database connection error:', err);
   process.exit(1);
 });
+
+// Cleanup expired pending registrations and password resets every 5 minutes
+setInterval(() => {
+  const now = Date.now();
+  
+  // Clean up expired registrations
+  if (global.pendingRegistrations) {
+    for (const [email, registration] of global.pendingRegistrations.entries()) {
+      // Clean up expired OTP registrations
+      if (registration.otpExpires < now) {
+        global.pendingRegistrations.delete(email);
+        console.log(`Cleaned up expired OTP registration for: ${email}`);
+      }
+      // Clean up expired verified registrations (30 minutes after verification)
+      else if (registration.isVerified && (now - registration.verifiedAt) > 30 * 60 * 1000) {
+        global.pendingRegistrations.delete(email);
+        console.log(`Cleaned up expired verified registration for: ${email}`);
+      }
+    }
+  }
+  
+  // Clean up expired password resets
+  if (global.pendingPasswordResets) {
+    for (const [email, resetData] of global.pendingPasswordResets.entries()) {
+      if (resetData.otpExpires < now) {
+        global.pendingPasswordResets.delete(email);
+        console.log(`Cleaned up expired password reset for: ${email}`);
+      }
+    }
+  }
+}, 5 * 60 * 1000); // 5 minutes
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, '0.0.0.0', () => {

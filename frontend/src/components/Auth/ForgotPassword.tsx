@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
 const ForgotPassword: React.FC = () => {
@@ -9,6 +9,7 @@ const ForgotPassword: React.FC = () => {
   const [success, setSuccess] = useState(false);
 
   const location = useLocation();
+  const navigate = useNavigate();
   const { forgotPassword } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -19,7 +20,11 @@ const ForgotPassword: React.FC = () => {
 
     try {
       await forgotPassword(email);
-      setSuccess(true);
+      // Redirect to password reset page with email
+      navigate('/password-reset', { 
+        state: { email },
+        replace: true 
+      });
     } catch (err: any) {
       setError(err.response?.data?.message || 'Failed to send reset email');
     } finally {

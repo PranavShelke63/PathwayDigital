@@ -30,6 +30,21 @@ interface RegisterData {
   city: string;
   state: string;
   zipCode: string;
+}
+
+interface SetPasswordData {
+  email: string;
+  password: string;
+}
+
+interface VerifyEmailData {
+  email: string;
+  otp: string;
+}
+
+interface ResetPasswordData {
+  email: string;
+  otp: string;
   password: string;
 }
 
@@ -70,9 +85,13 @@ interface AuthContextType {
   error: ValidationErrors | null;
   login: (email: string, password: string) => Promise<void>;
   register: (data: RegisterData) => Promise<void>;
+  verifyEmail: (data: VerifyEmailData) => Promise<void>;
+  setPassword: (data: SetPasswordData) => Promise<void>;
+  resendVerificationEmail: (email: string) => Promise<void>;
   logout: () => Promise<void>;
   forgotPassword: (email: string) => Promise<void>;
-  resetPassword: (token: string, password: string) => Promise<void>;
+  resetPassword: (data: ResetPasswordData) => Promise<void>;
+  resendPasswordResetOTP: (email: string) => Promise<void>;
   updatePassword: (currentPassword: string, newPassword: string) => Promise<void>;
   updateProfile: (data: UpdateProfileData) => Promise<void>;
   clearError: () => void;
@@ -150,11 +169,61 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         { withCredentials: true }
       );
       
+      setError(null);
+      return response.data;
+    } catch (error: any) {
+      const errorData = error.response?.data;
+      setError(errorData?.errors || { general: errorData?.message || 'Registration failed' });
+      throw error;
+    }
+  };
+
+  const verifyEmail = async (data: VerifyEmailData) => {
+    try {
+      const response = await axios.post(
+        `${API_URL}/auth/verify-email`,
+        data,
+        { withCredentials: true }
+      );
+      
+      setError(null);
+      return response.data;
+    } catch (error: any) {
+      const errorData = error.response?.data;
+      setError(errorData?.errors || { general: errorData?.message || 'Failed to verify email' });
+      throw error;
+    }
+  };
+
+  const setPassword = async (data: SetPasswordData) => {
+    try {
+      const response = await axios.post(
+        `${API_URL}/auth/set-password`,
+        data,
+        { withCredentials: true }
+      );
+      
       setUser(response.data.data.user);
       setError(null);
     } catch (error: any) {
       const errorData = error.response?.data;
-      setError(errorData?.errors || { general: errorData?.message || 'Registration failed' });
+      setError(errorData?.errors || { general: errorData?.message || 'Failed to set password' });
+      throw error;
+    }
+  };
+
+  const resendVerificationEmail = async (email: string) => {
+    try {
+      await axios.post(
+        `${API_URL}/auth/resend-verification`,
+        { email },
+        { withCredentials: true }
+      );
+      
+      setError(null);
+    } catch (error: any) {
+      const errorData = error.response?.data;
+      setError(errorData?.errors || { general: errorData?.message || 'Failed to resend verification email' });
       throw error;
     }
   };
@@ -246,13 +315,35 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const resetPassword = async (token: string, password: string) => {
+  const resetPassword = async (data: ResetPasswordData) => {
     try {
-      await axios.patch(`${API_URL}/auth/resetPassword/${token}`, { password });
+      const response = await axios.post(
+        `${API_URL}/auth/resetPassword`,
+        data,
+        { withCredentials: true }
+      );
+      
+      setUser(response.data.data.user);
       setError(null);
     } catch (error: any) {
       const errorData = error.response?.data;
-      setError({ password: errorData?.message || 'Failed to reset password' });
+      setError(errorData?.errors || { general: errorData?.message || 'Failed to reset password' });
+      throw error;
+    }
+  };
+
+  const resendPasswordResetOTP = async (email: string) => {
+    try {
+      await axios.post(
+        `${API_URL}/auth/resend-password-reset`,
+        { email },
+        { withCredentials: true }
+      );
+      
+      setError(null);
+    } catch (error: any) {
+      const errorData = error.response?.data;
+      setError(errorData?.errors || { general: errorData?.message || 'Failed to resend password reset OTP' });
       throw error;
     }
   };
@@ -278,9 +369,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     error,
     login,
     register,
+    verifyEmail,
+    setPassword,
+    resendVerificationEmail,
     logout,
     forgotPassword,
     resetPassword,
+    resendPasswordResetOTP,
     updatePassword,
     updateProfile,
     clearError

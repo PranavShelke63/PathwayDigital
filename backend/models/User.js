@@ -78,6 +78,10 @@ const userSchema = new mongoose.Schema({
   },
   passwordResetToken: String,
   passwordResetExpires: Date,
+  isEmailVerified: {
+    type: Boolean,
+    default: false
+  },
   createdAt: {
     type: Date,
     default: Date.now
@@ -123,6 +127,8 @@ userSchema.methods.createPasswordResetToken = function() {
 
   return resetToken;
 };
+
+
 
 const User = mongoose.model('User', userSchema);
 
