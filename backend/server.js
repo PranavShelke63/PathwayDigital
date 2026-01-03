@@ -134,6 +134,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dU
   logger.error('Database connection error:', err);
   process.exit(1);
 });
+//s
 
 // Cleanup expired pending registrations and password resets every 5 minutes
 setInterval(() => {
