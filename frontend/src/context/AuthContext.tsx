@@ -114,14 +114,27 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Get the current hostname to determine the API URL
   const getApiUrl = () => {
+    // If REACT_APP_API_URL is set, use it (for production)
+    if (process.env.REACT_APP_API_URL) {
+      return process.env.REACT_APP_API_URL;
+    }
+
     const hostname = window.location.hostname;
+    const protocol = window.location.protocol;
     
-    // If accessing from mobile/network IP, use the same IP for backend
-    if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
-      return `http://${hostname}:5000/api/v1`;
+    // For localhost, always use HTTP
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return 'http://localhost:5000/api/v1';
     }
     
-    return process.env.REACT_APP_API_URL || 'http://localhost:5000/api/v1';
+    // For production/HTTPS, use HTTPS protocol
+    // If page is loaded over HTTPS, use HTTPS for API calls
+    if (protocol === 'https:') {
+      return `https://${hostname}/api/v1`;
+    }
+    
+    // Fallback to HTTP for network IPs (development)
+    return `http://${hostname}:5000/api/v1`;
   };
 
   const API_URL = getApiUrl();
