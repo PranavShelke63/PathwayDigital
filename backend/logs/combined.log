@@ -10096,3 +10096,14 @@
 {"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T17:37:47.041Z"}
 {"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T17:37:47.042Z"}
 {"level":"info","message":"Database connection successful!","timestamp":"2026-01-03T17:37:47.617Z"}
+{"level":"info","message":"GET /api/v1/auth/me 401 82 - 92.894 ms","timestamp":"2026-01-03T17:57:11.990Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 1522.959 ms","timestamp":"2026-01-03T17:57:12.075Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 302.234 ms","timestamp":"2026-01-03T17:57:12.379Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 305.547 ms","timestamp":"2026-01-03T17:57:12.723Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 170.485 ms","timestamp":"2026-01-03T17:57:12.918Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T18:05:50.569Z"}
+{"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T18:05:50.571Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2026-01-03T18:05:51.285Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T18:06:03.790Z"}
+{"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T18:06:03.792Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2026-01-03T18:06:04.392Z"}

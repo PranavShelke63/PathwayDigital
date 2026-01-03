@@ -47,6 +47,7 @@ app.use(helmet({
 app.use(cors({
   origin: [
     process.env.FRONTEND_URL || 'http://localhost:3000',
+    'https://pathwaydeploy.netlify.app', // Netlify production URL
     'http://192.168.0.102:3000', // Your network IP
     'http://192.168.1.100:3000', // Common alternative network IP
     'http://192.168.1.101:3000', // Another common alternative
