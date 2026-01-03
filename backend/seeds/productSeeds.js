@@ -1,13 +1,9 @@
 const mongoose = require('mongoose');
 const Product = require('../models/Product');
+const Category = require('../models/Category');
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dUf4QKFp@pathway.zos2qgp.mongodb.net/?retryWrites=true&w=majority', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-
-const HEADSETS_CATEGORY_ID = '688328726561c8c12b53799c';
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dUf4QKFp@pathway.zos2qgp.mongodb.net/?retryWrites=true&w=majority');
 
 // Sample Products Data
 const products = [
@@ -15,7 +11,6 @@ const products = [
     name: 'TUF-GAMING-H3',
     description: 'Durable ASUS TUF Gaming H3 headset with immersive sound, lightweight comfort, and a 3.5mm connector for versatile compatibility.',
     price: 4750,
-    category: HEADSETS_CATEGORY_ID,
     brand: 'ASUS',
     image: 'uploads/ASUS/Headset/TUF-GAMING-H3/1.jpg',
     images: [
@@ -40,7 +35,6 @@ const products = [
     name: 'TUF-GAM-H3-SILVER',
     description: 'ASUS TUF Gaming H3 Silver edition headset delivers clear audio and robust build quality, perfect for long gaming sessions.',
     price: 4750,
-    category: HEADSETS_CATEGORY_ID,
     brand: 'ASUS',
     image: 'uploads/ASUS/Headset/TUF-GAM-H3-SILVER/1.jpg',
     images: [
@@ -65,7 +59,6 @@ const products = [
     name: 'ROG-FUSION-II-300',
     description: 'ASUS ROG Fusion II 300 gaming headset features USB-A/USB-C connectivity, AI noise-cancelling, and customizable Aura Sync lighting.',
     price: 19999,
-    category: HEADSETS_CATEGORY_ID,
     brand: 'ASUS',
     image: 'uploads/ASUS/Headset/ROG-FUSION-II-300/1.jpg',
     images: [
@@ -92,7 +85,6 @@ const products = [
     name: 'ROG-FUSION-II-500',
     description: 'Premium ASUS ROG Fusion II 500 headset with advanced audio, USB-A/USB-C support, and immersive RGB lighting for gamers.',
     price: 22999,
-    category: HEADSETS_CATEGORY_ID,
     brand: 'ASUS',
     image: 'uploads/ASUS/Headset/ROG-FUSION-II-500/1.jpg',
     images: [
@@ -120,7 +112,6 @@ const products = [
     name: 'ROG-DELTAS-ANIMATE',
     description: 'ASUS ROG Delta S Animate headset offers high-fidelity sound, customizable AniMe Matrix™ lighting, and USB connectivity for pro gamers.',
     price: 23999,
-    category: HEADSETS_CATEGORY_ID,
     brand: 'ASUS',
     image: 'uploads/ASUS/Headset/ROG-DELTAS-ANIMATE/1.jpg',
     images: [
@@ -158,18 +149,34 @@ const products = [
 // Function to seed the database
 const seedProducts = async () => {
   try {
-    // Delete existing products
-    await Product.deleteMany({});
-    console.log('Deleted existing products');
+    // Find or create the Headsets category
+    let category = await Category.findOne({ name: 'Headsets' });
+    if (!category) {
+      category = await Category.create({ 
+        name: 'Headsets', 
+        description: 'Gaming and audio headsets' 
+      });
+      console.log('Created Headsets category');
+    } else {
+      console.log('Found existing Headsets category');
+    }
 
-    // Insert new products
-    await Product.insertMany(products);
-    console.log('Successfully seeded products');
+    // Update all products to use the category ID
+    const productsWithCategory = products.map(product => ({
+      ...product,
+      category: category._id
+    }));
+
+    // Insert new products (don't delete existing ones)
+    const result = await Product.insertMany(productsWithCategory);
+    console.log(`Successfully seeded ${result.length} products`);
 
     // Close the connection
     mongoose.connection.close();
+    process.exit(0);
   } catch (error) {
     console.error('Error seeding products:', error);
+    mongoose.connection.close();
     process.exit(1);
   }
 };

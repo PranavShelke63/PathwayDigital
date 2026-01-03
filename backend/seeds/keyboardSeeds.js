@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
 const Product = require('../models/Product');
+const Category = require('../models/Category');
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dUf4QKFp@pathway.zos2qgp.mongodb.net/?retryWrites=true&w=majority', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dUf4QKFp@pathway.zos2qgp.mongodb.net/?retryWrites=true&w=majority');
 
 // Sample Keyboard Data
 const products = [
@@ -13,15 +11,14 @@ const products = [
     name: 'TUF-GAMING-K1',
     description: 'ASUS TUF Gaming K1 keyboard with 5-zone RGB, durable switches, and spill-resistant design for reliable gaming sessions.',
     price: 4400,
-    category: 'ASUS Keyboard',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Keyboard/TUF-GAMING-K1/image_1.jpg',
+    image: 'uploads/ASUS/Keyboard/TUF-GAMING-K1/image_1.jpg',
     images: [
-      'uploads/AsusProducts/Keyboard/TUF-GAMING-K1/image_1.jpg',
-      'uploads/AsusProducts/Keyboard/TUF-GAMING-K1/image_2.jpg',
-      'uploads/AsusProducts/Keyboard/TUF-GAMING-K1/image_3.jpg',
-      'uploads/AsusProducts/Keyboard/TUF-GAMING-K1/image_4.jpg',
-      'uploads/AsusProducts/Keyboard/TUF-GAMING-K1/image_5.jpg'
+      'uploads/ASUS/Keyboard/TUF-GAMING-K1/image_1.jpg',
+      'uploads/ASUS/Keyboard/TUF-GAMING-K1/image_2.jpg',
+      'uploads/ASUS/Keyboard/TUF-GAMING-K1/image_3.jpg',
+      'uploads/ASUS/Keyboard/TUF-GAMING-K1/image_4.jpg',
+      'uploads/ASUS/Keyboard/TUF-GAMING-K1/image_5.jpg'
     ],
     stock: 10,
     specifications: {
@@ -39,15 +36,14 @@ const products = [
     name: 'TUF-GAMING-K3',
     description: 'ASUS TUF Gaming K3 mechanical keyboard offers full-size layout, customizable RGB, and robust build for everyday gaming.',
     price: 0,
-    category: 'ASUS Keyboard',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Keyboard/TUF-GAMING-K3/image_1.jpg',
+    image: 'uploads/ASUS/Keyboard/TUF-GAMING-K3/image_1.jpg',
     images: [
-      'uploads/AsusProducts/Keyboard/TUF-GAMING-K3/image_1.jpg',
-      'uploads/AsusProducts/Keyboard/TUF-GAMING-K3/image_2.jpg',
-      'uploads/AsusProducts/Keyboard/TUF-GAMING-K3/image_3.jpg',
-      'uploads/AsusProducts/Keyboard/TUF-GAMING-K3/image_4.jpg',
-      'uploads/AsusProducts/Keyboard/TUF-GAMING-K3/image_5.jpg'
+      'uploads/ASUS/Keyboard/TUF-GAMING-K3/image_1.jpg',
+      'uploads/ASUS/Keyboard/TUF-GAMING-K3/image_2.jpg',
+      'uploads/ASUS/Keyboard/TUF-GAMING-K3/image_3.jpg',
+      'uploads/ASUS/Keyboard/TUF-GAMING-K3/image_4.jpg',
+      'uploads/ASUS/Keyboard/TUF-GAMING-K3/image_5.jpg'
     ],
     stock: 10,
     specifications: {
@@ -65,12 +61,11 @@ const products = [
     name: 'STRIXSCOPEII-RX-TW',
     description: 'ASUS ROG Strix Scope II RX keyboard with optical mechanical switches and per-key RGB for fast, responsive typing.',
     price: 0,
-    category: 'ASUS Keyboard',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Keyboard/STRIXSCOPEII-RX-TW/image_1.jpg',
+    image: 'uploads/ASUS/Keyboard/STRIXSCOPEII-RX-TW/image_1.jpg',
     images: [
-      'uploads/AsusProducts/Keyboard/STRIXSCOPEII-RX-TW/image_1.jpg',
-      'uploads/AsusProducts/Keyboard/STRIXSCOPEII-RX-TW/image_2.jpg'
+      'uploads/ASUS/Keyboard/STRIXSCOPEII-RX-TW/image_1.jpg',
+      'uploads/ASUS/Keyboard/STRIXSCOPEII-RX-TW/image_2.jpg'
     ],
     stock: 10,
     specifications: {
@@ -88,14 +83,13 @@ const products = [
     name: 'STRIX-SCOPE-NX-WL',
     description: 'ASUS ROG Strix Scope NX Wireless keyboard features per-key RGB, mechanical switches, and wireless connectivity for flexible gaming.',
     price: 0,
-    category: 'ASUS Keyboard',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Keyboard/STRIX-SCOPE-NX-WL/image_1.jpg',
+    image: 'uploads/ASUS/Keyboard/STRIX-SCOPE-NX-WL/image_1.jpg',
     images: [
-      'uploads/AsusProducts/Keyboard/STRIX-SCOPE-NX-WL/image_1.jpg',
-      'uploads/AsusProducts/Keyboard/STRIX-SCOPE-NX-WL/image_2.jpg',
-      'uploads/AsusProducts/Keyboard/STRIX-SCOPE-NX-WL/image_3.jpg',
-      'uploads/AsusProducts/Keyboard/STRIX-SCOPE-NX-WL/image_4.jpg'
+      'uploads/ASUS/Keyboard/STRIX-SCOPE-NX-WL/image_1.jpg',
+      'uploads/ASUS/Keyboard/STRIX-SCOPE-NX-WL/image_2.jpg',
+      'uploads/ASUS/Keyboard/STRIX-SCOPE-NX-WL/image_3.jpg',
+      'uploads/ASUS/Keyboard/STRIX-SCOPE-NX-WL/image_4.jpg'
     ],
     stock: 10,
     specifications: {
@@ -113,17 +107,16 @@ const products = [
     name: 'M603-FALCHION-RX',
     description: 'ASUS ROG Falchion RX compact 60% keyboard with low-profile switches, per-key RGB, and wireless support for portable gaming.',
     price: 0,
-    category: 'ASUS Keyboard',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Keyboard/M603-FALCHION-RX/image_1.png',
+    image: 'uploads/ASUS/Keyboard/M603-FALCHION-RX/image_1.png',
     images: [
-      'uploads/AsusProducts/Keyboard/M603-FALCHION-RX/image_1.png',
-      'uploads/AsusProducts/Keyboard/M603-FALCHION-RX/image2.png',
-      'uploads/AsusProducts/Keyboard/M603-FALCHION-RX/image3.png',
-      'uploads/AsusProducts/Keyboard/M603-FALCHION-RX/image4.png',
-      'uploads/AsusProducts/Keyboard/M603-FALCHION-RX/image5.png',
-      'uploads/AsusProducts/Keyboard/M603-FALCHION-RX/image6.png',
-      'uploads/AsusProducts/Keyboard/M603-FALCHION-RX/image7.png',
+      'uploads/ASUS/Keyboard/M603-FALCHION-RX/image_1.png',
+      'uploads/ASUS/Keyboard/M603-FALCHION-RX/image2.png',
+      'uploads/ASUS/Keyboard/M603-FALCHION-RX/image3.png',
+      'uploads/ASUS/Keyboard/M603-FALCHION-RX/image4.png',
+      'uploads/ASUS/Keyboard/M603-FALCHION-RX/image5.png',
+      'uploads/ASUS/Keyboard/M603-FALCHION-RX/image6.png',
+      'uploads/ASUS/Keyboard/M603-FALCHION-RX/image7.png',
     ],
     stock: 10,
     specifications: {
@@ -141,14 +134,13 @@ const products = [
     name: 'STRIXSCOPE-RX-T-WL',
     description: 'ASUS ROG Strix Scope RX TKL Wireless keyboard with optical mechanical switches, per-key RGB, and 80% layout for compact performance.',
     price: 0,
-    category: 'ASUS Keyboard',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Keyboard/STRIXSCOPE-RX-T-WL/image_1.jpg',
+    image: 'uploads/ASUS/Keyboard/STRIXSCOPE-RX-T-WL/image_1.jpg',
     images: [
-      'uploads/AsusProducts/Keyboard/STRIXSCOPE-RX-T-WL/image_1.jpg',
-      'uploads/AsusProducts/Keyboard/STRIXSCOPE-RX-T-WL/image_2.jpg',
-      'uploads/AsusProducts/Keyboard/STRIXSCOPE-RX-T-WL/image_3.jpg',
-      'uploads/AsusProducts/Keyboard/STRIXSCOPE-RX-T-WL/image_4.jpg'
+      'uploads/ASUS/Keyboard/STRIXSCOPE-RX-T-WL/image_1.jpg',
+      'uploads/ASUS/Keyboard/STRIXSCOPE-RX-T-WL/image_2.jpg',
+      'uploads/ASUS/Keyboard/STRIXSCOPE-RX-T-WL/image_3.jpg',
+      'uploads/ASUS/Keyboard/STRIXSCOPE-RX-T-WL/image_4.jpg'
     ],
     stock: 10,
     specifications: {
@@ -166,14 +158,13 @@ const products = [
     name: 'STRIX-SCOPE-TKL-ML',
     description: 'ASUS ROG Strix Scope TKL Moonlight keyboard offers TKL layout, detachable cable, and vibrant RGB for streamlined gaming setups.',
     price: 0,
-    category: 'ASUS Keyboard',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Keyboard/STRIX-SCOPE-TKL-ML/image_1.jpg',
+    image: 'uploads/ASUS/Keyboard/STRIX-SCOPE-TKL-ML/image_1.jpg',
     images: [
-      'uploads/AsusProducts/Keyboard/STRIX-SCOPE-TKL-ML/image_1.jpg',
-      'uploads/AsusProducts/Keyboard/STRIX-SCOPE-TKL-ML/image_2.jpg',
-      'uploads/AsusProducts/Keyboard/STRIX-SCOPE-TKL-ML/image_3.jpg',
-      'uploads/AsusProducts/Keyboard/STRIX-SCOPE-TKL-ML/image_4.jpg'
+      'uploads/ASUS/Keyboard/STRIX-SCOPE-TKL-ML/image_1.jpg',
+      'uploads/ASUS/Keyboard/STRIX-SCOPE-TKL-ML/image_2.jpg',
+      'uploads/ASUS/Keyboard/STRIX-SCOPE-TKL-ML/image_3.jpg',
+      'uploads/ASUS/Keyboard/STRIX-SCOPE-TKL-ML/image_4.jpg'
     ],
     stock: 10,
     specifications: {
@@ -191,15 +182,14 @@ const products = [
     name: 'ROGSTRIX-SCOPE-RX',
     description: 'ASUS ROG Strix Scope RX full-size keyboard with RX Red optical switches, per-key RGB, and USB passthrough for advanced gaming.',
     price: 13999,
-    category: 'ASUS Keyboard',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Keyboard/ROGSTRIX-SCOPE-RX/1.jpg',
+    image: 'uploads/ASUS/Keyboard/ROGSTRIX-SCOPE-RX/1.jpg',
     images: [
-      'uploads/AsusProducts/Keyboard/ROGSTRIX-SCOPE-RX/1.jpg',
-      'uploads/AsusProducts/Keyboard/ROGSTRIX-SCOPE-RX/2.jpg',
-      'uploads/AsusProducts/Keyboard/ROGSTRIX-SCOPE-RX/3.jpg',
-      'uploads/AsusProducts/Keyboard/ROGSTRIX-SCOPE-RX/4.jpg',
-      'uploads/AsusProducts/Keyboard/ROGSTRIX-SCOPE-RX/5.jpg'
+      'uploads/ASUS/Keyboard/ROGSTRIX-SCOPE-RX/1.jpg',
+      'uploads/ASUS/Keyboard/ROGSTRIX-SCOPE-RX/2.jpg',
+      'uploads/ASUS/Keyboard/ROGSTRIX-SCOPE-RX/3.jpg',
+      'uploads/ASUS/Keyboard/ROGSTRIX-SCOPE-RX/4.jpg',
+      'uploads/ASUS/Keyboard/ROGSTRIX-SCOPE-RX/5.jpg'
     ],
     stock: 10,
     specifications: {
@@ -217,18 +207,17 @@ const products = [
     name: 'M701-ROG-AZOTH',
     description: 'ASUS ROG Azoth 75% keyboard with NX mechanical switches, all-key RGB, and premium build for enthusiast gamers.',
     price: 9999,
-    category: 'ASUS Keyboard',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Keyboard/M701-ROG-AZOTH/image1.png',
+    image: 'uploads/ASUS/Keyboard/M701-ROG-AZOTH/image1.png',
     images: [
-      'uploads/AsusProducts/Keyboard/M701-ROG-AZOTH/image1.png',
-      'uploads/AsusProducts/Keyboard/M701-ROG-AZOTH/image2.png',
-      'uploads/AsusProducts/Keyboard/M701-ROG-AZOTH/image3.png',
-      'uploads/AsusProducts/Keyboard/M701-ROG-AZOTH/image4.png',
-      'uploads/AsusProducts/Keyboard/M701-ROG-AZOTH/image5.png',
-      'uploads/AsusProducts/Keyboard/M701-ROG-AZOTH/image6.jpg',
-      'uploads/AsusProducts/Keyboard/M701-ROG-AZOTH/image7.jpg',
-      'uploads/AsusProducts/Keyboard/M701-ROG-AZOTH/image8.jpg',
+      'uploads/ASUS/Keyboard/M701-ROG-AZOTH/image1.png',
+      'uploads/ASUS/Keyboard/M701-ROG-AZOTH/image2.png',
+      'uploads/ASUS/Keyboard/M701-ROG-AZOTH/image3.png',
+      'uploads/ASUS/Keyboard/M701-ROG-AZOTH/image4.png',
+      'uploads/ASUS/Keyboard/M701-ROG-AZOTH/image5.png',
+      'uploads/ASUS/Keyboard/M701-ROG-AZOTH/image6.jpg',
+      'uploads/ASUS/Keyboard/M701-ROG-AZOTH/image7.jpg',
+      'uploads/ASUS/Keyboard/M701-ROG-AZOTH/image8.jpg',
     ],
     stock: 10,
     specifications: {
@@ -246,17 +235,16 @@ const products = [
     name: 'ROG-CLAYMORE-II',
     description: 'ASUS ROG Claymore II modular keyboard with RX Red optical switches, per-key RGB, and detachable numpad for ultimate flexibility.',
     price: 24999,
-    category: 'ASUS Keyboard',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Keyboard/ROG-CLAYMORE-II/1.jpg',
+    image: 'uploads/ASUS/Keyboard/ROG-CLAYMORE-II/1.jpg',
     images: [
-      'uploads/AsusProducts/Keyboard/ROG-CLAYMORE-II/1.jpg',
-      'uploads/AsusProducts/Keyboard/ROG-CLAYMORE-II/2.jpg',
-      'uploads/AsusProducts/Keyboard/ROG-CLAYMORE-II/3.jpg',
-      'uploads/AsusProducts/Keyboard/ROG-CLAYMORE-II/4.jpg',
-      'uploads/AsusProducts/Keyboard/ROG-CLAYMORE-II/5.jpg',
-      'uploads/AsusProducts/Keyboard/ROG-CLAYMORE-II/6.jpg',
-      'uploads/AsusProducts/Keyboard/ROG-CLAYMORE-II/7.jpg'
+      'uploads/ASUS/Keyboard/ROG-CLAYMORE-II/1.jpg',
+      'uploads/ASUS/Keyboard/ROG-CLAYMORE-II/2.jpg',
+      'uploads/ASUS/Keyboard/ROG-CLAYMORE-II/3.jpg',
+      'uploads/ASUS/Keyboard/ROG-CLAYMORE-II/4.jpg',
+      'uploads/ASUS/Keyboard/ROG-CLAYMORE-II/5.jpg',
+      'uploads/ASUS/Keyboard/ROG-CLAYMORE-II/6.jpg',
+      'uploads/ASUS/Keyboard/ROG-CLAYMORE-II/7.jpg'
     ],
     stock: 10,
     specifications: {
@@ -275,12 +263,34 @@ const products = [
 // Function to seed the database
 const seedProducts = async () => {
   try {
-    // await Product.deleteMany({});
-    await Product.insertMany(products);
-    console.log('Successfully seeded keyboard products');
+    // Find or create the Keyboard category
+    let category = await Category.findOne({ name: 'Keyboard' });
+    if (!category) {
+      category = await Category.create({ 
+        name: 'Keyboard', 
+        description: 'Gaming and mechanical keyboards' 
+      });
+      console.log('Created Keyboard category');
+    } else {
+      console.log('Found existing Keyboard category');
+    }
+
+    // Update all products to use the category ID
+    const productsWithCategory = products.map(product => ({
+      ...product,
+      category: category._id
+    }));
+
+    // Insert new products
+    const result = await Product.insertMany(productsWithCategory);
+    console.log(`Successfully seeded ${result.length} keyboard products`);
+
+    // Close the connection
     mongoose.connection.close();
+    process.exit(0);
   } catch (error) {
     console.error('Error seeding keyboard products:', error);
+    mongoose.connection.close();
     process.exit(1);
   }
 };

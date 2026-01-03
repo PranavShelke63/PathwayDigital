@@ -9934,3 +9934,150 @@
 {"level":"info","message":"GET /uploads/ASUS/Headset/TUF-GAM-H3-SILVER/1.jpg 304 - - 6.162 ms","timestamp":"2025-08-01T07:48:45.868Z"}
 {"level":"info","message":"GET /uploads/ASUS/Headset/ROG-FUSION-II-300/1.jpg 304 - - 8.903 ms","timestamp":"2025-08-01T07:48:45.873Z"}
 {"level":"info","message":"GET /api/v1/products 304 - - 173.839 ms","timestamp":"2025-08-01T07:48:46.010Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T14:08:00.190Z"}
+{"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T14:08:00.226Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2026-01-03T14:08:03.578Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T14:09:15.361Z"}
+{"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T14:09:15.390Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2026-01-03T14:09:17.915Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T14:09:52.301Z"}
+{"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T14:09:52.315Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2026-01-03T14:09:54.365Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T14:10:01.481Z"}
+{"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T14:10:01.483Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2026-01-03T14:10:03.683Z"}
+{"level":"info","message":"GET /api/v1/categories 200 701 - 171.602 ms","timestamp":"2026-01-03T14:10:10.962Z"}
+{"level":"info","message":"GET /api/v1/categories 304 - - 274.034 ms","timestamp":"2026-01-03T14:10:11.324Z"}
+{"level":"info","message":"GET /api/v1/products 200 - - 632.610 ms","timestamp":"2026-01-03T14:10:11.392Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-FUSION-II-300/1.jpg 304 - - 9.143 ms","timestamp":"2026-01-03T14:10:11.434Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-FUSION-II-500/1.jpg 304 - - 11.957 ms","timestamp":"2026-01-03T14:10:11.442Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/TUF-GAMING-H3/1.jpg 304 - - 8.067 ms","timestamp":"2026-01-03T14:10:11.459Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/TUF-GAM-H3-SILVER/1.jpg 304 - - 7.429 ms","timestamp":"2026-01-03T14:10:11.465Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-DELTAS-ANIMATE/1.jpg 304 - - 5.810 ms","timestamp":"2026-01-03T14:10:11.480Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 182.437 ms","timestamp":"2026-01-03T14:10:11.584Z"}
+{"level":"info","message":"DELETE /api/v1/cart/items/68838d3b88989fe896f15ed2 200 209 - 1485.441 ms","timestamp":"2026-01-03T14:10:22.125Z"}
+{"level":"info","message":"GET /api/v1/categories 304 - - 199.898 ms","timestamp":"2026-01-03T14:10:25.248Z"}
+{"level":"info","message":"GET /api/v1/categories 304 - - 215.737 ms","timestamp":"2026-01-03T14:10:25.478Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 500.662 ms","timestamp":"2026-01-03T14:10:25.543Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-FUSION-II-300/1.jpg 304 - - 4.925 ms","timestamp":"2026-01-03T14:10:25.582Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-DELTAS-ANIMATE/1.jpg 304 - - 8.853 ms","timestamp":"2026-01-03T14:10:25.589Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-FUSION-II-500/1.jpg 304 - - 2.567 ms","timestamp":"2026-01-03T14:10:25.597Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/TUF-GAMING-H3/1.jpg 304 - - 3.750 ms","timestamp":"2026-01-03T14:10:25.599Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/TUF-GAM-H3-SILVER/1.jpg 304 - - 3.938 ms","timestamp":"2026-01-03T14:10:25.610Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 527.603 ms","timestamp":"2026-01-03T14:10:26.091Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T14:11:40.190Z"}
+{"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T14:11:40.194Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2026-01-03T14:11:42.509Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T14:11:49.077Z"}
+{"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T14:11:49.081Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T14:11:51.164Z"}
+{"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T14:11:51.170Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2026-01-03T14:11:52.924Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T14:12:04.936Z"}
+{"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T14:12:04.947Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2026-01-03T14:12:06.974Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T14:12:36.686Z"}
+{"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T14:12:36.689Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2026-01-03T14:12:38.376Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 1534.309 ms","timestamp":"2026-01-03T14:13:04.436Z"}
+{"level":"info","message":"GET /api/v1/categories 304 - - 1509.597 ms","timestamp":"2026-01-03T14:13:04.462Z"}
+{"level":"info","message":"GET /api/v1/categories 304 - - 1086.942 ms","timestamp":"2026-01-03T14:13:05.567Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 1112.823 ms","timestamp":"2026-01-03T14:13:05.579Z"}
+{"level":"info","message":"GET /api/v1/products 200 - - 3223.613 ms","timestamp":"2026-01-03T14:13:06.176Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 1195.586 ms","timestamp":"2026-01-03T14:13:07.380Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-FUSION-II-300/1.jpg 304 - - 14.303 ms","timestamp":"2026-01-03T14:13:07.461Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-DELTAS-ANIMATE/1.jpg 304 - - 1.998 ms","timestamp":"2026-01-03T14:13:07.468Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/TUF-GAMING-H3/1.jpg 304 - - 37.273 ms","timestamp":"2026-01-03T14:13:07.525Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/TUF-GAM-H3-SILVER/1.jpg 304 - - 13.814 ms","timestamp":"2026-01-03T14:13:07.528Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-FUSION-II-500/1.jpg 304 - - 16.191 ms","timestamp":"2026-01-03T14:13:07.540Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/TUFGAMINGM3-GEN-II/image_1.jpg 404 196 - 2.174 ms","timestamp":"2026-01-03T14:13:07.569Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/STRIX-IMPACT-III/image_1.jpg 404 194 - 1.383 ms","timestamp":"2026-01-03T14:13:07.599Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/TUF-GAMING-M4-AIR/image_1.jpg 404 195 - 6.662 ms","timestamp":"2026-01-03T14:13:07.609Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 469.132 ms","timestamp":"2026-01-03T14:13:07.868Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/ROG-KERIS-AIMPOINT/image_1.jpg 404 196 - 4.489 ms","timestamp":"2026-01-03T14:13:07.882Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/P306-TUF-G-M4-WL/image_1.jpg 404 194 - 3.999 ms","timestamp":"2026-01-03T14:13:08.033Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_1.png 404 196 - 2.156 ms","timestamp":"2026-01-03T14:13:08.213Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 473.621 ms","timestamp":"2026-01-03T14:13:08.400Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 180.816 ms","timestamp":"2026-01-03T14:13:19.224Z"}
+{"level":"info","message":"GET /api/v1/categories 304 - - 253.351 ms","timestamp":"2026-01-03T14:13:19.610Z"}
+{"level":"info","message":"GET /api/v1/auth/me 404 153 - 252.345 ms","timestamp":"2026-01-03T14:13:19.615Z"}
+{"level":"info","message":"GET /api/v1/categories 304 - - 59.738 ms","timestamp":"2026-01-03T14:13:19.691Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 633.025 ms","timestamp":"2026-01-03T14:13:19.862Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 362.497 ms","timestamp":"2026-01-03T14:13:20.239Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-FUSION-II-300/1.jpg 304 - - 17.871 ms","timestamp":"2026-01-03T14:13:20.298Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-DELTAS-ANIMATE/1.jpg 304 - - 30.270 ms","timestamp":"2026-01-03T14:13:20.315Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-FUSION-II-500/1.jpg 304 - - 2.369 ms","timestamp":"2026-01-03T14:13:20.329Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/TUF-GAMING-H3/1.jpg 304 - - 13.656 ms","timestamp":"2026-01-03T14:13:20.348Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/TUF-GAM-H3-SILVER/1.jpg 304 - - 2.954 ms","timestamp":"2026-01-03T14:13:20.362Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/TUFGAMINGM3-GEN-II/image_1.jpg 404 196 - 5.895 ms","timestamp":"2026-01-03T14:13:20.366Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/STRIX-IMPACT-III/image_1.jpg 404 194 - 3.389 ms","timestamp":"2026-01-03T14:13:20.387Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/TUF-GAMING-M4-AIR/image_1.jpg 404 195 - 2.848 ms","timestamp":"2026-01-03T14:13:20.396Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 286.393 ms","timestamp":"2026-01-03T14:13:20.533Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/ROG-KERIS-AIMPOINT/image_1.jpg 404 196 - 7.437 ms","timestamp":"2026-01-03T14:13:20.556Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/P306-TUF-G-M4-WL/image_1.jpg 404 194 - 8.944 ms","timestamp":"2026-01-03T14:13:20.726Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_1.png 404 196 - 5.933 ms","timestamp":"2026-01-03T14:13:20.890Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 363.706 ms","timestamp":"2026-01-03T14:13:21.073Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T14:15:52.942Z"}
+{"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T14:15:52.949Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2026-01-03T14:15:56.061Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T14:15:59.296Z"}
+{"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T14:15:59.314Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2026-01-03T14:16:01.832Z"}
+{"level":"info","message":"POST /api/v1/auth/login 200 786 - 3522.663 ms","timestamp":"2026-01-03T14:16:03.780Z"}
+{"level":"info","message":"GET /api/v1/cart 200 209 - 343.419 ms","timestamp":"2026-01-03T14:16:04.222Z"}
+{"level":"info","message":"GET /api/v1/users 200 - - 400.313 ms","timestamp":"2026-01-03T14:16:04.264Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 509.876 ms","timestamp":"2026-01-03T14:16:04.783Z"}
+{"level":"info","message":"GET /api/v1/orders 304 - - 605.518 ms","timestamp":"2026-01-03T14:16:04.889Z"}
+{"level":"info","message":"GET /api/v1/orders 304 - - 287.885 ms","timestamp":"2026-01-03T14:16:05.183Z"}
+{"level":"info","message":"GET /api/v1/categories 304 - - 57.655 ms","timestamp":"2026-01-03T14:16:06.997Z"}
+{"level":"info","message":"GET /api/v1/categories 304 - - 115.937 ms","timestamp":"2026-01-03T14:16:07.131Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 466.002 ms","timestamp":"2026-01-03T14:16:07.400Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-FUSION-II-300/1.jpg 304 - - 19.998 ms","timestamp":"2026-01-03T14:16:07.510Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-DELTAS-ANIMATE/1.jpg 304 - - 1.668 ms","timestamp":"2026-01-03T14:16:07.516Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-FUSION-II-500/1.jpg 304 - - 1.142 ms","timestamp":"2026-01-03T14:16:07.531Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/TUF-GAMING-H3/1.jpg 304 - - 5.337 ms","timestamp":"2026-01-03T14:16:07.544Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/TUF-GAM-H3-SILVER/1.jpg 304 - - 1.193 ms","timestamp":"2026-01-03T14:16:07.554Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/TUFGAMINGM3-GEN-II/image_1.jpg 404 196 - 54.117 ms","timestamp":"2026-01-03T14:16:07.622Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 298.904 ms","timestamp":"2026-01-03T14:16:07.758Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/STRIX-IMPACT-III/image_1.jpg 404 194 - 2.855 ms","timestamp":"2026-01-03T14:16:07.791Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/TUF-GAMING-M4-AIR/image_1.jpg 404 195 - 18.800 ms","timestamp":"2026-01-03T14:16:07.815Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/ROG-KERIS-AIMPOINT/image_1.jpg 404 196 - 29.141 ms","timestamp":"2026-01-03T14:16:07.826Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/P306-TUF-G-M4-WL/image_1.jpg 404 194 - 21.140 ms","timestamp":"2026-01-03T14:16:07.829Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_1.png 404 196 - 19.986 ms","timestamp":"2026-01-03T14:16:07.833Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T14:16:12.765Z"}
+{"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T14:16:12.772Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2026-01-03T14:16:14.325Z"}
+{"level":"info","message":"DELETE /api/v1/products/695923dc330fdda38ab20707 204 - - 2718.141 ms","timestamp":"2026-01-03T14:16:16.497Z"}
+{"level":"info","message":"DELETE /api/v1/products/695923dc330fdda38ab20707 404 48 - 339.655 ms","timestamp":"2026-01-03T14:16:17.423Z"}
+{"level":"info","message":"GET /api/v1/products 200 - - 408.745 ms","timestamp":"2026-01-03T14:16:17.530Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 162.507 ms","timestamp":"2026-01-03T14:16:26.060Z"}
+{"level":"info","message":"GET /api/v1/users 304 - - 184.131 ms","timestamp":"2026-01-03T14:16:26.275Z"}
+{"level":"info","message":"GET /api/v1/orders 304 - - 597.348 ms","timestamp":"2026-01-03T14:16:26.761Z"}
+{"level":"info","message":"GET /api/v1/categories 304 - - 165.440 ms","timestamp":"2026-01-03T14:16:27.139Z"}
+{"level":"info","message":"GET /api/v1/orders 304 - - 431.179 ms","timestamp":"2026-01-03T14:16:27.204Z"}
+{"level":"info","message":"GET /api/v1/categories 304 - - 80.842 ms","timestamp":"2026-01-03T14:16:27.227Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 333.578 ms","timestamp":"2026-01-03T14:16:27.287Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-FUSION-II-300/1.jpg 304 - - 12.283 ms","timestamp":"2026-01-03T14:16:27.346Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-DELTAS-ANIMATE/1.jpg 304 - - 15.955 ms","timestamp":"2026-01-03T14:16:27.357Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/ROG-FUSION-II-500/1.jpg 304 - - 2.819 ms","timestamp":"2026-01-03T14:16:27.376Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/TUF-GAMING-H3/1.jpg 304 - - 1.624 ms","timestamp":"2026-01-03T14:16:27.393Z"}
+{"level":"info","message":"GET /uploads/ASUS/Headset/TUF-GAM-H3-SILVER/1.jpg 304 - - 2.466 ms","timestamp":"2026-01-03T14:16:27.407Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/STRIX-IMPACT-III/image_1.jpg 404 194 - 11.811 ms","timestamp":"2026-01-03T14:16:27.422Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/TUF-GAMING-M4-AIR/image_1.jpg 404 195 - 10.835 ms","timestamp":"2026-01-03T14:16:27.439Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/ROG-KERIS-AIMPOINT/image_1.jpg 404 196 - 11.527 ms","timestamp":"2026-01-03T14:16:27.653Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/P306-TUF-G-M4-WL/image_1.jpg 404 194 - 13.802 ms","timestamp":"2026-01-03T14:16:27.657Z"}
+{"level":"info","message":"GET /uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_1.png 404 196 - 15.279 ms","timestamp":"2026-01-03T14:16:27.661Z"}
+{"level":"info","message":"GET /api/v1/products 304 - - 550.656 ms","timestamp":"2026-01-03T14:16:27.847Z"}
+{"level":"info","message":"DELETE /api/v1/products/695923dc330fdda38ab20708 204 - - 461.963 ms","timestamp":"2026-01-03T14:16:32.552Z"}
+{"level":"info","message":"GET /api/v1/products 200 - - 732.569 ms","timestamp":"2026-01-03T14:16:33.303Z"}
+{"level":"info","message":"DELETE /api/v1/products/695923dc330fdda38ab2070a 204 - - 431.332 ms","timestamp":"2026-01-03T14:16:36.852Z"}
+{"level":"info","message":"GET /api/v1/products 200 - - 1018.953 ms","timestamp":"2026-01-03T14:16:37.892Z"}
+{"level":"info","message":"DELETE /api/v1/products/695923dc330fdda38ab2070c 204 - - 364.270 ms","timestamp":"2026-01-03T14:16:40.841Z"}
+{"level":"info","message":"GET /api/v1/products 200 - - 433.003 ms","timestamp":"2026-01-03T14:16:41.289Z"}
+{"level":"info","message":"DELETE /api/v1/products/695923dc330fdda38ab20709 204 - - 282.254 ms","timestamp":"2026-01-03T14:16:43.917Z"}
+{"level":"info","message":"GET /api/v1/products 200 - - 302.398 ms","timestamp":"2026-01-03T14:16:44.241Z"}
+{"level":"info","message":"DELETE /api/v1/products/695923dc330fdda38ab2070b 204 - - 239.803 ms","timestamp":"2026-01-03T14:16:47.115Z"}
+{"level":"info","message":"GET /api/v1/products 200 - - 502.800 ms","timestamp":"2026-01-03T14:16:47.635Z"}
+{"level":"info","message":"Server is running on port 5000","timestamp":"2026-01-03T14:16:52.237Z"}
+{"level":"info","message":"Server accessible at: http://0.0.0.0:5000","timestamp":"2026-01-03T14:16:52.239Z"}
+{"level":"info","message":"Database connection successful!","timestamp":"2026-01-03T14:16:54.940Z"}

@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
 const Product = require('../models/Product');
+const Category = require('../models/Category');
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dUf4QKFp@pathway.zos2qgp.mongodb.net/?retryWrites=true&w=majority', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dUf4QKFp@pathway.zos2qgp.mongodb.net/?retryWrites=true&w=majority');
 
 // Sample Mouse Data
 const products = [
@@ -13,15 +11,14 @@ const products = [
     name: 'TUFGAMINGM3-GEN-II',
     description: 'Lightweight ASUS TUF Gaming M3 Gen II mouse with 8000 DPI sensor, 6 programmable buttons, and Aura Sync RGB for precision gaming.',
     price: 3499,
-    category: 'ASUS Mouse',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Mouse/TUFGAMINGM3-GEN-II/image_1.jpg',
+    image: 'uploads/ASUS/Mouse/TUFGAMINGM3-GEN-II/image_1.jpg',
     images: [
-      'uploads/AsusProducts/Mouse/TUFGAMINGM3-GEN-II/image_1.jpg',
-      'uploads/AsusProducts/Mouse/TUFGAMINGM3-GEN-II/image_2.jpg',
-      'uploads/AsusProducts/Mouse/TUFGAMINGM3-GEN-II/image_3.jpg',
-      'uploads/AsusProducts/Mouse/TUFGAMINGM3-GEN-II/image_4.jpg',
-      'uploads/AsusProducts/Mouse/TUFGAMINGM3-GEN-II/image_5.jpg'
+      'uploads/ASUS/Mouse/TUFGAMINGM3-GEN-II/image_1.jpg',
+      'uploads/ASUS/Mouse/TUFGAMINGM3-GEN-II/image_2.jpg',
+      'uploads/ASUS/Mouse/TUFGAMINGM3-GEN-II/image_3.jpg',
+      'uploads/ASUS/Mouse/TUFGAMINGM3-GEN-II/image_4.jpg',
+      'uploads/ASUS/Mouse/TUFGAMINGM3-GEN-II/image_5.jpg'
     ],
     stock: 10,
     specifications: {
@@ -40,14 +37,13 @@ const products = [
     name: 'STRIX-IMPACT-III',
     description: 'ASUS ROG Strix Impact III mouse features a 12,000 DPI sensor, ultra-light 59g design, and customizable RGB for fast-paced gaming.',
     price: 5999,
-    category: 'ASUS Mouse',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Mouse/STRIX-IMPACT-III/image_1.jpg',
+    image: 'uploads/ASUS/Mouse/STRIX-IMPACT-III/image_1.jpg',
     images: [
-      'uploads/AsusProducts/Mouse/STRIX-IMPACT-III/image_1.jpg',
-      'uploads/AsusProducts/Mouse/STRIX-IMPACT-III/image_2.jpg',
-      'uploads/AsusProducts/Mouse/STRIX-IMPACT-III/image_3.jpg',
-      'uploads/AsusProducts/Mouse/STRIX-IMPACT-III/image_4.jpg'
+      'uploads/ASUS/Mouse/STRIX-IMPACT-III/image_1.jpg',
+      'uploads/ASUS/Mouse/STRIX-IMPACT-III/image_2.jpg',
+      'uploads/ASUS/Mouse/STRIX-IMPACT-III/image_3.jpg',
+      'uploads/ASUS/Mouse/STRIX-IMPACT-III/image_4.jpg'
     ],
     stock: 10,
     specifications: {
@@ -66,14 +62,13 @@ const products = [
     name: 'TUF-GAMING-M4-AIR',
     description: 'ASUS TUF Gaming M4 Air is an ultralight 47g mouse with 16,000 DPI, paracord cable, and 6 programmable buttons for agile control.',
     price: 4499,
-    category: 'ASUS Mouse',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Mouse/TUF-GAMING-M4-AIR/image_1.jpg',
+    image: 'uploads/ASUS/Mouse/TUF-GAMING-M4-AIR/image_1.jpg',
     images: [
-      'uploads/AsusProducts/Mouse/TUF-GAMING-M4-AIR/image_1.jpg',
-      'uploads/AsusProducts/Mouse/TUF-GAMING-M4-AIR/image_2.jpg',
-      'uploads/AsusProducts/Mouse/TUF-GAMING-M4-AIR/image_3.jpg',
-      'uploads/AsusProducts/Mouse/TUF-GAMING-M4-AIR/image_4.jpg'
+      'uploads/ASUS/Mouse/TUF-GAMING-M4-AIR/image_1.jpg',
+      'uploads/ASUS/Mouse/TUF-GAMING-M4-AIR/image_2.jpg',
+      'uploads/ASUS/Mouse/TUF-GAMING-M4-AIR/image_3.jpg',
+      'uploads/ASUS/Mouse/TUF-GAMING-M4-AIR/image_4.jpg'
     ],
     stock: 10,
     specifications: {
@@ -92,14 +87,13 @@ const products = [
     name: 'ROG-KERIS-AIMPOINT',
     description: 'ASUS ROG Keris AimPoint mouse offers 36,000 DPI, wireless and Bluetooth connectivity, and ergonomic design for competitive play.',
     price: 8999,
-    category: 'ASUS Mouse',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Mouse/ROG-KERIS-AIMPOINT/image_1.jpg',
+    image: 'uploads/ASUS/Mouse/ROG-KERIS-AIMPOINT/image_1.jpg',
     images: [
-      'uploads/AsusProducts/Mouse/ROG-KERIS-AIMPOINT/image_1.jpg',
-      'uploads/AsusProducts/Mouse/ROG-KERIS-AIMPOINT/image_2.jpg',
-      'uploads/AsusProducts/Mouse/ROG-KERIS-AIMPOINT/image_3.jpg',
-      'uploads/AsusProducts/Mouse/ROG-KERIS-AIMPOINT/image_4.jpg'
+      'uploads/ASUS/Mouse/ROG-KERIS-AIMPOINT/image_1.jpg',
+      'uploads/ASUS/Mouse/ROG-KERIS-AIMPOINT/image_2.jpg',
+      'uploads/ASUS/Mouse/ROG-KERIS-AIMPOINT/image_3.jpg',
+      'uploads/ASUS/Mouse/ROG-KERIS-AIMPOINT/image_4.jpg'
     ],
     stock: 10,
     specifications: {
@@ -118,14 +112,13 @@ const products = [
     name: 'P306-TUF-G-M4-WL',
     description: 'ASUS TUF Gaming M4 Wireless mouse with dual wireless modes, 12,000 DPI sensor, and 6 programmable buttons for versatile gaming.',
     price: 6999,
-    category: 'ASUS Mouse',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Mouse/P306-TUF-G-M4-WL/image_1.jpg',
+    image: 'uploads/ASUS/Mouse/P306-TUF-G-M4-WL/image_1.jpg',
     images: [
-      'uploads/AsusProducts/Mouse/P306-TUF-G-M4-WL/image_1.jpg',
-      'uploads/AsusProducts/Mouse/P306-TUF-G-M4-WL/image_2.jpg',
-      'uploads/AsusProducts/Mouse/P306-TUF-G-M4-WL/image_3.jpg',
-      'uploads/AsusProducts/Mouse/P306-TUF-G-M4-WL/image_4.jpg'
+      'uploads/ASUS/Mouse/P306-TUF-G-M4-WL/image_1.jpg',
+      'uploads/ASUS/Mouse/P306-TUF-G-M4-WL/image_2.jpg',
+      'uploads/ASUS/Mouse/P306-TUF-G-M4-WL/image_3.jpg',
+      'uploads/ASUS/Mouse/P306-TUF-G-M4-WL/image_4.jpg'
     ],
     stock: 10,
     specifications: {
@@ -144,16 +137,15 @@ const products = [
     name: 'P713-ROG-HARPE-ACE',
     description: 'ASUS ROG Harpe Ace Aim Lab Edition mouse features 36,000 DPI, ultra-light 54g build, and wireless connectivity for esports performance.',
     price: 14999,
-    category: 'ASUS Mouse',
     brand: 'ASUS',
-    image: 'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_1.png',
+    image: 'uploads/ASUS/Mouse/P713-ROG-HARPE-ACE/image_1.png',
     images: [
-      'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_1.png',
-      'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_2.jpg',
-      'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_3.jpg',
-      'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_4.jpg',
-      'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_5.jpg',
-      'uploads/AsusProducts/Mouse/P713-ROG-HARPE-ACE/image_6.jpg',
+      'uploads/ASUS/Mouse/P713-ROG-HARPE-ACE/image_1.png',
+      'uploads/ASUS/Mouse/P713-ROG-HARPE-ACE/image_2.jpg',
+      'uploads/ASUS/Mouse/P713-ROG-HARPE-ACE/image_3.jpg',
+      'uploads/ASUS/Mouse/P713-ROG-HARPE-ACE/image_4.jpg',
+      'uploads/ASUS/Mouse/P713-ROG-HARPE-ACE/image_5.jpg',
+      'uploads/ASUS/Mouse/P713-ROG-HARPE-ACE/image_6.jpg',
     ],
     stock: 10,
     specifications: {
@@ -173,12 +165,34 @@ const products = [
 // Function to seed the database
 const seedProducts = async () => {
   try {
-    // await Product.deleteMany({});
-    await Product.insertMany(products);
-    console.log('Successfully seeded mouse products');
+    // Find or create the Mouse category
+    let category = await Category.findOne({ name: 'Mouse' });
+    if (!category) {
+      category = await Category.create({ 
+        name: 'Mouse', 
+        description: 'Gaming and computer mice' 
+      });
+      console.log('Created Mouse category');
+    } else {
+      console.log('Found existing Mouse category');
+    }
+
+    // Update all products to use the category ID
+    const productsWithCategory = products.map(product => ({
+      ...product,
+      category: category._id
+    }));
+
+    // Insert new products
+    const result = await Product.insertMany(productsWithCategory);
+    console.log(`Successfully seeded ${result.length} mouse products`);
+
+    // Close the connection
     mongoose.connection.close();
+    process.exit(0);
   } catch (error) {
     console.error('Error seeding mouse products:', error);
+    mongoose.connection.close();
     process.exit(1);
   }
 };
