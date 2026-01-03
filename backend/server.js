@@ -119,14 +119,16 @@ app.use('/api/v1/upload', uploadRoutes);
 app.use('/api/v1/cart', cartRoutes);
 app.use('/api/v1/orders', orderRoutes);
 
+// Root route
+app.get('/', (req, res) => {
+  res.send('Backend is live!');
+});
+
 // Error handling
 app.use(errorHandler);
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dUf4QKFp@pathway.zos2qgp.mongodb.net/?retryWrites=true&w=majority', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dUf4QKFp@pathway.zos2qgp.mongodb.net/?retryWrites=true&w=majority')
 .then(() => {
   logger.info('Database connection successful!');
 })
@@ -134,7 +136,6 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://PranavAdmin:TwKdpH!dU
   logger.error('Database connection error:', err);
   process.exit(1);
 });
-//s
 
 // Cleanup expired pending registrations and password resets every 5 minutes
 setInterval(() => {
